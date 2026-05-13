@@ -7,9 +7,13 @@ __pycache__/
 # Generated video intermediates. Final deliverables remain tracked under final/.
 final/video_assets/
 final/ppt_video_assets/
+final/playwright_demo_assets/
 final/video_preview/
 final/rendered_report/
 final/ppt_rendered/
 
 # Presentation build dependencies.
 outputs/**/node_modules/
+
+# Local Playwright runtime used by scripts/record_playwright_demo.cjs.
+.playwright-runtime/
