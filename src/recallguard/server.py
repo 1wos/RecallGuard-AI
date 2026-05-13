@@ -122,6 +122,7 @@ def render_page() -> str:
     h1 {{ font-size: clamp(38px, 6vw, 64px); line-height: 1.06; margin: 0; font-weight: 650; letter-spacing: -.03em; max-width: 760px; }}
     .lead {{ margin: 18px 0 0; color: #e7e7f3; max-width: 690px; font-size: 18px; line-height: 1.45; }}
     main {{ padding: 36px 32px 64px; }}
+    .section-stack {{ display: grid; gap: 20px; }}
     .grid {{ display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, .82fr); gap: 20px; align-items: start; }}
     .panel {{
       border: 1px solid var(--line);
@@ -132,6 +133,47 @@ def render_page() -> str:
       overflow: hidden;
     }}
     .panel.soft {{ background: var(--soft); }}
+    .architecture {{
+      background: #fff;
+      padding: 24px;
+    }}
+    .arch-top {{ display: grid; grid-template-columns: minmax(0, .9fr) minmax(320px, 1.1fr); gap: 24px; align-items: start; }}
+    .arch-copy p {{ color: var(--muted); line-height: 1.45; margin: 0 0 16px; max-width: 620px; }}
+    .arch-note {{ border-left: 3px solid #000; padding-left: 12px; font-size: 14px; color: #333; }}
+    .flow {{ display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; align-items: stretch; }}
+    .flow-card {{
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 12px;
+      background: var(--soft);
+      position: relative;
+    }}
+    .flow-card:not(:last-child)::after {{
+      content: ">";
+      position: absolute;
+      right: -8px;
+      top: 42%;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      background: #000;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      z-index: 1;
+    }}
+    .flow-kicker {{ color: var(--muted); font-family: "SFMono-Regular", Consolas, monospace; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; }}
+    .flow-title {{ margin-top: 8px; font-weight: 750; overflow-wrap: anywhere; }}
+    .flow-detail {{ margin-top: 8px; color: #444; font-size: 13px; line-height: 1.35; }}
+    .plane-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }}
+    .plane {{ border: 1px solid var(--line); border-radius: 4px; padding: 14px; background: #fff; }}
+    .plane.dark {{ background: var(--dark); color: #fff; border-color: #26263a; }}
+    .plane h3 {{ margin: 0 0 10px; }}
+    .plane ul {{ margin: 0; padding-left: 18px; color: inherit; line-height: 1.55; }}
+    .plane.dark .muted {{ color: #c9c9d6; }}
     h2 {{ margin: 0 0 14px; font-size: 24px; letter-spacing: -.01em; }}
     h3 {{ margin: 22px 0 10px; font-size: 18px; }}
     label {{ display: block; font-weight: 650; margin: 14px 0 8px; }}
@@ -189,6 +231,10 @@ def render_page() -> str:
       header::after {{ right: -230px; top: 34px; width: 420px; height: 150px; opacity: .2; }}
       main {{ padding: 36px 16px 64px; }}
       .grid {{ grid-template-columns: 1fr; }}
+      .arch-top {{ grid-template-columns: 1fr; }}
+      .flow {{ grid-template-columns: 1fr; }}
+      .flow-card:not(:last-child)::after {{ display: none; }}
+      .plane-grid {{ grid-template-columns: 1fr; }}
     }}
   </style>
 </head>
@@ -201,7 +247,65 @@ def render_page() -> str:
     </div>
   </header>
   <main>
-    <div class="wrap grid">
+    <div class="wrap section-stack">
+      <section class="panel architecture">
+        <div class="eyebrow" style="color:#777;">Architecture / user journey</div>
+        <div class="arch-top">
+          <div class="arch-copy">
+            <h2>How RecallGuard works</h2>
+            <p>RecallGuard is a governed product-safety review workflow. A reviewer brings a vendor CSV, the system grounds the policy context first, then runs deterministic evidence checks against certification and recall data.</p>
+            <div class="arch-note">The local web app is the hands-on demo surface. The Foundry build is the governed agent workflow: Knowledge Agent, Task Agent, File Search, Code Interpreter, guardrails, traces, and Entra identity.</div>
+          </div>
+          <div class="flow" aria-label="RecallGuard workflow">
+            <article class="flow-card">
+              <div class="flow-kicker">Step 01</div>
+              <div class="flow-title">Reviewer input</div>
+              <div class="flow-detail">Upload or paste vendor product rows.</div>
+            </article>
+            <article class="flow-card">
+              <div class="flow-kicker">Step 02</div>
+              <div class="flow-title">Knowledge Agent</div>
+              <div class="flow-detail">Grounds product safety policy with File Search.</div>
+            </article>
+            <article class="flow-card">
+              <div class="flow-kicker">Step 03</div>
+              <div class="flow-title">Task Agent</div>
+              <div class="flow-detail">Runs Code Interpreter and the deterministic checker.</div>
+            </article>
+            <article class="flow-card">
+              <div class="flow-kicker">Step 04</div>
+              <div class="flow-title">Decision</div>
+              <div class="flow-detail">Returns APPROVE, REVIEW, or HOLD with evidence.</div>
+            </article>
+            <article class="flow-card">
+              <div class="flow-kicker">Step 05</div>
+              <div class="flow-title">HITL packet</div>
+              <div class="flow-detail">HOLD creates a human-review packet and traceable rationale.</div>
+            </article>
+          </div>
+        </div>
+        <div class="plane-grid">
+          <div class="plane dark">
+            <h3>Microsoft Foundry layer</h3>
+            <ul>
+              <li>Knowledge Agent: File Search over safety policy and SOP docs</li>
+              <li>Task Agent: Code Interpreter runs <code>recallguard_checker.py</code></li>
+              <li>Sequential Workflow: policy grounding first, evidence action second</li>
+              <li>Guardrails, traces, Entra Agent IDs, least-privilege governance</li>
+            </ul>
+          </div>
+          <div class="plane">
+            <h3>Local demo layer</h3>
+            <ul>
+              <li>Browser UI for a real reviewer workflow</li>
+              <li>Same deterministic checker and same sample evidence snapshot</li>
+              <li>Decision rules and reviewer packet visible on screen</li>
+              <li>25-row evaluation harness available in one click</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <div class="grid">
       <section class="panel">
         <h2>Run a vendor evidence check</h2>
         <label for="sample">Sample CSV</label>
@@ -226,6 +330,7 @@ def render_page() -> str:
         <h3>Decision rules</h3>
         <div class="rule-list">{decision_rows}</div>
       </aside>
+      </div>
     </div>
   </main>
   <script>
