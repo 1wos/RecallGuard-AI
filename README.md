@@ -1,0 +1,56 @@
+# RecallGuard AI
+
+Governed multi-agent product safety compliance checker for the Microsoft Foundry final activity.
+
+## What Is Implemented
+
+- **Knowledge Agent**: `recallguard-knowledge-agent` grounded with File Search over `knowledge-base/`.
+- **Task Agent**: `recallguard-task-agent-v5` using Code Interpreter plus deterministic CSV evidence checks.
+- **Sequential Workflow**: Knowledge Agent first, Task Agent only when file/action evidence is required, HITL for `HOLD`.
+- **Governance Evidence**: guardrail notes, trace runbook, Entra Agent IDs, CLI setup evidence, and final build report.
+- **Runnable Checker**: Python package under `src/recallguard/` with pytest coverage for approve, review, hold, and prompt-injection edge cases.
+- **Submission Assets**: PDF/DOCX report, MP4 demo, editable PPT deck, narration scripts, and packaged zip under `final/`.
+
+## Current Azure Setup
+
+- Subscription: Azure for Students
+- Resource group: `rg-recallguard-foundry-je`
+- Region: `japaneast`
+- Foundry resource: `recallguard-somi-20260513`
+- Foundry project: `recallguard-ai`
+- Model deployment: `gpt-4o-mini`
+- Demo model deployment: `gpt-4o-mini-100`
+- Model SKU: `GlobalStandard`
+
+## Submission-Focused Build Path
+
+1. Use the files in `knowledge-base/` as the grounded knowledge source.
+2. Use the files in `sample-data/` as Task Agent demo inputs.
+3. Create two Foundry agents:
+   - `RecallGuard Knowledge Agent`
+   - `RecallGuard Task Agent v5`
+4. Create a Sequential workflow:
+   - Knowledge Agent first
+   - Task Agent only when a file/action is required
+   - Human-in-the-loop for `HOLD`
+5. Capture Preview, Traces, Guardrails, and Entra Agent ID evidence.
+
+See `docs/RecallGuard_AI_PRD.md` and `docs/Foundry_Final_Activity_Checklist.md`.
+
+## Run Local Tests
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+pytest
+```
+
+## Regenerate Artifacts
+
+```bash
+python scripts/build_submission_package.py
+python scripts/build_ppt_video.py
+```
+
+The Foundry provisioning script is `scripts/setup_foundry_agents.sh`. It expects Azure CLI login and reads the AI Services key at runtime; no API keys are stored in this repository.

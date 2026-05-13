@@ -1,0 +1,914 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/u4qxm7",
+    "id": "u4qxm7",
+    "slide": 2,
+    "layoutId": "7840a620-0fea-4a8e-9bea-f12ae3c4a9be",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "7f0dbfd3-9caf-4d37-84a1-99e274592497",
+    "masterLayoutName": "Master",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Inter",
+      "Menlo"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "7840a620-0fea-4a8e-9bea-f12ae3c4a9be",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "7f0dbfd3-9caf-4d37-84a1-99e274592497",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "7f0dbfd3-9caf-4d37-84a1-99e274592497",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ulwval87",
+      "id": "1",
+      "bbox": [
+        0,
+        0,
+        1280,
+        720
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1cfa9w3m",
+      "id": "2",
+      "bbox": [
+        54,
+        32,
+        360,
+        18
+      ],
+      "geometry": "rect",
+      "text": "PROBLEM SURFACE",
+      "textPreview": "PROBLEM SURFACE",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Menlo",
+        "bold": true,
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "PROBLEM SURFACE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "PROBLEM SURFACE",
+          "runs": [
+            {
+              "index": 1,
+              "text": "PROBLEM SURFACE",
+              "fontSize": 11,
+              "typeface": "Menlo",
+              "color": "#999999",
+              "bold": true
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/crmhk3q5",
+      "id": "3",
+      "bbox": [
+        1020,
+        30,
+        205,
+        22
+      ],
+      "geometry": "rect",
+      "text": "RecallGuard AI",
+      "textPreview": "RecallGuard AI",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "RecallGuard AI"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "RecallGuard AI",
+          "runs": [
+            {
+              "index": 1,
+              "text": "RecallGuard AI",
+              "fontSize": 18,
+              "typeface": "Inter",
+              "color": "#000000"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ji5snelo",
+      "id": "4",
+      "bbox": [
+        58,
+        96,
+        360,
+        16
+      ],
+      "geometry": "rect",
+      "text": "WHY GOVERNANCE MATTERS",
+      "textPreview": "WHY GOVERNANCE MATTERS",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Menlo",
+        "bold": true,
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "WHY GOVERNANCE MATTERS"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "WHY GOVERNANCE MATTERS",
+          "runs": [
+            {
+              "index": 1,
+              "text": "WHY GOVERNANCE MATTERS",
+              "fontSize": 11,
+              "typeface": "Menlo",
+              "color": "#999999",
+              "bold": true
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/uxc3ylc7",
+      "id": "5",
+      "bbox": [
+        56,
+        124,
+        700,
+        104
+      ],
+      "geometry": "rect",
+      "text": "A vendor CSV can carry more risk than it looks.",
+      "textPreview": "A vendor CSV can carry more risk than it looks.",
+      "resolvedFontSize": 41,
+      "resolvedTextStyle": {
+        "fontSize": 41,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "A vendor CSV can carry more risk"
+          },
+          {
+            "index": 2,
+            "text": "than it looks."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "A vendor CSV can carry more risk than it looks.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "A vendor CSV can carry more risk than it looks.",
+              "fontSize": 41,
+              "typeface": "Inter",
+              "color": "#000000"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1kre1w7m",
+      "id": "6",
+      "bbox": [
+        58,
+        236,
+        720,
+        50
+      ],
+      "geometry": "rect",
+      "text": "The workflow has to catch product risk, missing evidence, and adversarial content without inventing a compliance answer.",
+      "textPreview": "The workflow has to catch product risk, missing evidence, and adversarial content without inventing a compliance answer.",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "The workflow has to catch product risk, missing evidence, and adversarial content without"
+          },
+          {
+            "index": 2,
+            "text": "inventing a compliance answer."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "The workflow has to catch product risk, missing evidence, and adversarial content without inventing a compliance answer.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "The workflow has to catch product risk, missing evidence, and adversarial content without inventing a compliance answer.",
+              "fontSize": 17,
+              "typeface": "Inter",
+              "color": "#555555"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/c3ylc7u5",
+      "id": "7",
+      "bbox": [
+        58,
+        340,
+        348,
+        206
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFE5E5",
+      "lineColor": "#EBEBEB",
+      "lineWidth": 1
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jqh0fepk",
+      "id": "8",
+      "bbox": [
+        82,
+        362,
+        50,
+        18
+      ],
+      "geometry": "rect",
+      "text": "01",
+      "textPreview": "01",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "Menlo",
+        "bold": true,
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "01"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "01",
+          "runs": [
+            {
+              "index": 1,
+              "text": "01",
+              "fontSize": 13,
+              "typeface": "Menlo",
+              "color": "#000000",
+              "bold": true
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q5o7qpg3",
+      "id": "9",
+      "bbox": [
+        82,
+        396,
+        290,
+        56
+      ],
+      "geometry": "rect",
+      "text": "Recalled product slips through",
+      "textPreview": "Recalled product slips through",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "fontSize": 23,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Recalled product slips"
+          },
+          {
+            "index": 2,
+            "text": "through"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Recalled product slips through",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Recalled product slips through",
+              "fontSize": 23,
+              "typeface": "Inter",
+              "color": "#000000"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kzupwb2h",
+      "id": "10",
+      "bbox": [
+        82,
+        466,
+        286,
+        54
+      ],
+      "geometry": "rect",
+      "text": "A recalled model or importer match must create HOLD and trigger human review.",
+      "textPreview": "A recalled model or importer match must create HOLD and trigger human review.",
+      "resolvedFontSize": 14.51,
+      "resolvedTextStyle": {
+        "fontSize": 14.51,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "A recalled model or importer match must"
+          },
+          {
+            "index": 2,
+            "text": "create HOLD and trigger human review."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "A recalled model or importer match must create HOLD and trigger human review.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "A recalled model or importer match must create HOLD and trigger human review.",
+              "fontSize": 14.51,
+              "typeface": "Inter",
+              "color": "#222222"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9knih4by",
+      "id": "11",
+      "bbox": [
+        450,
+        340,
+        348,
+        206
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFF4CC",
+      "lineColor": "#EBEBEB",
+      "lineWidth": 1
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2t83itgf",
+      "id": "12",
+      "bbox": [
+        474,
+        362,
+        50,
+        18
+      ],
+      "geometry": "rect",
+      "text": "02",
+      "textPreview": "02",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "Menlo",
+        "bold": true,
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "02"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "02",
+          "runs": [
+            {
+              "index": 1,
+              "text": "02",
+              "fontSize": 13,
+              "typeface": "Menlo",
+              "color": "#000000",
+              "bold": true
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/re1w7mp0",
+      "id": "13",
+      "bbox": [
+        474,
+        396,
+        290,
+        56
+      ],
+      "geometry": "rect",
+      "text": "Certification evidence is incomplete",
+      "textPreview": "Certification evidence is incomplete",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "fontSize": 23,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Certification evidence is"
+          },
+          {
+            "index": 2,
+            "text": "incomplete"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Certification evidence is incomplete",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Certification evidence is incomplete",
+              "fontSize": 23,
+              "typeface": "Inter",
+              "color": "#000000"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kb6xkf6d",
+      "id": "14",
+      "bbox": [
+        474,
+        466,
+        286,
+        54
+      ],
+      "geometry": "rect",
+      "text": "Missing model, manufacturer, or KC number should become REVIEW, not APPROVE.",
+      "textPreview": "Missing model, manufacturer, or KC number should become REVIEW, not APPROVE.",
+      "resolvedFontSize": 14.51,
+      "resolvedTextStyle": {
+        "fontSize": 14.51,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Missing model, manufacturer, or KC"
+          },
+          {
+            "index": 2,
+            "text": "number should become REVIEW, not"
+          },
+          {
+            "index": 3,
+            "text": "APPROVE."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Missing model, manufacturer, or KC number should become REVIEW, not APPROVE.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Missing model, manufacturer, or KC number should become REVIEW, not APPROVE.",
+              "fontSize": 14.51,
+              "typeface": "Inter",
+              "color": "#222222"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9w3m94fu",
+      "id": "15",
+      "bbox": [
+        842,
+        340,
+        348,
+        206
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#C8F6F9",
+      "lineColor": "#EBEBEB",
+      "lineWidth": 1
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/25kb6xkf",
+      "id": "16",
+      "bbox": [
+        866,
+        362,
+        50,
+        18
+      ],
+      "geometry": "rect",
+      "text": "03",
+      "textPreview": "03",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "fontSize": 13,
+        "typeface": "Menlo",
+        "bold": true,
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "03"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "03",
+          "runs": [
+            {
+              "index": 1,
+              "text": "03",
+              "fontSize": 13,
+              "typeface": "Menlo",
+              "color": "#000000",
+              "bold": true
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/rqd4vmtw",
+      "id": "17",
+      "bbox": [
+        866,
+        396,
+        290,
+        56
+      ],
+      "geometry": "rect",
+      "text": "Vendor note attempts instruction override",
+      "textPreview": "Vendor note attempts instruction override",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "fontSize": 23,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Vendor note attempts"
+          },
+          {
+            "index": 2,
+            "text": "instruction override"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Vendor note attempts instruction override",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Vendor note attempts instruction override",
+              "fontSize": 23,
+              "typeface": "Inter",
+              "color": "#000000"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kjm1cfa9",
+      "id": "18",
+      "bbox": [
+        866,
+        466,
+        286,
+        54
+      ],
+      "geometry": "rect",
+      "text": "Uploaded files are untrusted data; notes must not change agent policy.",
+      "textPreview": "Uploaded files are untrusted data; notes must not change agent policy.",
+      "resolvedFontSize": 14.51,
+      "resolvedTextStyle": {
+        "fontSize": 14.51,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Uploaded files are untrusted data; notes"
+          },
+          {
+            "index": 2,
+            "text": "must not change agent policy."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Uploaded files are untrusted data; notes must not change agent policy.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Uploaded files are untrusted data; notes must not change agent policy.",
+              "fontSize": 14.51,
+              "typeface": "Inter",
+              "color": "#222222"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/94fu18jq",
+      "id": "19",
+      "bbox": [
+        54,
+        672,
+        620,
+        16
+      ],
+      "geometry": "rect",
+      "text": "SLIDE 02 / GOVERNED MULTI-AGENT WORKFLOW",
+      "textPreview": "SLIDE 02 / GOVERNED MULTI-AGENT WORKFLOW",
+      "resolvedFontSize": 10,
+      "resolvedTextStyle": {
+        "fontSize": 10,
+        "typeface": "Menlo",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "SLIDE 02 / GOVERNED MULTI-AGENT WORKFLOW"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "SLIDE 02 / GOVERNED MULTI-AGENT WORKFLOW",
+          "runs": [
+            {
+              "index": 1,
+              "text": "SLIDE 02 / GOVERNED MULTI-AGENT WORKFLOW",
+              "fontSize": 10,
+              "typeface": "Menlo",
+              "color": "#999999"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

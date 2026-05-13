@@ -1,0 +1,69 @@
+[warning] slide-01.layout.json:tight-text:8: Product safety evidence checking, governed from prompt to identity. text box is tight: height 178px for 3 line(s) at 54px.
+    - shape Product safety evidence checking, governed from prompt to identity. bbox=[62,178,650,178]
+[warning] slide-01.layout.json:tight-text:17: 2 text box is tight: height 42px for 1 line(s) at 38px.
+    - shape 2 bbox=[806,506,88,42]
+[warning] slide-01.layout.json:tight-text:20: 4 text box is tight: height 42px for 1 line(s) at 38px.
+    - shape 4 bbox=[950,506,88,42]
+[warning] slide-01.layout.json:tight-text:23: 1 text box is tight: height 42px for 1 line(s) at 38px.
+    - shape 1 bbox=[1094,506,88,42]
+[warning] slide-01.layout.json:split-inline:11:13: KNOWLEDGE AGENT and TASK AGENT look like manually split inline text.
+    - shape KNOWLEDGE AGENT bbox=[66,508,174,16]
+    - shape TASK AGENT bbox=[252,508,130,16]
+[warning] slide-01.layout.json:split-inline:13:15: TASK AGENT and TRACES + ENTRA ID look like manually split inline text.
+    - shape TASK AGENT bbox=[252,508,130,16]
+    - shape TRACES + ENTRA ID bbox=[394,508,190,16]
+[warning] slide-04.layout.json:tight-text:5: Ground first. Act second. Escalate when risk is real. text box is tight: height 92px for 2 line(s) at 42px.
+    - shape Ground first. Act second. Escalate when risk is real. bbox=[56,122,720,92]
+[warning] slide-04.layout.json:tight-text:11: > text box is tight: height 18px for 1 line(s) at 16px.
+    - shape > bbox=[320,382,18,18]
+[warning] slide-04.layout.json:tight-text:17: > text box is tight: height 18px for 1 line(s) at 16px.
+    - shape > bbox=[622,382,18,18]
+[warning] slide-04.layout.json:tight-text:23: > text box is tight: height 18px for 1 line(s) at 16px.
+    - shape > bbox=[924,382,18,18]
+[warning] slide-04.layout.json:box-bottom-pad:7:9: Compliance associate uploads vendor CSV has only 12px bottom padding inside its containing box; expected at least 16px.
+    - shape order 7 bbox=[64,338,172,110]
+    - shape Compliance associate uploads vendor CSV bbox=[80,380,140,56]
+[warning] slide-04.layout.json:box-bottom-pad:13:15: Ground policy with File Search has only 12px bottom padding inside its containing box; expected at least 16px.
+    - shape order 13 bbox=[346,338,192,110]
+    - shape Ground policy with File Search bbox=[362,380,160,56]
+[warning] slide-04.layout.json:box-bottom-pad:19:21: Run Code Interpreter checker has only 12px bottom padding inside its containing box; expected at least 16px.
+    - shape order 19 bbox=[648,338,192,110]
+    - shape Run Code Interpreter checker bbox=[664,380,160,56]
+[warning] slide-04.layout.json:box-bottom-pad:25:27: HOLD requires compliance review has only 12px bottom padding inside its containing box; expected at least 16px.
+    - shape order 25 bbox=[950,338,192,110]
+    - shape HOLD requires compliance review bbox=[966,380,160,56]
+[warning] slide-06.layout.json:tight-text:9: Certification evidence was incorrectly treated as HOLD. text box is tight: height 58px for 3 line(s) at 22px.
+    - shape Certification evidence was incorrectly treated as HOLD. bbox=[88,404,230,58]
+[warning] slide-06.layout.json:tight-text:11: > text box is tight: height 18px for 1 line(s) at 16px.
+    - shape > bbox=[460,405,18,18]
+[warning] slide-06.layout.json:tight-text:15: Only evidence_type == recall can create HOLD. text box is tight: height 58px for 3 line(s) at 22px.
+    - shape Only evidence_type == recall can create HOLD. bbox=[518,404,230,58]
+[warning] slide-06.layout.json:tight-text:17: > text box is tight: height 18px for 1 line(s) at 16px.
+    - shape > bbox=[890,405,18,18]
+[warning] slide-07.layout.json:tight-text:8: 1 text box is tight: height 42px for 1 line(s) at 38px.
+    - shape 1 bbox=[926,152,72,42]
+[warning] slide-07.layout.json:tight-text:11: 2 text box is tight: height 42px for 1 line(s) at 38px.
+    - shape 2 bbox=[1054,152,72,42]
+[warning] slide-09.layout.json:tight-text:9: Project text box is tight: height 26px for 1 line(s) at 23px.
+    - shape Project bbox=[165,334,190,26]
+[warning] slide-09.layout.json:tight-text:12: > text box is tight: height 18px for 1 line(s) at 16px.
+    - shape > bbox=[420,357,18,18]
+[warning] slide-09.layout.json:tight-text:15: Agents text box is tight: height 26px for 1 line(s) at 23px.
+    - shape Agents bbox=[547,334,190,26]
+[warning] slide-09.layout.json:tight-text:18: > text box is tight: height 18px for 1 line(s) at 16px.
+    - shape > bbox=[802,357,18,18]
+[warning] slide-09.layout.json:tight-text:21: Workflow text box is tight: height 26px for 1 line(s) at 23px.
+    - shape Workflow bbox=[929,334,190,26]
+[warning] slide-09.layout.json:tight-text:25: Tests text box is tight: height 26px for 1 line(s) at 23px.
+    - shape Tests bbox=[165,478,190,26]
+[warning] slide-09.layout.json:tight-text:28: > text box is tight: height 18px for 1 line(s) at 16px.
+    - shape > bbox=[420,501,18,18]
+[warning] slide-09.layout.json:tight-text:31: Traces text box is tight: height 26px for 1 line(s) at 23px.
+    - shape Traces bbox=[547,478,190,26]
+[warning] slide-09.layout.json:tight-text:34: > text box is tight: height 18px for 1 line(s) at 16px.
+    - shape > bbox=[802,501,18,18]
+[warning] slide-09.layout.json:tight-text:37: Reflection text box is tight: height 26px for 1 line(s) at 23px.
+    - shape Reflection bbox=[929,478,190,26]
+[warning] slide-10.layout.json:tight-text:8: Submit the video and report; keep the PPT as the editable source. text box is tight: height 92px for 2 line(s) at 42px.
+    - shape Submit the video and report; keep the PPT as the editable source. bbox=[56,130,700,92]
+Checked 10 layout file(s): 0 error(s), 31 warning(s).

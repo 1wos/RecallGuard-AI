@@ -1,0 +1,1 @@
+{"error":{"code":"rate_limit_exceeded","message":"Model deployment rate limit exceeded. Too Many Requests. To request more quota, see https://learn.microsoft.com/en-us/azure/ai-services/openai/quotas-limits","type":"error","additionalInfo":{"request_id":"2c7e37aa05072f29d8b51762d14258e9","rate_limit_source":"rapi"}}}

@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.DS_Store
+*.pyc
+
+# Generated video intermediates. Final deliverables remain tracked under final/.
+final/video_assets/
+final/ppt_video_assets/
+final/video_preview/
+final/rendered_report/
+final/ppt_rendered/
+
+# Presentation build dependencies.
+outputs/**/node_modules/

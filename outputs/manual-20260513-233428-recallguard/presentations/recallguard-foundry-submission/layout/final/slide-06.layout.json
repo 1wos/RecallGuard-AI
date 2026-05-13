@@ -1,0 +1,989 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/6ivbri",
+    "id": "6ivbri",
+    "slide": 6,
+    "layoutId": "7840a620-0fea-4a8e-9bea-f12ae3c4a9be",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "7f0dbfd3-9caf-4d37-84a1-99e274592497",
+    "masterLayoutName": "Master",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Inter",
+      "Menlo"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "7840a620-0fea-4a8e-9bea-f12ae3c4a9be",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "7f0dbfd3-9caf-4d37-84a1-99e274592497",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "7f0dbfd3-9caf-4d37-84a1-99e274592497",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/yhgn29gr",
+      "id": "1",
+      "bbox": [
+        0,
+        0,
+        1280,
+        720
+      ],
+      "geometry": "rect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/58z25kb6",
+      "id": "2",
+      "bbox": [
+        54,
+        32,
+        360,
+        18
+      ],
+      "geometry": "rect",
+      "text": "TASK AGENT HARDENING",
+      "textPreview": "TASK AGENT HARDENING",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Menlo",
+        "bold": true,
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "TASK AGENT HARDENING"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "TASK AGENT HARDENING",
+          "runs": [
+            {
+              "index": 1,
+              "text": "TASK AGENT HARDENING",
+              "fontSize": 11,
+              "typeface": "Menlo",
+              "color": "#999999",
+              "bold": true
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gn29gr2p",
+      "id": "3",
+      "bbox": [
+        1020,
+        30,
+        205,
+        22
+      ],
+      "geometry": "rect",
+      "text": "RecallGuard AI",
+      "textPreview": "RecallGuard AI",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "RecallGuard AI"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "RecallGuard AI",
+          "runs": [
+            {
+              "index": 1,
+              "text": "RecallGuard AI",
+              "fontSize": 18,
+              "typeface": "Inter",
+              "color": "#000000"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nuxc3ylc",
+      "id": "4",
+      "bbox": [
+        58,
+        80,
+        260,
+        18
+      ],
+      "geometry": "rect",
+      "text": "TOOL EXECUTION",
+      "textPreview": "TOOL EXECUTION",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "fontSize": 11,
+        "typeface": "Menlo",
+        "bold": true,
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "TOOL EXECUTION"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "TOOL EXECUTION",
+          "runs": [
+            {
+              "index": 1,
+              "text": "TOOL EXECUTION",
+              "fontSize": 11,
+              "typeface": "Menlo",
+              "color": "#999999",
+              "bold": true
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/y90je9cv",
+      "id": "5",
+      "bbox": [
+        56,
+        110,
+        800,
+        108
+      ],
+      "geometry": "rect",
+      "text": "A false HOLD became the reason to stop trusting free-form classification.",
+      "textPreview": "A false HOLD became the reason to stop trusting free-form classification.",
+      "resolvedFontSize": 39,
+      "resolvedTextStyle": {
+        "fontSize": 39,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "A false HOLD became the reason to stop"
+          },
+          {
+            "index": 2,
+            "text": "trusting free-form classification."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "A false HOLD became the reason to stop trusting free-form classification.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "A false HOLD became the reason to stop trusting free-form classification.",
+              "fontSize": 39,
+              "typeface": "Inter",
+              "color": "#000000"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5wjudg7a",
+      "id": "6",
+      "bbox": [
+        58,
+        226,
+        760,
+        50
+      ],
+      "geometry": "rect",
+      "text": "The final Task Agent uses Code Interpreter plus recallguard_checker.py so row-level decisions are deterministic and evidence_type-aware.",
+      "textPreview": "The final Task Agent uses Code Interpreter plus recallguard_checker.py so row-level decisions are deterministic and evidence_type-aware.",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "The final Task Agent uses Code Interpreter plus recallguard_checker.py so row-level decisions are"
+          },
+          {
+            "index": 2,
+            "text": "deterministic and evidence_type-aware."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "The final Task Agent uses Code Interpreter plus recallguard_checker.py so row-level decisions are deterministic and evidence_type-aware.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "The final Task Agent uses Code Interpreter plus recallguard_checker.py so row-level decisions are deterministic and evidence_type-aware.",
+              "fontSize": 17,
+              "typeface": "Inter",
+              "color": "#555555"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gbq1oryt",
+      "id": "7",
+      "bbox": [
+        66,
+        346,
+        286,
+        154
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFE5E5",
+      "lineColor": "#EBEBEB",
+      "lineWidth": 1
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nqxs72x4",
+      "id": "8",
+      "bbox": [
+        88,
+        370,
+        180,
+        16
+      ],
+      "geometry": "rect",
+      "text": "EARLY FAILURE",
+      "textPreview": "EARLY FAILURE",
+      "resolvedFontSize": 10.51,
+      "resolvedTextStyle": {
+        "fontSize": 10.51,
+        "typeface": "Menlo",
+        "bold": true,
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "EARLY FAILURE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "EARLY FAILURE",
+          "runs": [
+            {
+              "index": 1,
+              "text": "EARLY FAILURE",
+              "fontSize": 10.51,
+              "typeface": "Menlo",
+              "color": "#000000",
+              "bold": true
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/u54zidon",
+      "id": "9",
+      "bbox": [
+        88,
+        404,
+        230,
+        58
+      ],
+      "geometry": "rect",
+      "text": "Certification evidence was incorrectly treated as HOLD.",
+      "textPreview": "Certification evidence was incorrectly treated as HOLD.",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Certification evidence"
+          },
+          {
+            "index": 2,
+            "text": "was incorrectly treated"
+          },
+          {
+            "index": 3,
+            "text": "as HOLD."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Certification evidence was incorrectly treated as HOLD.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Certification evidence was incorrectly treated as HOLD.",
+              "fontSize": 22,
+              "typeface": "Inter",
+              "color": "#000000"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cbulwval",
+      "id": "10",
+      "bbox": [
+        376,
+        414,
+        92,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#000000",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5sneloj2",
+      "id": "11",
+      "bbox": [
+        460,
+        405,
+        18,
+        18
+      ],
+      "geometry": "rect",
+      "text": ">",
+      "textPreview": ">",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ">"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": ">",
+          "runs": [
+            {
+              "index": 1,
+              "text": ">",
+              "fontSize": 16,
+              "typeface": "Inter",
+              "color": "#000000"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/u54zidon",
+      "id": "12",
+      "bbox": [
+        376,
+        432,
+        92,
+        14
+      ],
+      "geometry": "rect",
+      "text": "TRACE",
+      "textPreview": "TRACE",
+      "resolvedFontSize": 8.6,
+      "resolvedTextStyle": {
+        "fontSize": 8.6,
+        "typeface": "Menlo",
+        "alignment": "center"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "TRACE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "TRACE",
+          "runs": [
+            {
+              "index": 1,
+              "text": "TRACE",
+              "fontSize": 8.6,
+              "typeface": "Menlo",
+              "color": "#999999"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nqxs72x4",
+      "id": "13",
+      "bbox": [
+        496,
+        346,
+        286,
+        154
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFF4CC",
+      "lineColor": "#EBEBEB",
+      "lineWidth": 1
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/czed8v6p",
+      "id": "14",
+      "bbox": [
+        518,
+        370,
+        120,
+        16
+      ],
+      "geometry": "rect",
+      "text": "FIX",
+      "textPreview": "FIX",
+      "resolvedFontSize": 10.51,
+      "resolvedTextStyle": {
+        "fontSize": 10.51,
+        "typeface": "Menlo",
+        "bold": true,
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "FIX"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "FIX",
+          "runs": [
+            {
+              "index": 1,
+              "text": "FIX",
+              "fontSize": 10.51,
+              "typeface": "Menlo",
+              "color": "#000000",
+              "bold": true
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5kb6xkf6",
+      "id": "15",
+      "bbox": [
+        518,
+        404,
+        230,
+        58
+      ],
+      "geometry": "rect",
+      "text": "Only evidence_type == recall can create HOLD.",
+      "textPreview": "Only evidence_type == recall can create HOLD.",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Only evidence_type =="
+          },
+          {
+            "index": 2,
+            "text": "recall can create"
+          },
+          {
+            "index": 3,
+            "text": "HOLD."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Only evidence_type == recall can create HOLD.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Only evidence_type == recall can create HOLD.",
+              "fontSize": 22,
+              "typeface": "Inter",
+              "color": "#000000"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ytsvu9kn",
+      "id": "16",
+      "bbox": [
+        806,
+        414,
+        92,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#000000",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/neloj2t8",
+      "id": "17",
+      "bbox": [
+        890,
+        405,
+        18,
+        18
+      ],
+      "geometry": "rect",
+      "text": ">",
+      "textPreview": ">",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ">"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": ">",
+          "runs": [
+            {
+              "index": 1,
+              "text": ">",
+              "fontSize": 16,
+              "typeface": "Inter",
+              "color": "#000000"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gn29gr2p",
+      "id": "18",
+      "bbox": [
+        806,
+        432,
+        92,
+        14
+      ],
+      "geometry": "rect",
+      "text": "CODE",
+      "textPreview": "CODE",
+      "resolvedFontSize": 8.6,
+      "resolvedTextStyle": {
+        "fontSize": 8.6,
+        "typeface": "Menlo",
+        "alignment": "center"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "CODE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "CODE",
+          "runs": [
+            {
+              "index": 1,
+              "text": "CODE",
+              "fontSize": 8.6,
+              "typeface": "Menlo",
+              "color": "#999999"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/58z25kb6",
+      "id": "19",
+      "bbox": [
+        926,
+        346,
+        286,
+        154
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#C8F6F9",
+      "lineColor": "#EBEBEB",
+      "lineWidth": 1
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tcj6tova",
+      "id": "20",
+      "bbox": [
+        948,
+        370,
+        160,
+        16
+      ],
+      "geometry": "rect",
+      "text": "FINAL AGENT",
+      "textPreview": "FINAL AGENT",
+      "resolvedFontSize": 10.51,
+      "resolvedTextStyle": {
+        "fontSize": 10.51,
+        "typeface": "Menlo",
+        "bold": true,
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "FINAL AGENT"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "FINAL AGENT",
+          "runs": [
+            {
+              "index": 1,
+              "text": "FINAL AGENT",
+              "fontSize": 10.51,
+              "typeface": "Menlo",
+              "color": "#000000",
+              "bold": true
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0rqd4vmt",
+      "id": "21",
+      "bbox": [
+        948,
+        404,
+        230,
+        58
+      ],
+      "geometry": "rect",
+      "text": "Task Agent v5 runs deterministic Python.",
+      "textPreview": "Task Agent v5 runs deterministic Python.",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "fontSize": 22,
+        "typeface": "Inter",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Task Agent v5 runs"
+          },
+          {
+            "index": 2,
+            "text": "deterministic Python."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Task Agent v5 runs deterministic Python.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Task Agent v5 runs deterministic Python.",
+              "fontSize": 22,
+              "typeface": "Inter",
+              "color": "#000000"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/b6xkf6dc",
+      "id": "22",
+      "bbox": [
+        54,
+        672,
+        620,
+        16
+      ],
+      "geometry": "rect",
+      "text": "SLIDE 06 / GOVERNED MULTI-AGENT WORKFLOW",
+      "textPreview": "SLIDE 06 / GOVERNED MULTI-AGENT WORKFLOW",
+      "resolvedFontSize": 10,
+      "resolvedTextStyle": {
+        "fontSize": 10,
+        "typeface": "Menlo",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "SLIDE 06 / GOVERNED MULTI-AGENT WORKFLOW"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "SLIDE 06 / GOVERNED MULTI-AGENT WORKFLOW",
+          "runs": [
+            {
+              "index": 1,
+              "text": "SLIDE 06 / GOVERNED MULTI-AGENT WORKFLOW",
+              "fontSize": 10,
+              "typeface": "Menlo",
+              "color": "#999999"
+            }
+          ]
+        }
+      ],
+      "fillColor": "rgba(0, 0, 0, 0)",
+      "lineColor": "rgba(0, 0, 0, 0)",
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

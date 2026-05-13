@@ -1,0 +1,81 @@
+HTTP/2 200 
+content-type: application/json; charset=utf-8
+request-context: appId=
+x-ms-response-type: standard
+x-request-id: 23466d3766e17a3f760f2089e8fc7c06
+api-supported-versions: 1.0,2025-05-15-preview,2025-11-15-preview
+azureml-served-by-cluster: hyena-japaneast-02
+apim-request-id: 2fe601f3-50c8-445f-8c01-46233a44703a
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+x-content-type-options: nosniff
+x-ms-region: Japan East
+date: Wed, 13 May 2026 10:17:03 GMT
+
+{
+  "object": "agent",
+  "id": "recallguard-governed-workflow",
+  "name": "recallguard-governed-workflow",
+  "versions": {
+    "latest": {
+      "metadata": {},
+      "object": "agent.version",
+      "id": "recallguard-governed-workflow:1",
+      "name": "recallguard-governed-workflow",
+      "version": "1",
+      "description": "Sequential workflow: Knowledge Agent then Task Agent v5",
+      "created_at": 1778667423,
+      "definition": {
+        "kind": "workflow",
+        "workflow": "kind: Workflow\ntrigger:\n  kind: OnConversationStart\n  id: recallguard_governed_review\n  actions:\n    - kind: InvokeAzureAgent\n      id: invoke_knowledge_agent\n      displayName: Ground product safety criteria\n      conversationId: =System.ConversationId\n      agent:\n        name: recallguard-knowledge-agent\n\n    - kind: InvokeAzureAgent\n      id: invoke_task_agent\n      displayName: Check vendor product evidence\n      conversationId: =System.ConversationId\n      agent:\n        name: recallguard-task-agent-v5\n"
+      },
+      "status": "active",
+      "instance_identity": {
+        "principal_id": "4d708df3-042b-4b5f-9d36-25fa2780a3aa",
+        "client_id": "4d708df3-042b-4b5f-9d36-25fa2780a3aa"
+      },
+      "blueprint": {
+        "principal_id": "a564d90b-4a23-4ddb-b092-fc41e04919bb",
+        "client_id": "693ebc10-2beb-4e03-8049-9d8273860e3f"
+      },
+      "blueprint_reference": {
+        "type": "ManagedAgentIdentityBlueprint",
+        "blueprint_id": "recallguard-governed-workflow-66d9c"
+      },
+      "agent_guid": "66d9c549-9be1-475d-b4c7-c2c176af8f60"
+    }
+  },
+  "agent_endpoint": {
+    "version_selector": {
+      "version_selection_rules": [
+        {
+          "type": "FixedRatio",
+          "agent_version": "@latest",
+          "traffic_percentage": 100
+        }
+      ]
+    },
+    "protocols": [
+      "responses"
+    ],
+    "authorization_schemes": [
+      {
+        "type": "Entra",
+        "isolation_key_source": {
+          "kind": "Entra"
+        }
+      }
+    ]
+  },
+  "instance_identity": {
+    "principal_id": "4d708df3-042b-4b5f-9d36-25fa2780a3aa",
+    "client_id": "4d708df3-042b-4b5f-9d36-25fa2780a3aa"
+  },
+  "blueprint": {
+    "principal_id": "a564d90b-4a23-4ddb-b092-fc41e04919bb",
+    "client_id": "693ebc10-2beb-4e03-8049-9d8273860e3f"
+  },
+  "blueprint_reference": {
+    "type": "ManagedAgentIdentityBlueprint",
+    "blueprint_id": "recallguard-governed-workflow-66d9c"
+  }
+}

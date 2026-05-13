@@ -1,0 +1,12 @@
+{
+  "error": {
+    "code": "invalid_payload",
+    "message": "Not defined. [Request ID: bcca6af37717af7efca2eb44327e60d1]",
+    "param": "conversation",
+    "type": "invalid_request_error",
+    "details": [],
+    "additionalInfo": {
+      "request_id": "bcca6af37717af7efca2eb44327e60d1"
+    }
+  }
+}

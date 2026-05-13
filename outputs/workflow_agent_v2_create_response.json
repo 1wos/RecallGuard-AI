@@ -1,0 +1,68 @@
+{
+  "object": "agent",
+  "id": "recallguard-governed-workflow-v2",
+  "name": "recallguard-governed-workflow-v2",
+  "versions": {
+    "latest": {
+      "metadata": {},
+      "object": "agent.version",
+      "id": "recallguard-governed-workflow-v2:1",
+      "name": "recallguard-governed-workflow-v2",
+      "version": "1",
+      "description": "Sequential workflow v2 without explicit conversationId",
+      "created_at": 1778667464,
+      "definition": {
+        "kind": "workflow",
+        "workflow": "kind: Workflow\ntrigger:\n  kind: OnConversationStart\n  id: recallguard_governed_review_v2\n  actions:\n    - kind: InvokeAzureAgent\n      id: invoke_knowledge_agent\n      displayName: Ground product safety criteria\n      agent:\n        name: recallguard-knowledge-agent\n\n    - kind: InvokeAzureAgent\n      id: invoke_task_agent\n      displayName: Check vendor product evidence\n      agent:\n        name: recallguard-task-agent-v5\n"
+      },
+      "status": "active",
+      "instance_identity": {
+        "principal_id": "10ac3c72-43e8-4872-8859-0f0d06f55550",
+        "client_id": "10ac3c72-43e8-4872-8859-0f0d06f55550"
+      },
+      "blueprint": {
+        "principal_id": "fb9b6cde-8ecc-493a-a84a-251cad4ccfa9",
+        "client_id": "bb87ddf1-4491-4497-aa45-918f9c9350b5"
+      },
+      "blueprint_reference": {
+        "type": "ManagedAgentIdentityBlueprint",
+        "blueprint_id": "recallguard-governed-workflow-v2-7026b"
+      },
+      "agent_guid": "7026b3b5-2498-4cce-97c3-080fb3e3e399"
+    }
+  },
+  "agent_endpoint": {
+    "version_selector": {
+      "version_selection_rules": [
+        {
+          "type": "FixedRatio",
+          "agent_version": "@latest",
+          "traffic_percentage": 100
+        }
+      ]
+    },
+    "protocols": [
+      "responses"
+    ],
+    "authorization_schemes": [
+      {
+        "type": "Entra",
+        "isolation_key_source": {
+          "kind": "Entra"
+        }
+      }
+    ]
+  },
+  "instance_identity": {
+    "principal_id": "10ac3c72-43e8-4872-8859-0f0d06f55550",
+    "client_id": "10ac3c72-43e8-4872-8859-0f0d06f55550"
+  },
+  "blueprint": {
+    "principal_id": "fb9b6cde-8ecc-493a-a84a-251cad4ccfa9",
+    "client_id": "bb87ddf1-4491-4497-aa45-918f9c9350b5"
+  },
+  "blueprint_reference": {
+    "type": "ManagedAgentIdentityBlueprint",
+    "blueprint_id": "recallguard-governed-workflow-v2-7026b"
+  }
+}

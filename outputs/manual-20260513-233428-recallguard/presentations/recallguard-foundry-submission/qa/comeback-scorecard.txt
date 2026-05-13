@@ -1,0 +1,24 @@
+RecallGuard AI presentation QA scorecard
+
+Profile: engineering-platform
+Reference style: Together AI-inspired dark/light bands, mono labels, black CTA chrome, gradient ribbon object
+
+Scores
+- Narrative coherence: 5/5
+- Requirement coverage: 5/5
+- Foundry evidence specificity: 5/5
+- Governance clarity: 5/5
+- Visual system consistency: 4/5
+- Layout quality: 4/5
+- Recording readiness: 5/5
+- ATS/autograder readability: 5/5
+- Submission completeness: 5/5
+
+Total: 43/45
+
+Gates
+- Editable PPTX built: pass
+- PNG previews rendered: pass
+- Layout check: pass with warnings only, 0 errors
+- MP4 video generated under 3 minutes: pass
+- No proprietary Together AI logo or official brand asset copied: pass

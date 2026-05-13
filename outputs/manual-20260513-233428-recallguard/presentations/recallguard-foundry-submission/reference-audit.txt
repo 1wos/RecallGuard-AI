@@ -1,0 +1,11 @@
+Reference style: user-provided Together AI style guide.
+Preserve:
+- Dark hero and research bands (#010120)
+- White technical middle sections
+- Single three-color gradient ribbon (#fc4c02 -> #ef2cc1 -> #bdbbff)
+- Uppercase mono labels for all technical labels
+- 4px card radius, hairline borders, no shadows
+Adapt:
+- Use system diagrams, tables, and evidence proof objects for Foundry submission
+Do not imitate:
+- Official Together AI logo or identity assets

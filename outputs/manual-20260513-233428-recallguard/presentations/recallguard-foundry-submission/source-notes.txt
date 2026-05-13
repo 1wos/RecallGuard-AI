@@ -1,0 +1,9 @@
+Sources used:
+- docs/RecallGuard_AI_PRD.md
+- docs/Azure_CLI_Setup_Evidence.md
+- docs/Foundry_Final_Activity_Checklist.md
+- docs/Foundry_Portal_Runbook.md
+- outputs/*_response.json
+- user-provided Together AI style guide as visual direction, not as official brand asset
+Identity assets:
+- No official Together AI or Microsoft logos embedded. Text-only brand references are used.

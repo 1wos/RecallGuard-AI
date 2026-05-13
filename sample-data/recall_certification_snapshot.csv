@@ -1,0 +1,5 @@
+evidence_id,evidence_type,product_name,model_name,manufacturer,kc_certification_number,recall_reason,corrective_action,publication_date,source
+KC-001,certification,LED Desk Lamp,DL-2026-A,BrightHome Co.,KC-EXAMPLE-001,,,,KATS public data snapshot
+KC-002,certification,Portable Blender,PB-100,FreshMix Ltd.,KC-EXAMPLE-002,,,,KATS public data snapshot
+RC-001,recall,Children's Electric Toy,TOY-77,PlayKid Imports,,Battery overheating risk,Stop sale and collect affected units,2025-10-12,KATS public data snapshot
+RC-002,recall,USB Charger,UC-900,Unknown Importer,,Electric shock risk,Consumer refund and product recall,2025-11-03,KATS public data snapshot

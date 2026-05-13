@@ -1,0 +1,20 @@
+Task mode: create
+Primary deck-profile: engineering-platform
+Secondary gates: product-platform, appendix-heavy submission evidence
+Required proof objects:
+- System architecture / sequential workflow map
+- Agent role and tool capability proof
+- Test outcome evidence table
+- Guardrail and identity governance matrix
+- Problem-to-fix trace-driven improvement slide
+Source/asset requirements:
+- Use local Azure CLI evidence, agent IDs, test outputs, PRD, and build report
+- No fabricated official logos; use text-only brand cue "Microsoft Foundry"
+Brand constraints:
+- Together AI-inspired visual system: near-black hero/dark bands, white technical content, single orange-magenta-periwinkle gradient ribbon, uppercase mono labels, 4px radius, hairline borders, no shadows
+Profile-specific QA gates:
+- Technical labels must be concrete
+- Sequential direction must be visually clear
+- Test outcomes must map to Foundry final activity requirements
+Known missing inputs:
+- Portal screenshots are not embedded yet; deck includes capture slots and runbook references
