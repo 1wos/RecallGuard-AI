@@ -8,7 +8,7 @@ Governed multi-agent product safety compliance checker for the Microsoft Foundry
 - **Task Agent**: `recallguard-task-agent-v7-public-data` using Code Interpreter plus deterministic CSV evidence checks.
 - **Sequential Workflow**: Knowledge Agent first, then Task Agent for evidence-check review requests, with a HITL note for `HOLD`.
 - **Governance Evidence**: Microsoft DefaultV2 RAI policy evidence, guardrail notes, trace runbook, Entra Agent IDs, CLI setup evidence, and final build report.
-- **ATS/Judge Evidence**: explicit requirement-to-artifact scorecard for automated first-pass grading.
+- **Requirement Evidence**: explicit requirement-to-artifact coverage for quick review.
 - **Runnable Checker**: Python package under `src/recallguard/` with pytest coverage for approve, review, hold, and prompt-injection edge cases.
 - **Public Dataset Pipeline**: downloads and normalizes Korea Data Portal/KATS domestic recall CSV evidence into the Foundry demo snapshot.
 - **Submission Assets**: PDF/DOCX report, MP4 demo, editable PPT deck, narration scripts, and packaged zip under `final/`.
@@ -37,7 +37,7 @@ Governed multi-agent product safety compliance checker for the Microsoft Foundry
    - Human-in-the-loop note for `HOLD`
 5. Capture Preview, Traces, Guardrails, and Entra Agent ID evidence.
 
-See `docs/RecallGuard_AI_PRD.md`, `docs/Foundry_Final_Activity_Checklist.md`, and `docs/ATS_Judge_Scorecard.md`.
+See `docs/RecallGuard_AI_PRD.md` and `docs/Foundry_Final_Activity_Checklist.md`.
 
 ## Run Local Tests
 

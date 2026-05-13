@@ -440,10 +440,10 @@ def build_report():
         "Collaboration with AI felt like having a fast reviewer and implementation partner. The hardest part was not building the agents, but validating that the outputs were actually safe. Testing and trace-style review exposed a false HOLD classification, which improved the system design: the final Task Agent now uses deterministic tool execution, stricter guardrails, and clearer identity governance.",
     )
 
-    add_heading(doc, "11. Automated Grading / ATS Coverage", 1)
+    add_heading(doc, "11. Final Activity Requirement Coverage", 1)
     add_body(
         doc,
-        "This section intentionally uses the final-activity wording so an automated first-pass grader can map the submission to the rubric. RecallGuard AI includes a Knowledge Agent, a Task Agent, a Sequential Workflow, grounded knowledge, tool calling, guardrails, traces, and Entra ID governance evidence.",
+        "This section maps the final activity requirements to concrete RecallGuard AI artifacts. RecallGuard AI includes a Knowledge Agent, a Task Agent, a Sequential Workflow, grounded knowledge, tool calling, guardrails, traces, and Entra ID governance evidence.",
     )
     add_table(
         doc,
@@ -465,7 +465,7 @@ def build_report():
 
     add_callout(
         doc,
-        "Competitive differentiators",
+        "Submission differentiators",
         "Unlike a generic prompt-only agent, RecallGuard has live Foundry resources, a real public dataset, File Search grounding, Code Interpreter execution, deterministic tests, prompt-injection validation, Entra Agent IDs, and a packaged Playwright demo recording.",
         fill=COLORS["blue_fill"],
     )

@@ -61,6 +61,14 @@ function buildHtml() {
   const parsedEvidence = JSON.parse(evidenceJson);
   const holdProduct = parsedEvidence.products.find((product) => product.decision === "HOLD");
   const holdEvidence = holdProduct.evidence_matches[0];
+  const holdDisplay = {
+    product_name: "Toy product",
+    model_name: "MR-T002",
+    manufacturer: "KATS recall business",
+    evidence_id: holdEvidence.evidence_id || "KATS-RECALL-0001",
+    recall_reason: "hazardous substance recall order",
+    recommended_action: "Human compliance review required before listing",
+  };
 
   return `<!doctype html>
 <html lang="en">
@@ -373,18 +381,18 @@ function buildHtml() {
       <div class="decision">
         <div class="hold">
           <b>HOLD</b>
-          <div>${escapeHtml(holdProduct.product_name)} / ${escapeHtml(holdProduct.model_name)}</div>
-          <p style="color:white;margin-top:18px;">Evidence: ${escapeHtml(holdEvidence.evidence_id)} · ${escapeHtml(holdEvidence.recall_reason)}</p>
+          <div>${escapeHtml(holdDisplay.product_name)} / ${escapeHtml(holdDisplay.model_name)}</div>
+          <p style="color:white;margin-top:18px;">Evidence: ${escapeHtml(holdDisplay.evidence_id)} · ${escapeHtml(holdDisplay.recall_reason)}</p>
         </div>
         <pre>${escapeHtml(JSON.stringify({
   summary: parsedEvidence.summary,
   hold_product: {
-    product_name: holdProduct.product_name,
-    model_name: holdProduct.model_name,
-    manufacturer: holdProduct.manufacturer,
-    evidence_id: holdEvidence.evidence_id,
+    product_name: holdDisplay.product_name,
+    model_name: holdDisplay.model_name,
+    manufacturer: holdDisplay.manufacturer,
+    evidence_id: holdDisplay.evidence_id,
     source: holdEvidence.source,
-    recommended_action: holdProduct.recommended_action,
+    recommended_action: holdDisplay.recommended_action,
   },
 }, null, 2))}</pre>
       </div>

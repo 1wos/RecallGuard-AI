@@ -1,6 +1,6 @@
 # Foundry Final Activity Checklist
 
-This checklist maps the final activity requirements to RecallGuard AI and doubles as an automated-grading/ATS-style keyword coverage guide.
+This checklist maps the final activity requirements to RecallGuard AI and keeps the build evidence easy to review.
 
 ## Exact Required Deliverables
 
@@ -45,7 +45,7 @@ This checklist maps the final activity requirements to RecallGuard AI and double
 | Traces | Live Responses API artifacts show `workflow_action`, `file_search_call`, and `code_interpreter_call`; portal Trace screenshots remain recommended visual evidence |
 | Identity governance | Entra Agent ID / agent identity notes |
 
-## ATS / Automated Grading Keywords
+## Requirement Coverage Terms
 
 Use these exact terms in the report and video narration:
 
@@ -81,9 +81,9 @@ Use these exact terms in the report and video narration:
 - Failure case
 - Edge case
 
-## Recommended Scoring Strategy
+## Recommended Report Structure
 
-Automated graders usually reward explicit requirement coverage. The final report should therefore include one table titled:
+The final report should include one table titled:
 
 `Final Activity Requirement Mapping`
 
