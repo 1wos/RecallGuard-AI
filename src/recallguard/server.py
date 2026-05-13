@@ -55,12 +55,14 @@ def render_page() -> str:
     )
     decision_rows = "\n".join(
         f"""
-        <tr>
-          <td><code>{html.escape(rule_id)}</code></td>
-          <td><span class="pill {rule['decision'].lower()}">{rule['decision']}</span></td>
-          <td>{html.escape(rule['description'])}</td>
-          <td>{'Yes' if rule['human_review_required'] else 'No'}</td>
-        </tr>
+        <article class="rule-card">
+          <div class="rule-head">
+            <code>{html.escape(rule_id)}</code>
+            <span class="pill {rule['decision'].lower()}">{rule['decision']}</span>
+          </div>
+          <p>{html.escape(rule['description'])}</p>
+          <span class="review-flag">{'Human review required' if rule['human_review_required'] else 'Auto-clear when evidence is strong'}</span>
+        </article>
         """
         for rule_id, rule in DECISION_RULES.items()
     )
@@ -120,12 +122,14 @@ def render_page() -> str:
     h1 {{ font-size: clamp(38px, 6vw, 64px); line-height: 1.06; margin: 0; font-weight: 650; letter-spacing: -.03em; max-width: 760px; }}
     .lead {{ margin: 18px 0 0; color: #e7e7f3; max-width: 690px; font-size: 18px; line-height: 1.45; }}
     main {{ padding: 36px 32px 64px; }}
-    .grid {{ display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(320px, .92fr); gap: 20px; align-items: start; }}
+    .grid {{ display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, .82fr); gap: 20px; align-items: start; }}
     .panel {{
       border: 1px solid var(--line);
       border-radius: 4px;
       padding: 20px;
       background: white;
+      min-width: 0;
+      overflow: hidden;
     }}
     .panel.soft {{ background: var(--soft); }}
     h2 {{ margin: 0 0 14px; font-size: 24px; letter-spacing: -.01em; }}
@@ -139,7 +143,7 @@ def render_page() -> str:
       font: inherit;
       background: white;
     }}
-    textarea {{ min-height: 180px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 12px; }}
+    textarea {{ min-height: 180px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 12px; line-height: 1.45; white-space: pre; overflow: auto; resize: vertical; }}
     .row {{ display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }}
     button {{
       border: 0;
@@ -154,9 +158,10 @@ def render_page() -> str:
       cursor: pointer;
     }}
     button.secondary {{ background: var(--mint); color: #000; }}
-    table {{ width: 100%; border-collapse: collapse; font-size: 14px; }}
+    table {{ width: 100%; border-collapse: collapse; font-size: 14px; table-layout: fixed; }}
     th, td {{ text-align: left; border-bottom: 1px solid var(--line); padding: 10px 8px; vertical-align: top; }}
     th {{ background: #ebebeb; color: var(--muted); font-family: "SFMono-Regular", Consolas, monospace; text-transform: uppercase; font-size: 10px; letter-spacing: .08em; }}
+    td, code {{ overflow-wrap: anywhere; }}
     code, pre {{ font-family: "SFMono-Regular", Consolas, monospace; }}
     pre {{ white-space: pre-wrap; word-break: break-word; background: #0d0d1f; color: #f8f8ff; border-radius: 4px; padding: 14px; max-height: 380px; overflow: auto; font-size: 12px; }}
     .pill {{ display: inline-block; border-radius: 4px; padding: 3px 8px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 11px; }}
@@ -166,7 +171,25 @@ def render_page() -> str:
     .metric {{ background: white; border: 1px solid var(--line); border-radius: 4px; padding: 12px; min-width: 120px; }}
     .metric strong {{ display: block; font-size: 24px; letter-spacing: -.02em; }}
     .muted {{ color: var(--muted); }}
-    @media (max-width: 880px) {{ .grid {{ grid-template-columns: 1fr; }} header::after {{ opacity: .28; }} }}
+    .rule-list {{ display: grid; gap: 10px; }}
+    .rule-card {{ background: white; border: 1px solid var(--line); border-radius: 4px; padding: 12px; }}
+    .rule-head {{ display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }}
+    .rule-head code {{ font-size: 11px; line-height: 1.35; }}
+    .rule-card p {{ margin: 8px 0 10px; color: #333; line-height: 1.35; }}
+    .review-flag {{ color: var(--muted); font-family: "SFMono-Regular", Consolas, monospace; font-size: 10px; letter-spacing: .04em; text-transform: uppercase; }}
+    .results-list {{ display: grid; gap: 10px; margin-top: 10px; }}
+    .product-card {{ border: 1px solid var(--line); border-radius: 4px; padding: 14px; background: white; }}
+    .product-top {{ display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }}
+    .product-title {{ font-weight: 700; font-size: 16px; overflow-wrap: anywhere; }}
+    .product-meta {{ margin-top: 4px; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }}
+    .product-rule {{ margin-top: 10px; font-size: 12px; color: #333; }}
+    .product-action {{ margin-top: 8px; line-height: 1.35; }}
+    @media (max-width: 880px) {{
+      header {{ padding: 52px 32px 48px; }}
+      header::after {{ right: -230px; top: 34px; width: 420px; height: 150px; opacity: .2; }}
+      main {{ padding: 36px 16px 64px; }}
+      .grid {{ grid-template-columns: 1fr; }}
+    }}
   </style>
 </head>
 <body>
@@ -200,11 +223,8 @@ def render_page() -> str:
         <h2>Audit evidence</h2>
         <p class="muted">Each product result now exposes a decision rule and human reviewer packet.</p>
         <pre id="jsonOut">Select a sample and run the checker.</pre>
-        <h3>Decision table</h3>
-        <table>
-          <thead><tr><th>Rule</th><th>Decision</th><th>Trigger</th><th>Review</th></tr></thead>
-          <tbody>{decision_rows}</tbody>
-        </table>
+        <h3>Decision rules</h3>
+        <div class="rule-list">{decision_rows}</div>
       </aside>
     </div>
   </main>
@@ -259,20 +279,21 @@ def render_page() -> str:
         <div class="metric"><span class="muted">Hold</span><strong>${{s.hold_count ?? 0}}</strong></div>
       `;
       decisions.innerHTML = `
-        <table>
-          <thead><tr><th>Vendor</th><th>Product</th><th>Decision</th><th>Rule</th><th>Next action</th></tr></thead>
-          <tbody>
-            ${{(data.products || []).map(product => `
-              <tr>
-                <td>${{escapeHtml(product.vendor_id)}}</td>
-                <td>${{escapeHtml(product.product_name)}}<br><span class="muted">${{escapeHtml(product.model_name)}} / ${{escapeHtml(product.manufacturer)}}</span></td>
-                <td><span class="pill ${{String(product.decision).toLowerCase()}}">${{escapeHtml(product.decision)}}</span></td>
-                <td><code>${{escapeHtml(product.decision_rule || '')}}</code></td>
-                <td>${{escapeHtml(product.reviewer_packet?.recommended_next_action || product.recommended_action || '')}}</td>
-              </tr>
-            `).join('')}}
-          </tbody>
-        </table>
+        <div class="results-list">
+          ${{(data.products || []).map(product => `
+            <article class="product-card">
+              <div class="product-top">
+                <div>
+                  <div class="product-title">${{escapeHtml(product.product_name)}}</div>
+                  <div class="product-meta">${{escapeHtml(product.vendor_id)}} · ${{escapeHtml(product.model_name)}} · ${{escapeHtml(product.manufacturer)}}</div>
+                </div>
+                <span class="pill ${{String(product.decision).toLowerCase()}}">${{escapeHtml(product.decision)}}</span>
+              </div>
+              <div class="product-rule"><code>${{escapeHtml(product.decision_rule || '')}}</code></div>
+              <div class="product-action">${{escapeHtml(product.reviewer_packet?.recommended_next_action || product.recommended_action || '')}}</div>
+            </article>
+          `).join('')}}
+        </div>
       `;
     }}
 
@@ -313,6 +334,9 @@ class RecallGuardHandler(BaseHTTPRequestHandler):
         try:
             if parsed.path == "/":
                 self.send_text(render_page())
+            elif parsed.path == "/favicon.ico":
+                self.send_response(HTTPStatus.NO_CONTENT)
+                self.end_headers()
             elif parsed.path == "/api/samples":
                 self.send_json({"samples": list_samples()})
             elif parsed.path == "/api/sample":
