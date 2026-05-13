@@ -5,7 +5,7 @@ Governed multi-agent product safety compliance checker for the Microsoft Foundry
 ## What Is Implemented
 
 - **Knowledge Agent**: `recallguard-knowledge-agent` grounded with File Search over `knowledge-base/`.
-- **Task Agent**: `recallguard-task-agent-v5` using Code Interpreter plus deterministic CSV evidence checks.
+- **Task Agent**: `recallguard-task-agent-v6` using Code Interpreter plus deterministic CSV evidence checks.
 - **Sequential Workflow**: Knowledge Agent first, Task Agent only when file/action evidence is required, HITL for `HOLD`.
 - **Governance Evidence**: guardrail notes, trace runbook, Entra Agent IDs, CLI setup evidence, and final build report.
 - **Runnable Checker**: Python package under `src/recallguard/` with pytest coverage for approve, review, hold, and prompt-injection edge cases.
@@ -28,7 +28,7 @@ Governed multi-agent product safety compliance checker for the Microsoft Foundry
 2. Use the files in `sample-data/` as Task Agent demo inputs.
 3. Create two Foundry agents:
    - `RecallGuard Knowledge Agent`
-   - `RecallGuard Task Agent v5`
+   - `RecallGuard Task Agent v6`
 4. Create a Sequential workflow:
    - Knowledge Agent first
    - Task Agent only when a file/action is required

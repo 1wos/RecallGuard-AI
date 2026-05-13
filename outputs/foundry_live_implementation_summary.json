@@ -1,0 +1,24 @@
+{
+  "project_endpoint": "https://recallguard-somi-20260513.services.ai.azure.com/api/projects/recallguard-ai",
+  "model_deployment": "gpt-4o-mini-100",
+  "task_file_ids": [
+    "assistant-6CH2puYRfLgYd4AyjyV6za",
+    "assistant-5K5Afog4oAaAGttWGgXR46",
+    "assistant-LWryzH2YcRWAjAaEnfT8aU",
+    "assistant-YE2XU9h5RexetCYumGN2LQ",
+    "assistant-DgqVeKtUesos6rVpyyVLHF",
+    "assistant-Ren4BKQeozCnwGsfRE2V41"
+  ],
+  "task_agent_v6": {
+    "id": "recallguard-task-agent-v6",
+    "name": "recallguard-task-agent-v6",
+    "latest": "recallguard-task-agent-v6:1",
+    "principal_id": "d1162a8f-7e1c-4b38-828b-63314cf4427f"
+  },
+  "workflow_agent_v3": {
+    "id": "recallguard-governed-workflow-v3",
+    "name": "recallguard-governed-workflow-v3",
+    "latest": "recallguard-governed-workflow-v3:1",
+    "principal_id": "94f01fd1-7405-4bba-8ef2-f4119d43b338"
+  }
+}

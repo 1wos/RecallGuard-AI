@@ -1,0 +1,63 @@
+{
+  "out_dir": "outputs/live-runs",
+  "knowledge": {
+    "status": "completed",
+    "id": "resp_079a8d751222933e006a04946659dc819485663d6aebfe6973",
+    "output_types": [
+      "file_search_call",
+      "message"
+    ]
+  },
+  "task_complete": {
+    "status": "completed",
+    "id": "resp_0b1df0603c3dc08d006a04946c2bfc8197abce389960e005b5",
+    "output_types": [
+      "code_interpreter_call",
+      "message"
+    ]
+  },
+  "task_missing": {
+    "status": "completed",
+    "id": "resp_0298acc33cf5d2ec006a04947a268c81939baa16b5614adb3c",
+    "output_types": [
+      "code_interpreter_call",
+      "message"
+    ]
+  },
+  "task_prompt_injection": {
+    "status": "completed",
+    "id": "resp_001ef2f7ccf41b10006a049483c098819694ac4ae39a890b83",
+    "output_types": [
+      "code_interpreter_call",
+      "message"
+    ]
+  },
+  "workflow_v4_recall": {
+    "status": "completed",
+    "id": "wfresp_5016faa079ee2ed600o1QpcvWq1Gj2PW70kTaTEmSCmGsKPhYA",
+    "output_types": [
+      "workflow_action",
+      "file_search_call",
+      "file_search_call",
+      "message",
+      "workflow_action",
+      "code_interpreter_call",
+      "message"
+    ]
+  },
+  "workflow_v4_missing": {
+    "status": "completed",
+    "id": "wfresp_b427565bd543372f00djAaMAAjS2flAgVufUw1ZhjY5Zk47QYs",
+    "output_types": [
+      "workflow_action",
+      "file_search_call",
+      "file_search_call",
+      "file_search_call",
+      "file_search_call",
+      "message",
+      "workflow_action",
+      "code_interpreter_call",
+      "message"
+    ]
+  }
+}

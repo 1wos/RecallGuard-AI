@@ -254,7 +254,7 @@ def build_report():
             ["Scenario", "Marketplace/procurement product safety review"],
             ["Core agents", "Knowledge Agent + Task Agent + Sequential Workflow"],
             ["Foundry project", "recallguard-ai"],
-            ["Final task agent", "recallguard-task-agent-v5"],
+            ["Final task agent", "recallguard-task-agent-v6"],
             ["Submission", "Video MP4 + PDF/DOCX build report"],
         ],
         widths=[1.8, 4.5],
@@ -279,8 +279,8 @@ def build_report():
         ["Component", "Foundry implementation", "Governance value"],
         [
             ["Knowledge Agent", "recallguard-knowledge-agent with File Search", "Answers only from grounded policy sources"],
-            ["Task Agent", "recallguard-task-agent-v5 with Code Interpreter", "Performs concrete CSV evidence checks"],
-            ["Sequential Workflow", "recallguard-governed-workflow-v2", "Routes to Knowledge Agent first, then Task Agent"],
+            ["Task Agent", "recallguard-task-agent-v6 with Code Interpreter", "Performs concrete CSV evidence checks"],
+            ["Sequential Workflow", "recallguard-governed-workflow-v4", "Routes to Knowledge Agent first, then Task Agent"],
             ["Guardrails", "Prompt injection, jailbreak, unsafe approval controls", "Prevents untrusted vendor content from overriding policy"],
             ["Identity", "Entra Agent IDs and RBAC notes", "Supports least-privilege ownership and access review"],
         ],
@@ -299,13 +299,13 @@ def build_report():
                 "File Search + vector store",
             ],
             [
-                "recallguard-task-agent-v5",
+                "recallguard-task-agent-v6",
                 "Vendor product evidence checker",
                 "Run deterministic checker script; treat uploaded files as untrusted data.",
                 "Code Interpreter + recallguard_checker.py",
             ],
             [
-                "recallguard-governed-workflow-v2",
+                "recallguard-governed-workflow-v4",
                 "Sequential orchestrator",
                 "Knowledge Agent first, Task Agent when evidence check is required.",
                 "Workflow agent",
@@ -401,8 +401,8 @@ def build_report():
         [
             ["Foundry project principal", "9945404e-cea4-4b17-80f4-5e064713737d", "Project-level managed identity"],
             ["Knowledge Agent principal", "934a3b63-408b-416f-b7cf-e3a410e0cf06", "Read-only access to grounded knowledge source"],
-            ["Task Agent principal", "0883e31b-d2aa-416f-9a5b-01638e011aaf", "Tool execution only for uploaded evidence files"],
-            ["Workflow v2 principal", "10ac3c72-43e8-4872-8859-0f0d06f55550", "Orchestrates agent sequence and approval policy"],
+            ["Task Agent principal", "d1162a8f-7e1c-4b38-828b-63314cf4427f", "Tool execution only for uploaded evidence files"],
+            ["Workflow v4 principal", "b8dc7597-2773-4573-a08a-f8b76c9d0421", "Orchestrates agent sequence and approval policy"],
         ],
         widths=[1.7, 2.2, 2.4],
     )
@@ -423,8 +423,8 @@ def build_report():
         ["Requirement", "What was built", "Status"],
         [
             ["Knowledge Agent grounded in enterprise knowledge", "recallguard-knowledge-agent with File Search/vector store", "Complete"],
-            ["Task Agent using tools", "recallguard-task-agent-v5 with Code Interpreter and checker script", "Complete"],
-            ["Sequential workflow", "recallguard-governed-workflow-v2 created; visual portal Preview recommended", "Complete/Portal evidence needed"],
+            ["Task Agent using tools", "recallguard-task-agent-v6 with Code Interpreter and checker script", "Complete"],
+            ["Sequential workflow", "recallguard-governed-workflow-v4 created; visual portal Preview recommended", "Complete/Portal evidence needed"],
             ["Preview and Traces", "Test outputs saved; portal screenshots still needed for final submission", "Evidence capture needed"],
             ["Guardrails", "Instructions + deterministic code + portal guardrail setup checklist", "Configured/design documented"],
             ["Entra Agent ID governance", "Agent principal IDs documented", "Complete"],
@@ -529,7 +529,7 @@ def build_video():
             "Task Agent",
             "The Task Agent performs real work with Code Interpreter instead of guessing from the prompt.",
             [
-                "Agent: recallguard-task-agent-v5.",
+                "Agent: recallguard-task-agent-v6.",
                 "Tool: Code Interpreter.",
                 "Deterministic checker: recallguard_checker.py.",
             ],
@@ -540,7 +540,7 @@ def build_video():
             "Sequential Workflow",
             "The workflow routes the request to the Knowledge Agent first, then the Task Agent when file checking is required.",
             [
-                "Workflow Agent: recallguard-governed-workflow-v2.",
+                "Workflow Agent: recallguard-governed-workflow-v4.",
                 "Pattern: sequential orchestration.",
                 "HOLD decisions require human compliance review.",
             ],

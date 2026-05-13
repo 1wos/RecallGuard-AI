@@ -9,7 +9,7 @@ RecallGuard AI is a governed multi-agent product safety compliance checker for m
 | Agent | Role | Tooling |
 |---|---|---|
 | `recallguard-knowledge-agent` | Answers grounded product safety policy questions | File Search with indexed policy/checklist documents |
-| `recallguard-task-agent-v5` | Checks vendor CSV files and classifies products | Code Interpreter with `recallguard_checker.py` |
+| `recallguard-task-agent-v6` | Checks vendor CSV files and classifies products | Code Interpreter with `recallguard_checker.py` |
 
 ## Knowledge Base Setup
 
@@ -55,8 +55,8 @@ The Task Agent also includes an application-level guardrail: uploaded files are 
 |---|---|
 | Foundry project principal | `9945404e-cea4-4b17-80f4-5e064713737d` |
 | Knowledge Agent principal | `934a3b63-408b-416f-b7cf-e3a410e0cf06` |
-| Final Task Agent principal | `0883e31b-d2aa-416f-9a5b-01638e011aaf` |
-| Workflow v2 principal | `10ac3c72-43e8-4872-8859-0f0d06f55550` |
+| Final Task Agent principal | `d1162a8f-7e1c-4b38-828b-63314cf4427f` |
+| Workflow v4 principal | `b8dc7597-2773-4573-a08a-f8b76c9d0421` |
 
 Governance model:
 

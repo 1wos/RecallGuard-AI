@@ -1,0 +1,8 @@
+{
+  "input": "Review vendor_products_recall_match.csv. First ground the RecallGuard policy for recall matches and missing identifiers, then run the deterministic evidence check. Return decisions and HITL action for HOLD.",
+  "conversation": "conv_c301f54ac78c348e00kUPYkLQprrVCTCSUbb7WOxqQ7GDiwPdW",
+  "agent_reference": {
+    "name": "recallguard-governed-workflow-v4",
+    "type": "agent_reference"
+  }
+}

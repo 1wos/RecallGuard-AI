@@ -1,0 +1,8 @@
+{
+  "input": "Review vendor_products_missing_fields.csv. First ground the RecallGuard policy for missing product identifiers, then run the deterministic evidence check. Return decisions and required remediation.",
+  "conversation": "conv_278ad14cdbf7d7b700grfzh0QCgH0iQ3OtvCFHbaUCDZ3G0sdw",
+  "agent_reference": {
+    "name": "recallguard-governed-workflow-v4",
+    "type": "agent_reference"
+  }
+}
