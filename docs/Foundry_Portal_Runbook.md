@@ -14,11 +14,11 @@ Use this runbook to finish the required portal evidence for the final activity.
 Confirm these agents exist:
 
 - `recallguard-knowledge-agent`
-- `recallguard-task-agent-v6`
+- `recallguard-task-agent-v7-public-data`
 - `recallguard-governed-workflow`
-- `recallguard-governed-workflow-v4`
+- `recallguard-governed-workflow-v5-public-data`
 
-Use `recallguard-task-agent-v6` as the final Task Agent because it uses the deterministic checker script.
+Use `recallguard-task-agent-v7-public-data` as the final Task Agent because it uses the deterministic checker script.
 
 ## 3. Create or Edit Visual Sequential Workflow
 
@@ -32,7 +32,7 @@ If the generated workflow agents do not Preview correctly, create a visual workf
    - Purpose: Ground product safety policy and decision criteria.
 4. Add second node:
    - Type: Agent
-   - Agent: `recallguard-task-agent-v6`
+   - Agent: `recallguard-task-agent-v7-public-data`
    - Purpose: Run product evidence check when a vendor file/action is requested.
 5. Add a final response node:
    - Summarize `APPROVE`, `REVIEW`, `HOLD`
@@ -119,8 +119,8 @@ Document these IDs:
 |---|---|
 | Project principal | `9945404e-cea4-4b17-80f4-5e064713737d` |
 | Knowledge Agent principal | `934a3b63-408b-416f-b7cf-e3a410e0cf06` |
-| Final Task Agent principal | `d1162a8f-7e1c-4b38-828b-63314cf4427f` |
-| Workflow v4 principal | `b8dc7597-2773-4573-a08a-f8b76c9d0421` |
+| Final Task Agent principal | `0173cc3c-70e7-4bf7-bb74-39703a517ffb` |
+| Workflow public-data principal | `87a0ae4f-49ce-485d-8909-0c2081017775` |
 
 Governance note:
 

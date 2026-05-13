@@ -1,0 +1,68 @@
+{
+  "object": "agent",
+  "id": "recallguard-governed-workflow-v5-public-data",
+  "name": "recallguard-governed-workflow-v5-public-data",
+  "versions": {
+    "latest": {
+      "metadata": {},
+      "object": "agent.version",
+      "id": "recallguard-governed-workflow-v5-public-data:1",
+      "name": "recallguard-governed-workflow-v5-public-data",
+      "version": "1",
+      "description": "Sequential workflow v5: Knowledge Agent then public-data Task Agent with explicit System.LastMessage input",
+      "created_at": 1778686310,
+      "definition": {
+        "kind": "workflow",
+        "workflow": "kind: Workflow\ntrigger:\n  kind: OnConversationStart\n  id: recallguard_governed_review_v5_public_data\n  actions:\n    - kind: InvokeAzureAgent\n      id: invoke_knowledge_agent\n      displayName: Ground product safety criteria\n      conversationId: =System.ConversationId\n      agent:\n        name: recallguard-knowledge-agent\n      input:\n        messages: =System.LastMessage\n\n    - kind: InvokeAzureAgent\n      id: invoke_task_agent\n      displayName: Check vendor product evidence\n      conversationId: =System.ConversationId\n      agent:\n        name: recallguard-task-agent-v7-public-data\n      input:\n        messages: =System.LastMessage"
+      },
+      "status": "active",
+      "instance_identity": {
+        "principal_id": "87a0ae4f-49ce-485d-8909-0c2081017775",
+        "client_id": "87a0ae4f-49ce-485d-8909-0c2081017775"
+      },
+      "blueprint": {
+        "principal_id": "17a4f7bb-0821-4e0a-8014-78564881e81b",
+        "client_id": "1defda70-2417-4710-a9ac-a7a52ed34079"
+      },
+      "blueprint_reference": {
+        "type": "ManagedAgentIdentityBlueprint",
+        "blueprint_id": "recallguard-governed-workflow-v5-public-data-6b316"
+      },
+      "agent_guid": "6b316412-1728-41cd-b389-1837b5993888"
+    }
+  },
+  "agent_endpoint": {
+    "version_selector": {
+      "version_selection_rules": [
+        {
+          "type": "FixedRatio",
+          "agent_version": "@latest",
+          "traffic_percentage": 100
+        }
+      ]
+    },
+    "protocols": [
+      "responses"
+    ],
+    "authorization_schemes": [
+      {
+        "type": "Entra",
+        "isolation_key_source": {
+          "kind": "Entra"
+        }
+      }
+    ]
+  },
+  "instance_identity": {
+    "principal_id": "87a0ae4f-49ce-485d-8909-0c2081017775",
+    "client_id": "87a0ae4f-49ce-485d-8909-0c2081017775"
+  },
+  "blueprint": {
+    "principal_id": "17a4f7bb-0821-4e0a-8014-78564881e81b",
+    "client_id": "1defda70-2417-4710-a9ac-a7a52ed34079"
+  },
+  "blueprint_reference": {
+    "type": "ManagedAgentIdentityBlueprint",
+    "blueprint_id": "recallguard-governed-workflow-v5-public-data-6b316"
+  }
+}

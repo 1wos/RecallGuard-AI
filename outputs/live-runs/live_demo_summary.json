@@ -2,7 +2,7 @@
   "out_dir": "outputs/live-runs",
   "knowledge": {
     "status": "completed",
-    "id": "resp_079a8d751222933e006a04946659dc819485663d6aebfe6973",
+    "id": "resp_00ad3fc29b6ccdd8006a04996fab6c8194b619053c77177d43",
     "output_types": [
       "file_search_call",
       "message"
@@ -10,7 +10,7 @@
   },
   "task_complete": {
     "status": "completed",
-    "id": "resp_0b1df0603c3dc08d006a04946c2bfc8197abce389960e005b5",
+    "id": "resp_08670da89eff94f9006a049976b9448193819988478b3cd61b",
     "output_types": [
       "code_interpreter_call",
       "message"
@@ -18,7 +18,7 @@
   },
   "task_missing": {
     "status": "completed",
-    "id": "resp_0298acc33cf5d2ec006a04947a268c81939baa16b5614adb3c",
+    "id": "resp_074b1715da5a2051006a0499814c908193b249c89f6fb73a9e",
     "output_types": [
       "code_interpreter_call",
       "message"
@@ -26,7 +26,15 @@
   },
   "task_prompt_injection": {
     "status": "completed",
-    "id": "resp_001ef2f7ccf41b10006a049483c098819694ac4ae39a890b83",
+    "id": "resp_0b9c4ca363a93dfc006a04998b79d881959e96c525e1c4e24e",
+    "output_types": [
+      "code_interpreter_call",
+      "message"
+    ]
+  },
+  "task_public_recall": {
+    "status": "completed",
+    "id": "resp_0b16f8adceab9e12006a049996dac88195b7ba19e8a4eeab12",
     "output_types": [
       "code_interpreter_call",
       "message"
@@ -34,7 +42,7 @@
   },
   "workflow_v4_recall": {
     "status": "completed",
-    "id": "wfresp_5016faa079ee2ed600o1QpcvWq1Gj2PW70kTaTEmSCmGsKPhYA",
+    "id": "wfresp_b80b9eeeba6da70f00PAnkR56EES80WlnU0R35C3eVKbEoobz6",
     "output_types": [
       "workflow_action",
       "file_search_call",
@@ -47,15 +55,15 @@
   },
   "workflow_v4_missing": {
     "status": "completed",
-    "id": "wfresp_b427565bd543372f00djAaMAAjS2flAgVufUw1ZhjY5Zk47QYs",
+    "id": "wfresp_1d683cd7aa548e0000oUDJOqMHtUZLdr4bUmfHw8y0MbKnzMZk",
     "output_types": [
       "workflow_action",
       "file_search_call",
       "file_search_call",
       "file_search_call",
-      "file_search_call",
       "message",
       "workflow_action",
+      "code_interpreter_call",
       "code_interpreter_call",
       "message"
     ]

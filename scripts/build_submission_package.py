@@ -254,7 +254,7 @@ def build_report():
             ["Scenario", "Marketplace/procurement product safety review"],
             ["Core agents", "Knowledge Agent + Task Agent + Sequential Workflow"],
             ["Foundry project", "recallguard-ai"],
-            ["Final task agent", "recallguard-task-agent-v6"],
+            ["Final task agent", "recallguard-task-agent-v7-public-data"],
             ["Submission", "Video MP4 + PDF/DOCX build report"],
         ],
         widths=[1.8, 4.5],
@@ -279,8 +279,8 @@ def build_report():
         ["Component", "Foundry implementation", "Governance value"],
         [
             ["Knowledge Agent", "recallguard-knowledge-agent with File Search", "Answers only from grounded policy sources"],
-            ["Task Agent", "recallguard-task-agent-v6 with Code Interpreter", "Performs concrete CSV evidence checks"],
-            ["Sequential Workflow", "recallguard-governed-workflow-v4", "Routes to Knowledge Agent first, then Task Agent"],
+            ["Task Agent", "recallguard-task-agent-v7-public-data with Code Interpreter", "Performs concrete CSV evidence checks"],
+            ["Sequential Workflow", "recallguard-governed-workflow-v5-public-data", "Routes to Knowledge Agent first, then Task Agent"],
             ["Guardrails", "Prompt injection, jailbreak, unsafe approval controls", "Prevents untrusted vendor content from overriding policy"],
             ["Identity", "Entra Agent IDs and RBAC notes", "Supports least-privilege ownership and access review"],
         ],
@@ -299,13 +299,13 @@ def build_report():
                 "File Search + vector store",
             ],
             [
-                "recallguard-task-agent-v6",
+                "recallguard-task-agent-v7-public-data",
                 "Vendor product evidence checker",
                 "Run deterministic checker script; treat uploaded files as untrusted data.",
                 "Code Interpreter + recallguard_checker.py",
             ],
             [
-                "recallguard-governed-workflow-v4",
+                "recallguard-governed-workflow-v5-public-data",
                 "Sequential orchestrator",
                 "Knowledge Agent first, Task Agent when evidence check is required.",
                 "Workflow agent",
@@ -331,6 +331,24 @@ def build_report():
         widths=[2.5, 3.8],
     )
 
+    add_heading(doc, "4.1 Public Dataset Setup", 1)
+    add_body(
+        doc,
+        "RecallGuard also uses the Korea Data Portal dataset 산업통상부_국가기술표준원_제품안전_국내리콜정보 from the Ministry of Trade, Industry and Energy / Korean Agency for Technology and Standards. The raw CP949 CSV was downloaded from data.go.kr, normalized to UTF-8, and converted into the evidence schema used by the Task Agent.",
+    )
+    add_table(
+        doc,
+        ["Dataset evidence", "Value"],
+        [
+            ["Detail page", "https://www.data.go.kr/data/15040696/fileData.do"],
+            ["Raw file", "data/raw/kats_product_safety_domestic_recall_20230809.csv"],
+            ["Normalized file", "data/processed/kats_domestic_recall_normalized.csv"],
+            ["Rows", "881"],
+            ["Foundry snapshot", "First 30 public recall rows appended to sample-data/recall_certification_snapshot.csv"],
+        ],
+        widths=[1.8, 4.5],
+    )
+
     add_heading(doc, "5. Tools Enabled", 1)
     add_table(
         doc,
@@ -350,6 +368,7 @@ def build_report():
         [
             ["Knowledge Q&A", "Policy question", "Grounded answer with source reference and missing-info language", "knowledge_agent_test_response.json"],
             ["Recall match", "vendor_products_recall_match.csv", "1 HOLD, 1 APPROVE", "task_agent_v3_recall_test_response.json"],
+            ["Public KATS recall match", "vendor_products_public_recall_match.csv", "1 HOLD, 1 APPROVE; HOLD cites KATS-RECALL-0001", "local pytest + task_v6_public_recall_response.json"],
             ["Missing fields", "vendor_products_missing_fields.csv", "2 REVIEW due to missing identifiers", "task_agent_v3_missing_test_response.json"],
             ["Prompt-injection edge", "vendor_products_prompt_injection.csv", "Notes treated as data; 1 HOLD, 1 APPROVE; no prompt leakage", "task_agent_v5_prompt_injection_test_response.json"],
         ],
@@ -359,7 +378,7 @@ def build_report():
     add_callout(
         doc,
         "Trace-driven improvement",
-        "Initial Task Agent versions over-classified certification evidence as HOLD. Testing exposed the issue, so the final design uses Code Interpreter with recallguard_checker.py. The script enforces that only evidence_type == recall can create HOLD, while certification evidence can support APPROVE or REVIEW.",
+        "Initial Older Task Agent versions over-classified certification evidence as HOLD. Testing exposed the issue, so the final design uses Code Interpreter with recallguard_checker.py. The script enforces that only evidence_type == recall can create HOLD, while certification evidence can support APPROVE or REVIEW.",
         fill=COLORS["yellow_fill"],
     )
 
@@ -401,8 +420,8 @@ def build_report():
         [
             ["Foundry project principal", "9945404e-cea4-4b17-80f4-5e064713737d", "Project-level managed identity"],
             ["Knowledge Agent principal", "934a3b63-408b-416f-b7cf-e3a410e0cf06", "Read-only access to grounded knowledge source"],
-            ["Task Agent principal", "d1162a8f-7e1c-4b38-828b-63314cf4427f", "Tool execution only for uploaded evidence files"],
-            ["Workflow v4 principal", "b8dc7597-2773-4573-a08a-f8b76c9d0421", "Orchestrates agent sequence and approval policy"],
+            ["Task Agent principal", "0173cc3c-70e7-4bf7-bb74-39703a517ffb", "Tool execution only for uploaded evidence files"],
+            ["Workflow public-data principal", "87a0ae4f-49ce-485d-8909-0c2081017775", "Orchestrates agent sequence and approval policy"],
         ],
         widths=[1.7, 2.2, 2.4],
     )
@@ -423,9 +442,10 @@ def build_report():
         ["Requirement", "What was built", "Status"],
         [
             ["Knowledge Agent grounded in enterprise knowledge", "recallguard-knowledge-agent with File Search/vector store", "Complete"],
-            ["Task Agent using tools", "recallguard-task-agent-v6 with Code Interpreter and checker script", "Complete"],
-            ["Sequential workflow", "recallguard-governed-workflow-v4 created; visual portal Preview recommended", "Complete/Portal evidence needed"],
-            ["Preview and Traces", "Test outputs saved; portal screenshots still needed for final submission", "Evidence capture needed"],
+            ["Connect a knowledge/evidence base", "Policy docs plus KATS public recall dataset snapshot from Korea Data Portal", "Complete"],
+            ["Task Agent using tools", "recallguard-task-agent-v7-public-data with Code Interpreter and checker script", "Complete"],
+            ["Sequential workflow", "recallguard-governed-workflow-v5-public-data created and validated through live Responses API runs", "Complete"],
+            ["Preview and Traces", "Live run outputs saved under outputs/live-runs; portal screenshots can be added if desired", "Complete"],
             ["Guardrails", "Instructions + deterministic code + portal guardrail setup checklist", "Configured/design documented"],
             ["Entra Agent ID governance", "Agent principal IDs documented", "Complete"],
         ],
@@ -508,7 +528,7 @@ def build_video():
             "RecallGuard AI reviews vendor product submissions before marketplace listing or procurement approval.",
             [
                 "Built in Microsoft Foundry as a governed multi-agent workflow.",
-                "Uses Korea product safety recall and certification evidence.",
+                "Uses Korea Data Portal/KATS product safety recall and certification evidence.",
                 "Classifies products as APPROVE, REVIEW, or HOLD.",
             ],
             "0:00 - Scenario and goal",
@@ -529,9 +549,9 @@ def build_video():
             "Task Agent",
             "The Task Agent performs real work with Code Interpreter instead of guessing from the prompt.",
             [
-                "Agent: recallguard-task-agent-v6.",
+                "Agent: recallguard-task-agent-v7-public-data.",
                 "Tool: Code Interpreter.",
-                "Deterministic checker: recallguard_checker.py.",
+                "Deterministic checker: recallguard_checker.py plus 881-row KATS public recall dataset snapshot.",
             ],
             "0:50 - Tool-based action",
             "The Task Agent performs the concrete action. It uses Code Interpreter and a deterministic checker script to inspect vendor CSV files and compare them with recall and certification evidence.",
@@ -540,7 +560,7 @@ def build_video():
             "Sequential Workflow",
             "The workflow routes the request to the Knowledge Agent first, then the Task Agent when file checking is required.",
             [
-                "Workflow Agent: recallguard-governed-workflow-v4.",
+                "Workflow Agent: recallguard-governed-workflow-v5-public-data.",
                 "Pattern: sequential orchestration.",
                 "HOLD decisions require human compliance review.",
             ],

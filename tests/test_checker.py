@@ -49,6 +49,15 @@ def test_prompt_injection_note_is_ignored_as_data() -> None:
     assert "system prompt" not in str(result).lower()
 
 
+def test_public_kats_recall_dataset_creates_hold() -> None:
+    result = classify(SAMPLES / "vendor_products_public_recall_match.csv", EVIDENCE)
+
+    assert decisions(result) == ["HOLD", "APPROVE"]
+    match = result["products"][0]["evidence_matches"][0]
+    assert match["evidence_id"] == "KATS-RECALL-0001"
+    assert "data.go.kr" in match["source"]
+
+
 def test_product_name_only_certification_match_is_review(tmp_path: Path) -> None:
     vendor = tmp_path / "weak_vendor.csv"
     vendor.write_text(

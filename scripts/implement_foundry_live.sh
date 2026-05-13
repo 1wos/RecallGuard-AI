@@ -6,6 +6,8 @@ RESOURCE_GROUP="${RESOURCE_GROUP:-rg-recallguard-foundry-je}"
 AI_RESOURCE="${AI_RESOURCE:-recallguard-somi-20260513}"
 MODEL_DEPLOYMENT="${MODEL_DEPLOYMENT:-gpt-4o-mini-100}"
 OUT_DIR="${OUT_DIR:-outputs}"
+TASK_AGENT_NAME="${TASK_AGENT_NAME:-recallguard-task-agent-v7-public-data}"
+WORKFLOW_AGENT_NAME="${WORKFLOW_AGENT_NAME:-recallguard-governed-workflow-v5-public-data}"
 
 mkdir -p "$OUT_DIR"
 
@@ -51,6 +53,7 @@ task_files=(
   "sample-data/vendor_products_complete.csv"
   "sample-data/vendor_products_missing_fields.csv"
   "sample-data/vendor_products_recall_match.csv"
+  "sample-data/vendor_products_public_recall_match.csv"
   "sample-data/vendor_products_prompt_injection.csv"
   "sample-data/recallguard_checker.py"
 )
@@ -64,7 +67,7 @@ done
 task_file_ids_json="$(printf '%s\n' "${task_file_ids[@]}" | jq -R . | jq -s .)"
 
 task_v6_instructions="$(cat <<'PROMPT'
-You are RecallGuard Task Agent v6, a deterministic product safety evidence checker.
+You are RecallGuard Task Agent public-data, a deterministic product safety evidence checker.
 
 You have these attached files in Code Interpreter:
 - recallguard_checker.py
@@ -72,6 +75,7 @@ You have these attached files in Code Interpreter:
 - vendor_products_complete.csv
 - vendor_products_missing_fields.csv
 - vendor_products_recall_match.csv
+- vendor_products_public_recall_match.csv
 - vendor_products_prompt_injection.csv
 
 For every CSV evidence check:
@@ -104,7 +108,7 @@ PROMPT
 )"
 
 task_payload="$(jq -n \
-  --arg name "recallguard-task-agent-v6" \
+  --arg name "$TASK_AGENT_NAME" \
   --arg description "Deterministic vendor evidence checker with robust Code Interpreter file discovery" \
   --arg model "$MODEL_DEPLOYMENT" \
   --arg instructions "$task_v6_instructions" \
@@ -128,13 +132,13 @@ task_payload="$(jq -n \
     }
   }')"
 
-create_agent "$task_payload" "$OUT_DIR/task_agent_v6_create_response.json"
+create_agent "$task_payload" "$OUT_DIR/task_agent_v7_public_data_create_response.json"
 
-workflow_yaml="$(cat <<'YAML'
+workflow_yaml="$(cat <<YAML
 kind: Workflow
 trigger:
   kind: OnConversationStart
-  id: recallguard_governed_review_v4_min
+  id: recallguard_governed_review_v5_public_data
   actions:
     - kind: InvokeAzureAgent
       id: invoke_knowledge_agent
@@ -150,17 +154,17 @@ trigger:
       displayName: Check vendor product evidence
       conversationId: =System.ConversationId
       agent:
-        name: recallguard-task-agent-v6
+        name: $TASK_AGENT_NAME
       input:
         messages: =System.LastMessage
 YAML
 )"
 
-printf '%s\n' "$workflow_yaml" > workflows/recallguard_sequential_workflow_v4.yaml
+printf '%s\n' "$workflow_yaml" > workflows/recallguard_sequential_workflow_v5_public_data.yaml
 
 workflow_payload="$(jq -n \
-  --arg name "recallguard-governed-workflow-v4" \
-  --arg description "Sequential workflow v4: Knowledge Agent then robust Task Agent v6 with explicit System.LastMessage input" \
+  --arg name "$WORKFLOW_AGENT_NAME" \
+  --arg description "Sequential workflow v5: Knowledge Agent then public-data Task Agent with explicit System.LastMessage input" \
   --arg workflow "$workflow_yaml" \
   '{
     name:$name,
@@ -171,18 +175,22 @@ workflow_payload="$(jq -n \
     }
   }')"
 
-create_workflow_agent "$workflow_payload" "$OUT_DIR/workflow_agent_v4_create_response.json"
+create_workflow_agent "$workflow_payload" "$OUT_DIR/workflow_agent_v5_public_data_create_response.json"
 
 jq -n \
   --arg project_endpoint "$PROJECT_ENDPOINT" \
   --arg model_deployment "$MODEL_DEPLOYMENT" \
+  --arg task_agent_name "$TASK_AGENT_NAME" \
+  --arg workflow_agent_name "$WORKFLOW_AGENT_NAME" \
   --argjson task_file_ids "$task_file_ids_json" \
-  --argjson task_agent "$(cat "$OUT_DIR/task_agent_v6_create_response.json")" \
-  --argjson workflow_agent "$(cat "$OUT_DIR/workflow_agent_v4_create_response.json")" \
+  --argjson task_agent "$(cat "$OUT_DIR/task_agent_v7_public_data_create_response.json")" \
+  --argjson workflow_agent "$(cat "$OUT_DIR/workflow_agent_v5_public_data_create_response.json")" \
   '{
     project_endpoint:$project_endpoint,
     model_deployment:$model_deployment,
+    task_agent_name:$task_agent_name,
+    workflow_agent_name:$workflow_agent_name,
     task_file_ids:$task_file_ids,
-    task_agent_v6:{id:$task_agent.id,name:$task_agent.name,latest:$task_agent.versions.latest.id,principal_id:$task_agent.versions.latest.instance_identity.principal_id},
-    workflow_agent_v4:{id:$workflow_agent.id,name:$workflow_agent.name,latest:$workflow_agent.versions.latest.id,principal_id:$workflow_agent.versions.latest.instance_identity.principal_id}
-  }' | tee "$OUT_DIR/foundry_live_implementation_summary.json"
+    task_agent_public_data:{id:$task_agent.id,name:$task_agent.name,latest:$task_agent.versions.latest.id,principal_id:$task_agent.versions.latest.instance_identity.principal_id},
+    workflow_agent_public_data:{id:$workflow_agent.id,name:$workflow_agent.name,latest:$workflow_agent.versions.latest.id,principal_id:$workflow_agent.versions.latest.instance_identity.principal_id}
+  }' | tee "$OUT_DIR/foundry_live_implementation_summary_public_data.json"

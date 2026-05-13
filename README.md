@@ -5,10 +5,11 @@ Governed multi-agent product safety compliance checker for the Microsoft Foundry
 ## What Is Implemented
 
 - **Knowledge Agent**: `recallguard-knowledge-agent` grounded with File Search over `knowledge-base/`.
-- **Task Agent**: `recallguard-task-agent-v6` using Code Interpreter plus deterministic CSV evidence checks.
+- **Task Agent**: `recallguard-task-agent-v7-public-data` using Code Interpreter plus deterministic CSV evidence checks.
 - **Sequential Workflow**: Knowledge Agent first, Task Agent only when file/action evidence is required, HITL for `HOLD`.
 - **Governance Evidence**: guardrail notes, trace runbook, Entra Agent IDs, CLI setup evidence, and final build report.
 - **Runnable Checker**: Python package under `src/recallguard/` with pytest coverage for approve, review, hold, and prompt-injection edge cases.
+- **Public Dataset Pipeline**: downloads and normalizes Korea Data Portal/KATS domestic recall CSV evidence into the Foundry demo snapshot.
 - **Submission Assets**: PDF/DOCX report, MP4 demo, editable PPT deck, narration scripts, and packaged zip under `final/`.
 
 ## Current Azure Setup
@@ -28,7 +29,7 @@ Governed multi-agent product safety compliance checker for the Microsoft Foundry
 2. Use the files in `sample-data/` as Task Agent demo inputs.
 3. Create two Foundry agents:
    - `RecallGuard Knowledge Agent`
-   - `RecallGuard Task Agent v6`
+   - `RecallGuard Task Agent public-data`
 4. Create a Sequential workflow:
    - Knowledge Agent first
    - Task Agent only when a file/action is required
@@ -45,6 +46,14 @@ source .venv/bin/activate
 pip install -e ".[dev]"
 pytest
 ```
+
+## Regenerate Public Recall Evidence
+
+```bash
+python scripts/prepare_public_recall_dataset.py
+```
+
+This downloads `산업통상부_국가기술표준원_제품안전_국내리콜정보` from the Korea Data Portal, writes the original CSV to `data/raw/`, normalizes it under `data/processed/`, and appends a compact KATS recall snapshot to `sample-data/recall_certification_snapshot.csv` for Foundry Code Interpreter demos.
 
 ## Regenerate Artifacts
 

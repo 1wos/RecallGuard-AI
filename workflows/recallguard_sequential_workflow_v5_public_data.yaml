@@ -1,0 +1,22 @@
+kind: Workflow
+trigger:
+  kind: OnConversationStart
+  id: recallguard_governed_review_v5_public_data
+  actions:
+    - kind: InvokeAzureAgent
+      id: invoke_knowledge_agent
+      displayName: Ground product safety criteria
+      conversationId: =System.ConversationId
+      agent:
+        name: recallguard-knowledge-agent
+      input:
+        messages: =System.LastMessage
+
+    - kind: InvokeAzureAgent
+      id: invoke_task_agent
+      displayName: Check vendor product evidence
+      conversationId: =System.ConversationId
+      agent:
+        name: recallguard-task-agent-v7-public-data
+      input:
+        messages: =System.LastMessage

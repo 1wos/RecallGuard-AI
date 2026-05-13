@@ -69,6 +69,10 @@ def classify(vendor_csv: str | Path, evidence_csv: str | Path = "recall_certific
             match = {
                 "evidence_id": ev.get("evidence_id", ""),
                 "evidence_type": ev.get("evidence_type", ""),
+                "recall_reason": ev.get("recall_reason", ""),
+                "corrective_action": ev.get("corrective_action", ""),
+                "publication_date": ev.get("publication_date", ""),
+                "source": ev.get("source", ""),
                 "match_type": (
                     "certification_number"
                     if exact_cert

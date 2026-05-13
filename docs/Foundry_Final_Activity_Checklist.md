@@ -35,6 +35,7 @@ This checklist maps the final activity requirements to RecallGuard AI and double
 | Design a multi-agent system in Microsoft Foundry | Foundry project `recallguard-ai` |
 | Knowledge Agent | `RecallGuard Knowledge Agent` |
 | Grounded enterprise knowledge source | Product safety SOP/checklist/recall policy indexed via File Search or Azure AI Search |
+| Public or enterprise evidence dataset | Korea Data Portal KATS domestic recall CSV downloaded and normalized under `data/` |
 | Task Agent | `RecallGuard Task Agent` |
 | Tool-enabled action | Code Interpreter checks vendor CSV files |
 | Workflow orchestration | Sequential workflow in Microsoft Foundry |
@@ -72,6 +73,9 @@ Use these exact terms in the report and video narration:
 - Least privilege
 - Human-in-the-loop
 - Evidence-based decision
+- Public data
+- Korea Data Portal
+- KATS
 - Test cases
 - Success case
 - Failure case

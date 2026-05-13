@@ -132,11 +132,14 @@ RecallGuard AI reduces this risk by combining grounded policy Q&A with automated
 
 ### Primary Public Data Source
 
-**Source:** Korea Ministry of Trade, Industry and Energy / Korean Agency for Technology and Standards product safety certification and recall data  
-**Portal:** Public Data Portal  
-**Dataset:** Product safety certification and recall information  
-**URL:** https://www.data.go.kr/data/15116894/openapi.do  
-**Data shape:** Product name, model name, certification number, certification authority, manufacturer/importer, recall reason, corrective action, publication date, domestic/overseas recall metadata.
+**Source:** Korea Ministry of Trade, Industry and Energy / Korean Agency for Technology and Standards product safety data  
+**Portal:** Korea Data Portal  
+**Dataset:** `산업통상부_국가기술표준원_제품안전_국내리콜정보`  
+**URL:** https://www.data.go.kr/data/15040696/fileData.do  
+**Downloaded raw file:** `data/raw/kats_product_safety_domestic_recall_20230809.csv`  
+**Normalized file:** `data/processed/kats_domestic_recall_normalized.csv`  
+**Rows:** 881  
+**Data shape:** Certification number, product name, model name, brand, business type, legal product category, recall type, recall business, manufacturer/importer, recall method, hazard type, investigation name, and registration date.
 
 ### Internal Knowledge Base Sources for MVP
 

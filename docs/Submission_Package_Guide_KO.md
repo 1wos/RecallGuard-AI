@@ -78,7 +78,7 @@ The Knowledge Agent answers only from grounded knowledge sources. I connected pr
 
 화면:
 
-- `recallguard-task-agent-v6`
+- `recallguard-task-agent-v7-public-data`
 - Code Interpreter enabled
 - `recallguard_checker.py`
 - CSV test output
@@ -136,7 +136,7 @@ Collaboration with AI felt like having a fast reviewer and implementation partne
 
 1. Foundry project: `recallguard-ai`
 2. Knowledge Agent: `recallguard-knowledge-agent`
-3. Task Agent: `recallguard-task-agent-v6`
+3. Task Agent: `recallguard-task-agent-v7-public-data`
 4. Sequential workflow / workflow agent
 5. Preview output
 6. Trace + Guardrails + Entra Agent ID

@@ -71,7 +71,8 @@ az cognitiveservices account deployment create \
 | Agent | Foundry ID | Model | Tooling | Instance principal ID |
 |---|---|---|---|---|
 | Knowledge Agent | `recallguard-knowledge-agent` | `gpt-4o-mini` | File Search + vector store | `934a3b63-408b-416f-b7cf-e3a410e0cf06` |
-| Final Task Agent | `recallguard-task-agent-v6` | `gpt-4o-mini-100` | Code Interpreter + deterministic checker script | `d1162a8f-7e1c-4b38-828b-63314cf4427f` |
+| Final Task Agent | `recallguard-task-agent-v7-public-data` | `gpt-4o-mini-100` | Code Interpreter + deterministic checker script | `0173cc3c-70e7-4bf7-bb74-39703a517ffb` |
+| Sequential Workflow | `recallguard-governed-workflow-v5-public-data` | Workflow Agent | Knowledge Agent then Task Agent | `87a0ae4f-49ce-485d-8909-0c2081017775` |
 
 ## Additional Demo Deployment
 
@@ -98,7 +99,7 @@ This deployment should be used for the final Task Agent demo.
 | `eastus` resource creation blocked | Subscription region policy | Switched to `japaneast` |
 | `koreacentral` resource creation blocked | Subscription region policy | Switched to `japaneast` |
 | `gpt-4.1-mini Standard` deployment failed | Standard quota was 0 | Used `gpt-4o-mini GlobalStandard` |
-| Task Agent v1/v2 over-classified certification evidence as `HOLD` | LLM post-processing was too loose | Added deterministic `recallguard_checker.py` and created `recallguard-task-agent-v6` |
+| Task Agent v1/v2 over-classified certification evidence as `HOLD` | LLM post-processing was too loose | Added deterministic `recallguard_checker.py` and created `recallguard-task-agent-v7-public-data` |
 | Repeated Code Interpreter calls hit rate limit | Initial capacity was 10k TPM | Created `gpt-4o-mini-100` deployment |
 | Entra bearer token could create agents after RBAC propagation but could not upload files | File/vector store API accepted API key in this environment | Used API key for file/vector store setup and Entra bearer token for agent creation; document production recommendation to use managed identity/RBAC where available |
 
