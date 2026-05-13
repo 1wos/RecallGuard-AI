@@ -425,6 +425,7 @@ def render_app_page() -> str:
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RecallGuard AI Review Workspace</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css" />
   <style>
     :root {
       --dark: #010120;
@@ -443,19 +444,24 @@ def render_app_page() -> str:
       --review: #805400;
       --hold-bg: #ffe0d8;
       --hold: #9a2b1f;
+      --dark-soft: #10102a;
+      --dark-line: #2d2d4a;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: #f6f6fa;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(200, 246, 249, .35), transparent 28%),
+        radial-gradient(circle at 100% 8%, rgba(189, 187, 255, .22), transparent 26%),
+        #f4f5f8;
       color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Pretendard, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
     button, select, textarea, input { font: inherit; }
     button, select { min-height: 44px; }
     button {
       border: 0;
-      border-radius: 4px;
+      border-radius: 8px;
       background: #000;
       color: #fff;
       padding: 11px 15px;
@@ -496,7 +502,7 @@ def render_app_page() -> str:
     .logo {
       width: 34px;
       height: 34px;
-      border-radius: 4px;
+      border-radius: 8px;
       background: linear-gradient(135deg, var(--orange), var(--magenta), var(--periwinkle));
       flex: 0 0 auto;
     }
@@ -515,7 +521,7 @@ def render_app_page() -> str:
     .panel {
       background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: 4px;
+      border-radius: 8px;
       padding: 18px;
       min-width: 0;
       overflow: hidden;
@@ -534,10 +540,19 @@ def render_app_page() -> str:
     h2 { font-size: 22px; letter-spacing: -.02em; margin-bottom: 10px; }
     h3 { font-size: 17px; margin-bottom: 10px; }
     p { color: var(--muted); line-height: 1.5; }
+    .panel-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .panel-title-row h2 { margin-bottom: 4px; }
+    .panel-title-row p { margin-bottom: 0; font-size: 14px; max-width: 62ch; }
     .pill {
       display: inline-flex;
       align-items: center;
-      border-radius: 4px;
+      border-radius: 8px;
       padding: 4px 8px;
       font-family: "SFMono-Regular", Consolas, monospace;
       font-size: 11px;
@@ -547,39 +562,63 @@ def render_app_page() -> str:
     .approve { background: var(--approve-bg); color: var(--approve); }
     .review { background: var(--review-bg); color: var(--review); }
     .hold { background: var(--hold-bg); color: var(--hold); }
-    .hero {
+    .workbench-header {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 220px;
-      align-items: center;
-      gap: 18px;
-      margin-bottom: 16px;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 16px;
+      align-items: stretch;
     }
-    .ribbon {
-      height: 76px;
-      border-radius: 4px;
-      background: linear-gradient(105deg, var(--orange), var(--magenta), var(--periwinkle));
-      transform: rotate(-8deg);
+    .workbench-title h1 {
+      font-size: clamp(25px, 3vw, 36px);
+      line-height: 1.02;
+      margin-bottom: 8px;
     }
-    .steps {
+    .workbench-title p { max-width: 70ch; margin-bottom: 0; }
+    .active-run-card {
+      border-radius: 8px;
+      border: 1px solid #26263a;
+      background: var(--dark);
+      color: #fff;
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+      min-width: 0;
+    }
+    .active-run-card .eyebrow { color: #bdbbff; }
+    .active-run-card strong { font-size: 22px; letter-spacing: -.03em; }
+    .active-run-card span { color: #c9c9d6; font-size: 13px; line-height: 1.35; }
+    .workflow-strip {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
-      margin-top: 14px;
+      gap: 10px;
     }
-    .step {
-      background: var(--soft);
+    .workflow-tile {
       border: 1px solid var(--line);
-      border-radius: 4px;
-      padding: 12px;
+      border-radius: 8px;
+      background: #fff;
+      padding: 13px;
+      min-width: 0;
     }
-    .step strong { display: block; margin-top: 6px; }
-    .step span { display: block; margin-top: 5px; color: var(--muted); font-size: 13px; line-height: 1.35; }
+    .workflow-tile strong { display: block; margin-top: 7px; }
+    .workflow-tile span { display: block; color: var(--muted); font-size: 12px; line-height: 1.35; margin-top: 5px; }
+    .workflow-dot {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: #000;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 11px;
+    }
     .scenario-list { display: grid; gap: 8px; margin-top: 12px; }
     .scenario-card {
       width: 100%;
       background: #fff;
       color: #000;
       border: 1px solid var(--line);
+      border-radius: 8px;
       text-align: left;
       font-family: inherit;
       letter-spacing: 0;
@@ -590,13 +629,28 @@ def render_app_page() -> str:
     .scenario-card strong { display: block; font-size: 14px; }
     .scenario-card span { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.35; }
     .howto { margin: 18px 0 0; padding-left: 18px; line-height: 1.55; color: #333; font-size: 14px; }
+    .side-meta {
+      margin-top: 14px;
+      display: grid;
+      gap: 8px;
+    }
+    .side-meta-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .side-meta-row strong { color: var(--ink); }
     .workspace { display: grid; gap: 16px; }
     .toolbar { display: grid; grid-template-columns: minmax(220px, 1fr) auto auto; gap: 10px; align-items: end; }
     label { display: block; font-weight: 700; margin-bottom: 8px; }
     select, textarea {
       width: 100%;
       border: 1px solid var(--line);
-      border-radius: 4px;
+      border-radius: 8px;
       background: #fff;
       padding: 11px 12px;
     }
@@ -669,12 +723,12 @@ def render_app_page() -> str:
     }
     .action-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
     .summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
-    .metric { border: 1px solid var(--line); border-radius: 4px; padding: 13px; background: #fff; min-width: 0; }
+    .metric { border: 1px solid var(--line); border-radius: 8px; padding: 13px; background: #fff; min-width: 0; }
     .metric span { color: var(--muted); font-size: 13px; }
     .metric strong { display: block; font-size: 28px; letter-spacing: -.03em; margin-top: 3px; }
     .results-list { display: grid; gap: 10px; margin-top: 12px; }
-    .empty-state { border: 1px dashed #c9c9d6; border-radius: 4px; padding: 22px; color: var(--muted); background: #fbfbfd; }
-    .product-card { border: 1px solid var(--line); border-radius: 4px; padding: 14px; background: #fff; }
+    .empty-state { border: 1px dashed #c9c9d6; border-radius: 8px; padding: 22px; color: var(--muted); background: #fbfbfd; }
+    .product-card { border: 1px solid var(--line); border-radius: 8px; padding: 14px; background: #fff; }
     .product-card.selected { border-color: #000; background: #fcfcff; }
     .product-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
     .product-title { font-weight: 760; font-size: 17px; overflow-wrap: anywhere; }
@@ -682,21 +736,21 @@ def render_app_page() -> str:
     .product-rule { margin-top: 10px; font-size: 12px; }
     .product-action { margin-top: 8px; line-height: 1.35; }
     .product-footer { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 12px; }
-    .mini-button { min-height: 36px; padding: 8px 10px; font-size: 10px; background: #fff; color: #000; border: 1px solid var(--line); }
+    .mini-button { min-height: 36px; padding: 8px 10px; font-size: 10px; background: #fff; color: #000; border: 1px solid var(--line); border-radius: 8px; }
     .flow-list { display: grid; gap: 8px; }
     .flow-node {
       display: grid;
       grid-template-columns: 28px minmax(0, 1fr);
       gap: 10px;
       border: 1px solid var(--line);
-      border-radius: 4px;
+      border-radius: 8px;
       background: #fff;
       padding: 10px;
     }
     .node-index {
       width: 28px;
       height: 28px;
-      border-radius: 4px;
+      border-radius: 8px;
       background: #000;
       color: #fff;
       display: grid;
@@ -713,7 +767,7 @@ def render_app_page() -> str:
       word-break: break-word;
       background: #0d0d1f;
       color: #f8f8ff;
-      border-radius: 4px;
+      border-radius: 8px;
       padding: 14px;
       max-height: 360px;
       overflow: auto;
@@ -722,19 +776,54 @@ def render_app_page() -> str:
     .packet-header { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
     .packet-title { font-weight: 760; margin-top: 4px; }
     .rule-list { display: grid; gap: 8px; margin-top: 10px; }
-    .rule-card { background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 11px; }
+    .rule-card { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 11px; }
     .rule-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
     .rule-head code { font-size: 10px; line-height: 1.35; }
     .rule-card p { margin: 8px 0 0; color: #333; line-height: 1.35; font-size: 13px; }
-    .evaluation-card { border: 1px solid var(--line); border-radius: 4px; background: #fff; padding: 12px; }
+    .evaluation-card { border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 12px; }
     .evaluation-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
     .copilot-card {
       background: var(--dark);
       color: #fff;
-      border-color: #26263a;
+      border-color: var(--dark-line);
+      padding: 0;
+    }
+    .copilot-shell { padding: 16px; }
+    .copilot-band {
+      height: 5px;
+      background: linear-gradient(90deg, var(--orange), var(--magenta), var(--periwinkle));
     }
     .copilot-card p { color: #c9c9d6; }
     .copilot-status { background: #26263a; color: #fff; }
+    .copilot-context-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .copilot-context {
+      border: 1px solid var(--dark-line);
+      border-radius: 8px;
+      background: var(--dark-soft);
+      padding: 10px;
+      min-width: 0;
+    }
+    .copilot-context span {
+      display: block;
+      color: #9b9bb3;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .copilot-context strong {
+      display: block;
+      margin-top: 5px;
+      color: #fff;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
     .copilot-log {
       display: grid;
       gap: 8px;
@@ -750,7 +839,7 @@ def render_app_page() -> str:
       line-height: 1.38;
       font-size: 13px;
     }
-    .copilot-message.agent { background: #11112a; color: #f8f8ff; }
+    .copilot-message.agent { background: var(--dark-soft); color: #f8f8ff; }
     .copilot-message.user { background: #f8f8ff; color: #08080d; border-color: #f8f8ff; }
     .copilot-message strong {
       display: block;
@@ -808,13 +897,13 @@ def render_app_page() -> str:
       .sidebar { position: static; order: 2; }
       .workspace { order: 1; }
       .inspector { order: 3; }
-      .hero { grid-template-columns: 1fr; }
-      .ribbon { display: none; }
-      .steps { grid-template-columns: 1fr 1fr; }
+      .workbench-header { grid-template-columns: 1fr; }
+      .workflow-strip { grid-template-columns: 1fr 1fr; }
       .toolbar { grid-template-columns: 1fr; }
       .summary-grid, .evaluation-grid { grid-template-columns: 1fr 1fr; }
       .upload-control { grid-template-columns: 1fr; }
       .quick-prompts { grid-template-columns: 1fr; }
+      .copilot-context-grid { grid-template-columns: 1fr; }
       .copilot-input-row { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -843,42 +932,45 @@ def render_app_page() -> str:
 
     <div class="shell">
       <aside class="panel sidebar">
-        <div class="eyebrow">Review queue</div>
-        <h2>Choose a scenario</h2>
-        <p>Start with a realistic vendor submission, then run the checker used by the Task Agent.</p>
+        <div class="eyebrow">Case queue</div>
+        <h2>Evidence cases</h2>
+        <p>Pick a vendor submission scenario or upload a local CSV for review.</p>
         <div class="scenario-list">
           <button class="scenario-card active" data-sample="vendor_products_complete.csv"><strong>Certified products</strong><span>Happy path with two APPROVE decisions.</span></button>
           <button class="scenario-card" data-sample="vendor_products_public_recall_match.csv"><strong>Public KATS recall</strong><span>One HOLD from public recall evidence.</span></button>
           <button class="scenario-card" data-sample="vendor_products_missing_fields.csv"><strong>Missing identifiers</strong><span>Incomplete vendor rows become REVIEW.</span></button>
           <button class="scenario-card" data-sample="vendor_products_prompt_injection.csv"><strong>Prompt-injection note</strong><span>Embedded instructions are treated only as data.</span></button>
         </div>
-        <ol class="howto">
-          <li>Select or upload vendor evidence.</li>
-          <li>Run the evidence review.</li>
-          <li>Inspect decisions and reviewer packets.</li>
-          <li>Escalate HOLD/REVIEW items to a compliance owner.</li>
-        </ol>
+        <div class="side-meta">
+          <div class="side-meta-row"><span>Workflow</span><strong>Sequential</strong></div>
+          <div class="side-meta-row"><span>Guardrail</span><strong>Active</strong></div>
+          <div class="side-meta-row"><span>Review mode</span><strong>HITL</strong></div>
+        </div>
       </aside>
 
       <main class="workspace">
-        <section class="panel hero">
-          <div>
-            <div class="eyebrow">Reviewer workspace</div>
-            <h1>Review vendor products before listing.</h1>
-            <p>Validate vendor CSV evidence, see why each product was approved, reviewed, or held, and inspect the human-review packet for risky products.</p>
-            <div class="steps">
-              <div class="step"><div class="eyebrow">01</div><strong>Load evidence</strong><span>Sample, upload, or paste CSV rows.</span></div>
-              <div class="step"><div class="eyebrow">02</div><strong>Run review</strong><span>Apply recall and certification rules.</span></div>
-              <div class="step"><div class="eyebrow">03</div><strong>Triage queue</strong><span>Sort APPROVE, REVIEW, and HOLD items.</span></div>
-              <div class="step"><div class="eyebrow">04</div><strong>Inspect packet</strong><span>Open evidence, missing data, and next action.</span></div>
-            </div>
+        <section class="panel workbench-header">
+          <div class="workbench-title">
+            <div class="eyebrow">Product safety console</div>
+            <h1>Vendor evidence review</h1>
+            <p>Load vendor products, run recall and certification checks, then triage each row through an auditable reviewer packet.</p>
           </div>
-          <div class="ribbon" aria-hidden="true"></div>
+          <div class="active-run-card">
+            <div class="eyebrow">Current run</div>
+            <strong id="runStateLabel">Ready</strong>
+            <span id="runStateCopy">No review has been executed in this session.</span>
+          </div>
         </section>
 
         <section class="panel">
-          <div class="eyebrow">Evidence intake</div>
-          <h2>Vendor submission</h2>
+          <div class="panel-title-row">
+            <div>
+              <div class="eyebrow">Evidence intake</div>
+              <h2>Vendor submission</h2>
+              <p>Select a sample, upload a CSV, or paste rows directly before running the review.</p>
+            </div>
+            <span class="pill review">CSV required</span>
+          </div>
           <div class="toolbar">
             <div>
               <label for="sample">Sample CSV</label>
@@ -905,8 +997,14 @@ def render_app_page() -> str:
         </section>
 
         <section class="panel">
-          <div class="eyebrow">Decision output</div>
-          <h2>Product review queue</h2>
+          <div class="panel-title-row">
+            <div>
+              <div class="eyebrow">Decision output</div>
+              <h2>Product queue</h2>
+              <p>Inspect the row-level decision, evidence matches, and recommended action.</p>
+            </div>
+            <span class="pill approve">Auditable</span>
+          </div>
           <div id="summary" class="summary-grid"></div>
           <div id="decisions" class="results-list">
             <div class="empty-state">Run the checker to populate product decisions and reviewer packets.</div>
@@ -916,38 +1014,43 @@ def render_app_page() -> str:
 
       <aside class="inspector">
         <section class="panel">
-          <div class="eyebrow">Architecture</div>
-          <h2>How it works</h2>
+          <div class="eyebrow">Run monitor</div>
+          <h2>Workflow state</h2>
           <div class="flow-list">
-            <div class="flow-node"><div class="node-index">1</div><div><div class="node-title">Reviewer input</div><div class="node-copy">Vendor CSV is uploaded or pasted into the workspace.</div></div></div>
-            <div class="flow-node"><div class="node-index">2</div><div><div class="node-title">Knowledge Agent</div><div class="node-copy">Foundry File Search grounds safety policy and recall-response rules.</div></div></div>
-            <div class="flow-node"><div class="node-index">3</div><div><div class="node-title">Task Agent</div><div class="node-copy">Foundry Code Interpreter runs <code>recallguard_checker.py</code>.</div></div></div>
-            <div class="flow-node"><div class="node-index">4</div><div><div class="node-title">Decision engine</div><div class="node-copy">Deterministic rules return APPROVE, REVIEW, or HOLD.</div></div></div>
-            <div class="flow-node"><div class="node-index">5</div><div><div class="node-title">Governance</div><div class="node-copy">Guardrails, traces, Entra IDs, and HITL packets make the action auditable.</div></div></div>
+            <div class="flow-node"><div class="node-index">KB</div><div><div class="node-title">Knowledge grounding</div><div class="node-copy">Policy and recall-response sources are mapped to the Knowledge Agent.</div></div></div>
+            <div class="flow-node"><div class="node-index">CI</div><div><div class="node-title">Evidence checker</div><div class="node-copy"><code>recallguard_checker.py</code> performs the CSV action path.</div></div></div>
+            <div class="flow-node"><div class="node-index">GR</div><div><div class="node-title">Guardrails</div><div class="node-copy">Prompt-injection notes are treated as vendor data, not instructions.</div></div></div>
+            <div class="flow-node"><div class="node-index">ID</div><div><div class="node-title">Governance</div><div class="node-copy">Entra ownership, traces, and HITL packets support audit review.</div></div></div>
           </div>
         </section>
 
         <section class="panel copilot-card" style="margin-top:16px;">
-          <div class="packet-header">
-            <div>
-              <div class="eyebrow" style="color:#bdbbff;">CopilotKit layer</div>
-              <div class="packet-title">Reviewer Copilot</div>
+          <div class="copilot-band" aria-hidden="true"></div>
+          <div class="copilot-shell">
+            <div class="packet-header">
+              <div>
+                <div class="eyebrow" style="color:#bdbbff;">Review assistant</div>
+                <div class="packet-title">Reviewer Copilot</div>
+              </div>
+              <span class="pill copilot-status">Context aware</span>
             </div>
-            <span class="pill copilot-status">UX ready</span>
+            <p>Ask about the selected product, missing evidence, guardrails, or the next reviewer action.</p>
+            <div class="copilot-context-grid" aria-label="Copilot review context">
+              <div class="copilot-context"><span>Selected product</span><strong id="copilotContextProduct">No product selected</strong></div>
+              <div class="copilot-context"><span>Decision state</span><strong id="copilotContextDecision">Waiting</strong></div>
+            </div>
+            <div id="copilotLog" class="copilot-log" aria-live="polite"></div>
+            <div class="quick-prompts" aria-label="Reviewer Copilot prompts">
+              <button class="mini-button copilot-prompt" data-prompt="Why was the selected product classified this way?">Why this decision?</button>
+              <button class="mini-button copilot-prompt" data-prompt="What evidence or missing fields should I review?">Evidence check</button>
+              <button class="mini-button copilot-prompt" data-prompt="Generate a concise reviewer memo for the selected product.">Reviewer memo</button>
+              <button class="mini-button copilot-prompt" data-prompt="Explain the guardrails and human review path.">Guardrails</button>
+            </div>
+            <div class="copilot-input-row">
+              <input id="copilotInput" class="copilot-input" type="text" placeholder="Ask about this review..." />
+              <button id="askCopilotBtn" class="copilot-submit">Ask</button>
+            </div>
           </div>
-          <p>Ask about the current decision, missing evidence, guardrails, or the next reviewer action. This panel mirrors the CopilotKit in-app assistant pattern while the Foundry workflow remains the governed backend.</p>
-          <div id="copilotLog" class="copilot-log" aria-live="polite"></div>
-          <div class="quick-prompts" aria-label="Reviewer Copilot prompts">
-            <button class="mini-button copilot-prompt" data-prompt="Why was the selected product classified this way?">Why this decision?</button>
-            <button class="mini-button copilot-prompt" data-prompt="What evidence or missing fields should I review?">Evidence check</button>
-            <button class="mini-button copilot-prompt" data-prompt="Generate a concise reviewer memo for the selected product.">Reviewer memo</button>
-            <button class="mini-button copilot-prompt" data-prompt="Explain the guardrails and human review path.">Guardrails</button>
-          </div>
-          <div class="copilot-input-row">
-            <input id="copilotInput" class="copilot-input" type="text" placeholder="Ask about this review..." />
-            <button id="askCopilotBtn" class="copilot-submit">Ask</button>
-          </div>
-          <div class="copilot-note">V2 target: replace this local deterministic assistant with CopilotKit React components connected to the Foundry workflow through AG-UI or a thin backend bridge.</div>
         </section>
 
         <section class="panel soft" style="margin-top:16px;">
@@ -985,6 +1088,10 @@ def render_app_page() -> str:
     const copilotLog = document.getElementById('copilotLog');
     const copilotInput = document.getElementById('copilotInput');
     const askCopilotBtn = document.getElementById('askCopilotBtn');
+    const copilotContextProduct = document.getElementById('copilotContextProduct');
+    const copilotContextDecision = document.getElementById('copilotContextDecision');
+    const runStateLabel = document.getElementById('runStateLabel');
+    const runStateCopy = document.getElementById('runStateCopy');
     const runButtons = [document.getElementById('runBtn'), document.getElementById('runBtnBottom')];
 
     async function request(path, options = {}) {
@@ -1014,6 +1121,9 @@ def render_app_page() -> str:
       packetDecision.textContent = 'Waiting';
       packetHint.textContent = 'Run a review, then choose Inspect packet on a product card.';
       packetOut.textContent = 'Reviewer evidence will appear here.';
+      runStateLabel.textContent = 'Ready';
+      runStateCopy.textContent = message;
+      updateCopilotContext();
       resetCopilot(message);
     }
 
@@ -1058,6 +1168,9 @@ def render_app_page() -> str:
       packetDecision.textContent = 'PASS';
       packetHint.textContent = 'Saved from outputs/evaluation/decision_harness_report.json.';
       packetOut.textContent = JSON.stringify(data, null, 2);
+      runStateLabel.textContent = 'Evaluation loaded';
+      runStateCopy.textContent = `${data.total_rows ?? '-'} labeled rows checked with ${data.accuracy ?? '-'} accuracy.`;
+      updateCopilotContext('Evaluation harness', 'PASS');
     }
 
     function renderResult(data) {
@@ -1069,6 +1182,8 @@ def render_app_page() -> str:
         <div class="metric"><span>Review</span><strong>${s.review_count ?? 0}</strong></div>
         <div class="metric"><span>Hold</span><strong>${s.hold_count ?? 0}</strong></div>
       `;
+      runStateLabel.textContent = 'Review complete';
+      runStateCopy.textContent = `${s.total_products ?? 0} products checked. ${s.hold_count ?? 0} hold and ${s.review_count ?? 0} review item(s) need attention.`;
       decisions.innerHTML = `
         <div class="results-list">
           ${(data.products || []).map((product, index) => `
@@ -1108,9 +1223,15 @@ def render_app_page() -> str:
       packetDecision.textContent = product.decision || 'REVIEW';
       packetHint.textContent = product.reviewer_packet?.recommended_next_action || product.recommended_action || '';
       packetOut.textContent = JSON.stringify(product.reviewer_packet || product, null, 2);
+      updateCopilotContext(product.product_name || 'Selected product', product.decision || 'REVIEW');
       document.querySelectorAll('.product-card').forEach((card, cardIndex) => {
         card.classList.toggle('selected', cardIndex === index);
       });
+    }
+
+    function updateCopilotContext(product = 'No product selected', decision = 'Waiting') {
+      copilotContextProduct.textContent = product;
+      copilotContextDecision.textContent = decision;
     }
 
     function resetCopilot(reason = '') {
@@ -1177,6 +1298,10 @@ def render_app_page() -> str:
     }
 
     function setLoading(isLoading) {
+      if (isLoading) {
+        runStateLabel.textContent = 'Running';
+        runStateCopy.textContent = 'Applying recall and certification evidence checks.';
+      }
       runButtons.forEach(button => {
         button.disabled = isLoading;
         button.textContent = isLoading ? 'Running...' : 'Run review';
