@@ -54,7 +54,7 @@ pytest
 python scripts/prepare_public_recall_dataset.py
 ```
 
-This downloads `산업통상부_국가기술표준원_제품안전_국내리콜정보` from the Korea Data Portal, writes the original CSV to `data/raw/`, normalizes it under `data/processed/`, and appends a compact KATS recall snapshot to `sample-data/recall_certification_snapshot.csv` for Foundry Code Interpreter demos.
+This downloads the KATS domestic product safety recall dataset from the Korea Data Portal, writes the original CSV to `data/raw/`, normalizes it under `data/processed/`, and appends a compact KATS recall snapshot to `sample-data/recall_certification_snapshot.csv` for Foundry Code Interpreter demos.
 
 ## Regenerate Artifacts
 

@@ -29,6 +29,7 @@ REPORT_DOCX = FINAL / "RecallGuard_AI_Build_Report_Somi.docx"
 REPORT_PDF = FINAL / "RecallGuard_AI_Build_Report_Somi.pdf"
 VIDEO_MP4 = FINAL / "RecallGuard_AI_Demo_Somi.mp4"
 SCRIPT_MD = FINAL / "RecallGuard_AI_Demo_Script_Somi.md"
+FONT_FAMILY = "Pretendard"
 
 
 COLORS = {
@@ -132,9 +133,10 @@ def style_paragraph(p, before=0, after=6, line=1.10, align=None):
 
 def run(p, text, size=11, color=None, bold=False, italic=False):
     r = p.add_run(text)
-    r.font.name = "Calibri"
-    r._element.rPr.rFonts.set(qn("w:ascii"), "Calibri")
-    r._element.rPr.rFonts.set(qn("w:hAnsi"), "Calibri")
+    r.font.name = FONT_FAMILY
+    r._element.rPr.rFonts.set(qn("w:ascii"), FONT_FAMILY)
+    r._element.rPr.rFonts.set(qn("w:hAnsi"), FONT_FAMILY)
+    r._element.rPr.rFonts.set(qn("w:eastAsia"), FONT_FAMILY)
     r.font.size = Pt(size)
     r.bold = bold
     r.italic = italic
@@ -221,9 +223,10 @@ def setup_document() -> Document:
 
     styles = doc.styles
     normal = styles["Normal"]
-    normal.font.name = "Calibri"
-    normal._element.rPr.rFonts.set(qn("w:ascii"), "Calibri")
-    normal._element.rPr.rFonts.set(qn("w:hAnsi"), "Calibri")
+    normal.font.name = FONT_FAMILY
+    normal._element.rPr.rFonts.set(qn("w:ascii"), FONT_FAMILY)
+    normal._element.rPr.rFonts.set(qn("w:hAnsi"), FONT_FAMILY)
+    normal._element.rPr.rFonts.set(qn("w:eastAsia"), FONT_FAMILY)
     normal.font.size = Pt(11)
 
     header = section.header.paragraphs[0]
@@ -334,7 +337,7 @@ def build_report():
     add_heading(doc, "4.1 Public Dataset Setup", 1)
     add_body(
         doc,
-        "RecallGuard also uses the Korea Data Portal dataset 산업통상부_국가기술표준원_제품안전_국내리콜정보 from the Ministry of Trade, Industry and Energy / Korean Agency for Technology and Standards. The raw CP949 CSV was downloaded from data.go.kr, normalized to UTF-8, and converted into the evidence schema used by the Task Agent.",
+        "RecallGuard also uses the Korea Data Portal KATS domestic product safety recall dataset from the Ministry of Trade, Industry and Energy / Korean Agency for Technology and Standards. The raw CP949 CSV was downloaded from data.go.kr, normalized to UTF-8, and converted into the evidence schema used by the Task Agent.",
     )
     add_table(
         doc,
@@ -522,6 +525,8 @@ def draw_wrapped(draw, xy, text, font, fill, max_width, line_spacing=8):
 
 def font(size, bold=False):
     candidates = [
+        "/Users/somi/Library/Fonts/Pretendard-SemiBold.otf" if bold else "/Users/somi/Library/Fonts/Pretendard-Regular.otf",
+        "/Users/somi/Library/Fonts/Pretendard-Bold.otf" if bold else "/Users/somi/Library/Fonts/Pretendard-Regular.otf",
         "/System/Library/Fonts/Supplemental/Arial Bold.ttf" if bold else "/System/Library/Fonts/Supplemental/Arial.ttf",
         "/Library/Fonts/Arial Bold.ttf" if bold else "/Library/Fonts/Arial.ttf",
         "/System/Library/Fonts/Helvetica.ttc",

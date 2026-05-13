@@ -87,7 +87,7 @@ function buildHtml() {
       margin: 0;
       color: var(--ink);
       background: var(--canvas);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Pretendard, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       letter-spacing: 0;
     }
     section {
@@ -100,7 +100,7 @@ function buildHtml() {
     .dark { background: var(--dark); color: white; }
     .wrap { width: min(1140px, 100%); margin: 0 auto; }
     .eyebrow {
-      font-family: "JetBrains Mono", "SFMono-Regular", ui-monospace, monospace;
+      font-family: Pretendard, "SFMono-Regular", ui-monospace, monospace;
       font-size: 12px;
       line-height: 1;
       letter-spacing: .08em;
@@ -164,7 +164,7 @@ function buildHtml() {
     .button {
       border-radius: 4px;
       padding: 13px 22px;
-      font-family: "JetBrains Mono", "SFMono-Regular", ui-monospace, monospace;
+      font-family: Pretendard, "SFMono-Regular", ui-monospace, monospace;
       font-size: 14px;
       letter-spacing: .06em;
       text-transform: uppercase;
@@ -240,7 +240,7 @@ function buildHtml() {
     .row:first-child {
       border-top: 0;
       background: var(--hairline);
-      font-family: "JetBrains Mono", "SFMono-Regular", ui-monospace, monospace;
+      font-family: Pretendard, "SFMono-Regular", ui-monospace, monospace;
       text-transform: uppercase;
       letter-spacing: .06em;
       color: var(--body);
@@ -261,7 +261,7 @@ function buildHtml() {
     .step b { display: block; font-size: 18px; margin-bottom: 14px; }
     .step small {
       color: #c8ccdc;
-      font-family: "JetBrains Mono", "SFMono-Regular", ui-monospace, monospace;
+      font-family: Pretendard, "SFMono-Regular", ui-monospace, monospace;
       text-transform: uppercase;
       letter-spacing: .04em;
     }
@@ -296,7 +296,7 @@ function buildHtml() {
       font-size: 14px;
       line-height: 1.46;
       white-space: pre-wrap;
-      font-family: "JetBrains Mono", "SFMono-Regular", ui-monospace, monospace;
+      font-family: Pretendard, "SFMono-Regular", ui-monospace, monospace;
     }
     .footer-word {
       font-size: 92px;
@@ -344,7 +344,7 @@ function buildHtml() {
         <div class="stat"><b>881</b><span>Rows downloaded from the KATS domestic product safety recall CSV and normalized to UTF-8.</span></div>
         <div class="table">
           <div class="row"><div>Field</div><div>Value</div></div>
-          <div class="row"><div>Dataset</div><div>산업통상부_국가기술표준원_제품안전_국내리콜정보</div></div>
+          <div class="row"><div>Dataset</div><div>KATS domestic product safety recall dataset</div></div>
           <div class="row"><div>Source</div><div>data.go.kr / Korean Agency for Technology and Standards</div></div>
           <div class="row"><div>Evidence file</div><div>recall_certification_snapshot.csv + KATS-RECALL rows</div></div>
         </div>

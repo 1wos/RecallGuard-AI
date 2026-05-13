@@ -2,7 +2,7 @@
 
 ## Dataset Selected
 
-RecallGuard AI uses the Korea Data Portal dataset `산업통상부_국가기술표준원_제품안전_국내리콜정보` as the public recall evidence source.
+RecallGuard AI uses the Korea Data Portal KATS domestic product safety recall dataset as the public recall evidence source.
 
 - Detail page: https://www.data.go.kr/data/15040696/fileData.do
 - Direct CSV download captured from the portal metadata: `https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000002784452&fileDetailSn=1&insertDataPrcus=N`

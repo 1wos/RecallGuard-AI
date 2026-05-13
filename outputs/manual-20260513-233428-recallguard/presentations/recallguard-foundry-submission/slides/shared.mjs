@@ -16,8 +16,8 @@ const C = {
   red: '#ffe5e5',
 };
 const F = {
-  display: 'Inter',
-  mono: 'Menlo',
+  display: 'Pretendard',
+  mono: 'Pretendard',
 };
 export { C, F };
 

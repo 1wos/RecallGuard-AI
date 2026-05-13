@@ -134,7 +134,7 @@ RecallGuard AI reduces this risk by combining grounded policy Q&A with automated
 
 **Source:** Korea Ministry of Trade, Industry and Energy / Korean Agency for Technology and Standards product safety data  
 **Portal:** Korea Data Portal  
-**Dataset:** `산업통상부_국가기술표준원_제품안전_국내리콜정보`  
+**Dataset:** KATS domestic product safety recall dataset  
 **URL:** https://www.data.go.kr/data/15040696/fileData.do  
 **Downloaded raw file:** `data/raw/kats_product_safety_domestic_recall_20230809.csv`  
 **Normalized file:** `data/processed/kats_domestic_recall_normalized.csv`  
