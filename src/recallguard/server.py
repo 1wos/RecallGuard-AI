@@ -728,6 +728,76 @@ def render_app_page() -> str:
     .rule-card p { margin: 8px 0 0; color: #333; line-height: 1.35; font-size: 13px; }
     .evaluation-card { border: 1px solid var(--line); border-radius: 4px; background: #fff; padding: 12px; }
     .evaluation-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+    .copilot-card {
+      background: var(--dark);
+      color: #fff;
+      border-color: #26263a;
+    }
+    .copilot-card p { color: #c9c9d6; }
+    .copilot-status { background: #26263a; color: #fff; }
+    .copilot-log {
+      display: grid;
+      gap: 8px;
+      max-height: 240px;
+      overflow: auto;
+      margin-top: 12px;
+      padding-right: 2px;
+    }
+    .copilot-message {
+      border: 1px solid #26263a;
+      border-radius: 8px;
+      padding: 10px;
+      line-height: 1.38;
+      font-size: 13px;
+    }
+    .copilot-message.agent { background: #11112a; color: #f8f8ff; }
+    .copilot-message.user { background: #f8f8ff; color: #08080d; border-color: #f8f8ff; }
+    .copilot-message strong {
+      display: block;
+      margin-bottom: 4px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .quick-prompts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .quick-prompts .mini-button {
+      min-height: 38px;
+      background: #171733;
+      color: #fff;
+      border-color: #31314d;
+      white-space: normal;
+      text-align: left;
+      line-height: 1.25;
+    }
+    .copilot-input-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .copilot-input {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid #31314d;
+      border-radius: 8px;
+      background: #08081f;
+      color: #fff;
+      padding: 11px 12px;
+    }
+    .copilot-input::placeholder { color: #9b9bb3; }
+    .copilot-submit { border-radius: 8px; background: var(--mint); color: #000; }
+    .copilot-note {
+      margin-top: 10px;
+      color: #9b9bb3;
+      font-size: 12px;
+      line-height: 1.4;
+    }
     @media (max-width: 1120px) {
       .shell { grid-template-columns: 260px minmax(0, 1fr); }
       .inspector { grid-column: 1 / -1; position: static; }
@@ -744,6 +814,8 @@ def render_app_page() -> str:
       .toolbar { grid-template-columns: 1fr; }
       .summary-grid, .evaluation-grid { grid-template-columns: 1fr 1fr; }
       .upload-control { grid-template-columns: 1fr; }
+      .quick-prompts { grid-template-columns: 1fr; }
+      .copilot-input-row { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; }
@@ -855,6 +927,29 @@ def render_app_page() -> str:
           </div>
         </section>
 
+        <section class="panel copilot-card" style="margin-top:16px;">
+          <div class="packet-header">
+            <div>
+              <div class="eyebrow" style="color:#bdbbff;">CopilotKit layer</div>
+              <div class="packet-title">Reviewer Copilot</div>
+            </div>
+            <span class="pill copilot-status">UX ready</span>
+          </div>
+          <p>Ask about the current decision, missing evidence, guardrails, or the next reviewer action. This panel mirrors the CopilotKit in-app assistant pattern while the Foundry workflow remains the governed backend.</p>
+          <div id="copilotLog" class="copilot-log" aria-live="polite"></div>
+          <div class="quick-prompts" aria-label="Reviewer Copilot prompts">
+            <button class="mini-button copilot-prompt" data-prompt="Why was the selected product classified this way?">Why this decision?</button>
+            <button class="mini-button copilot-prompt" data-prompt="What evidence or missing fields should I review?">Evidence check</button>
+            <button class="mini-button copilot-prompt" data-prompt="Generate a concise reviewer memo for the selected product.">Reviewer memo</button>
+            <button class="mini-button copilot-prompt" data-prompt="Explain the guardrails and human review path.">Guardrails</button>
+          </div>
+          <div class="copilot-input-row">
+            <input id="copilotInput" class="copilot-input" type="text" placeholder="Ask about this review..." />
+            <button id="askCopilotBtn" class="copilot-submit">Ask</button>
+          </div>
+          <div class="copilot-note">V2 target: replace this local deterministic assistant with CopilotKit React components connected to the Foundry workflow through AG-UI or a thin backend bridge.</div>
+        </section>
+
         <section class="panel soft" style="margin-top:16px;">
           <div class="packet-header">
             <div>
@@ -887,6 +982,9 @@ def render_app_page() -> str:
     const packetHint = document.getElementById('packetHint');
     const packetOut = document.getElementById('packetOut');
     const fileName = document.getElementById('fileName');
+    const copilotLog = document.getElementById('copilotLog');
+    const copilotInput = document.getElementById('copilotInput');
+    const askCopilotBtn = document.getElementById('askCopilotBtn');
     const runButtons = [document.getElementById('runBtn'), document.getElementById('runBtnBottom')];
 
     async function request(path, options = {}) {
@@ -916,6 +1014,7 @@ def render_app_page() -> str:
       packetDecision.textContent = 'Waiting';
       packetHint.textContent = 'Run a review, then choose Inspect packet on a product card.';
       packetOut.textContent = 'Reviewer evidence will appear here.';
+      resetCopilot(message);
     }
 
     async function classifyCsv() {
@@ -992,6 +1091,11 @@ def render_app_page() -> str:
         </div>
       `;
       inspectPacket(0);
+      addCopilotMessage(
+        'agent',
+        'Review complete',
+        `I found ${s.total_products ?? 0} product(s): ${s.approve_count ?? 0} approve, ${s.review_count ?? 0} review, ${s.hold_count ?? 0} hold. Select a card or ask me for the decision rationale.`
+      );
     }
 
     function inspectPacket(index) {
@@ -1007,6 +1111,69 @@ def render_app_page() -> str:
       document.querySelectorAll('.product-card').forEach((card, cardIndex) => {
         card.classList.toggle('selected', cardIndex === index);
       });
+    }
+
+    function resetCopilot(reason = '') {
+      copilotLog.innerHTML = '';
+      addCopilotMessage(
+        'agent',
+        'Reviewer Copilot',
+        'I can explain decisions, summarize missing evidence, draft reviewer memos, and describe the guardrail path. Load evidence and run the review to make my answers product-specific.'
+      );
+      if (reason) {
+        addCopilotMessage('agent', 'Workspace update', reason);
+      }
+    }
+
+    function addCopilotMessage(role, title, text) {
+      const message = document.createElement('div');
+      message.className = `copilot-message ${role}`;
+      message.innerHTML = `<strong>${escapeHtml(title)}</strong>${escapeHtml(text)}`;
+      copilotLog.appendChild(message);
+      copilotLog.scrollTop = copilotLog.scrollHeight;
+    }
+
+    function currentProduct() {
+      if (!lastResult || !lastResult.products || lastResult.products.length === 0) return null;
+      const index = selectedProductIndex ?? 0;
+      return lastResult.products[index] || lastResult.products[0];
+    }
+
+    function answerCopilot(prompt) {
+      const normalized = String(prompt || '').toLowerCase();
+      const product = currentProduct();
+
+      if (normalized.includes('guardrail') || normalized.includes('human') || normalized.includes('prompt')) {
+        return 'Guardrails treat vendor notes as untrusted data, preserve deterministic decision rules, and require human review for HOLD or REVIEW outcomes. In Foundry, this maps to safety thresholds, prompt-injection protection, traces, and Entra-governed agent ownership.';
+      }
+
+      if (!product) {
+        return 'Start by loading a sample or uploading a CSV, then run the review. The governed path is Knowledge Agent for policy grounding, Task Agent for CSV evidence checks, and Sequential Workflow for traceable orchestration.';
+      }
+
+      const packet = product.reviewer_packet || {};
+      const evidenceCount = (product.evidence_matches || []).length;
+      const missing = (product.missing_fields || []).filter(Boolean);
+      const rationale = (packet.risk_rationale || product.risk_reasons || []).join(' ');
+      const nextAction = packet.recommended_next_action || product.recommended_action || 'Manual reviewer action required.';
+
+      if (normalized.includes('memo') || normalized.includes('summary')) {
+        return `${product.product_name}: ${product.decision} under ${product.decision_rule}. Rationale: ${rationale || 'No rationale provided.'} Evidence matches: ${evidenceCount}. Missing fields: ${missing.length ? missing.join(', ') : 'none'}. Recommended next action: ${nextAction}`;
+      }
+
+      if (normalized.includes('evidence') || normalized.includes('missing') || normalized.includes('field')) {
+        return `${product.product_name} has ${evidenceCount} evidence match(es). Missing required fields: ${missing.length ? missing.join(', ') : 'none'}. Open the reviewer packet for cited evidence IDs, match type, confidence, and source.`;
+      }
+
+      return `${product.product_name} was classified as ${product.decision} because ${rationale || product.decision_rule}. The active rule is ${product.decision_rule}, and the recommended next action is: ${nextAction}`;
+    }
+
+    function askCopilot(prompt) {
+      const value = String(prompt || copilotInput.value || '').trim();
+      if (!value) return;
+      addCopilotMessage('user', 'Reviewer', value);
+      addCopilotMessage('agent', 'RecallGuard Copilot', answerCopilot(value));
+      copilotInput.value = '';
     }
 
     function setLoading(isLoading) {
@@ -1039,6 +1206,13 @@ def render_app_page() -> str:
     document.getElementById('runBtnBottom').addEventListener('click', classifyCsv);
     document.getElementById('evalBtn').addEventListener('click', loadEvaluation);
     document.getElementById('clearBtn').addEventListener('click', () => clearResults());
+    askCopilotBtn.addEventListener('click', () => askCopilot());
+    copilotInput.addEventListener('keydown', event => {
+      if (event.key === 'Enter') askCopilot();
+    });
+    document.querySelectorAll('.copilot-prompt').forEach(button => {
+      button.addEventListener('click', () => askCopilot(button.dataset.prompt));
+    });
     document.getElementById('fileInput').addEventListener('change', async event => {
       const file = event.target.files?.[0];
       if (!file) return;
