@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-05-14T00:00:00+09:00",
+  "resource_group": "rg-recallguard-foundry-je",
+  "ai_resource": "recallguard-somi-20260513",
+  "project": "recallguard-ai",
+  "deployments": [
+    {
+      "name": "gpt-4o-mini",
+      "model": "gpt-4o-mini",
+      "model_version": "2024-07-18",
+      "sku": "GlobalStandard",
+      "provisioning_state": "Succeeded",
+      "rai_policy_name": "Microsoft.DefaultV2",
+      "agents_v2": true,
+      "responses": true
+    },
+    {
+      "name": "gpt-4o-mini-100",
+      "model": "gpt-4o-mini",
+      "model_version": "2024-07-18",
+      "sku": "GlobalStandard",
+      "provisioning_state": "Succeeded",
+      "rai_policy_name": "Microsoft.DefaultV2",
+      "agents_v2": true,
+      "responses": true
+    }
+  ],
+  "note": "Azure CLI deployment show confirmed Microsoft.DefaultV2 RAI policy on both model deployments. No custom raiPolicies child resource was found in the resource group at audit time."
+}

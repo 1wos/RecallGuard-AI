@@ -40,9 +40,9 @@ This checklist maps the final activity requirements to RecallGuard AI and double
 | Tool-enabled action | Code Interpreter checks vendor CSV files |
 | Workflow orchestration | Sequential workflow in Microsoft Foundry |
 | Route to Knowledge Agent first | First workflow node invokes Knowledge Agent |
-| Invoke Task Agent when needed | Conditional branch when file/action is present |
-| Guardrails | Prompt injection/jailbreak/safety controls assigned |
-| Traces | Foundry Trace screenshots for success and edge case |
+| Invoke Task Agent when needed | Final demo workflow is scoped to evidence-check requests, so the second workflow node invokes the Task Agent after grounding; a production visual workflow can add an explicit condition for non-file Q&A |
+| Guardrails | Model deployments use `Microsoft.DefaultV2` RAI policy; agents and workflow add untrusted-content, grounded-answer, deterministic-tool, and HITL safeguards |
+| Traces | Live Responses API artifacts show `workflow_action`, `file_search_call`, and `code_interpreter_call`; portal Trace screenshots remain recommended visual evidence |
 | Identity governance | Entra Agent ID / agent identity notes |
 
 ## ATS / Automated Grading Keywords
@@ -111,7 +111,8 @@ Each row should include:
 - Resource group created: `rg-recallguard-foundry-je`
 - Foundry resource created: `recallguard-somi-20260513`
 - Foundry project created: `recallguard-ai`
-- Model deployed: `gpt-4o-mini`
+- Models deployed: `gpt-4o-mini`, `gpt-4o-mini-100`
+- Deployment RAI policy: `Microsoft.DefaultV2` on both model deployments
 - Earlier failed attempts:
   - `eastus`: blocked by subscription region policy
   - `koreacentral`: blocked by subscription region policy

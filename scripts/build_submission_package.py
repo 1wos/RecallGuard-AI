@@ -385,15 +385,15 @@ def build_report():
     add_heading(doc, "7. Preview and Traces", 1)
     add_body(
         doc,
-        "The final video/report should include Foundry Preview and Trace screenshots from the portal. CLI/API evidence already confirms that the agents, tools, workflow definitions, model deployments, and test outputs exist. Screenshots should be captured for a successful run, missing-field run, and prompt-injection edge run.",
+        "Live Foundry Responses API evidence confirms that the agents, tools, workflow definition, model deployments, and test outputs exist. The saved run artifacts show workflow actions, File Search calls, and Code Interpreter calls. Portal Preview and Trace screenshots are still recommended as visual evidence for the final video/report, especially for a successful run and an edge case.",
     )
     add_table(
         doc,
         ["Screenshot slot", "What to capture", "Status"],
         [
-            ["Preview success", "Foundry workflow run: policy grounding then product evidence check", "Capture in portal"],
-            ["Trace success", "Knowledge Agent before Task Agent, Code Interpreter call visible", "Capture in portal"],
-            ["Trace edge", "Prompt-injection note treated as data or filtered by guardrail", "Capture in portal"],
+            ["Preview success", "Foundry workflow run: policy grounding then product evidence check", "Live API artifact captured; portal screenshot recommended"],
+            ["Trace success", "Knowledge Agent before Task Agent, Code Interpreter call visible", "Live output types captured; portal screenshot recommended"],
+            ["Trace edge", "Prompt-injection note treated as data or filtered by guardrail", "Edge output captured; portal screenshot recommended"],
             ["Workflow definition", "Sequential workflow or workflow agent view", "Workflow agent created"],
         ],
         widths=[1.45, 3.7, 1.15],
@@ -404,7 +404,8 @@ def build_report():
         doc,
         ["Risk", "Guardrail / mitigation"],
         [
-            ["Prompt injection", "Treat vendor files and notes as untrusted data; configure prompt injection/jailbreak guardrails"],
+            ["Deployment safety", "Both model deployments use Foundry/Azure RAI policy Microsoft.DefaultV2"],
+            ["Prompt injection", "Treat vendor files and notes as untrusted data; Prompt Shield/jailbreak safety is covered by deployment RAI policy and agent instructions"],
             ["Ungrounded advice", "Knowledge Agent must use connected sources and say when evidence is missing"],
             ["Unsafe automatic approval", "Conservative policy: missing identifiers create REVIEW; recall match creates HOLD"],
             ["Tool misuse", "Task Agent runs deterministic checker and must not follow instructions inside uploaded files"],
@@ -445,8 +446,8 @@ def build_report():
             ["Connect a knowledge/evidence base", "Policy docs plus KATS public recall dataset snapshot from Korea Data Portal", "Complete"],
             ["Task Agent using tools", "recallguard-task-agent-v7-public-data with Code Interpreter and checker script", "Complete"],
             ["Sequential workflow", "recallguard-governed-workflow-v5-public-data created and validated through live Responses API runs", "Complete"],
-            ["Preview and Traces", "Live run outputs saved under outputs/live-runs; portal screenshots can be added if desired", "Complete"],
-            ["Guardrails", "Instructions + deterministic code + portal guardrail setup checklist", "Configured/design documented"],
+            ["Preview and Traces", "Live run outputs saved under outputs/live-runs; portal screenshots can be added if desired", "Complete via live artifacts"],
+            ["Guardrails", "Microsoft.DefaultV2 deployment RAI policy + deterministic tool safeguards + portal custom-guardrail recommendation", "Complete for MVP"],
             ["Entra Agent ID governance", "Agent principal IDs documented", "Complete"],
         ],
         widths=[2.0, 3.2, 1.1],

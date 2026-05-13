@@ -129,6 +129,8 @@ Governance note:
 - Knowledge source is read-only.
 - Production listing approval is outside the agent; `HOLD` requires human-in-the-loop review.
 
-## 8. Known CLI Finding
+## 8. Current CLI Finding
 
-The workflow agent was created successfully through REST with `Foundry-Features: WorkflowAgents=V1Preview`, but direct Responses API invocation returned `Not defined`. Use the Foundry portal Preview/Trace view for the final visual workflow evidence.
+The final public-data workflow agent was created successfully through REST with `Foundry-Features: WorkflowAgents=V1Preview`, and live Responses API runs completed with `workflow_action`, `file_search_call`, and `code_interpreter_call` output types. Use the Foundry portal Preview/Trace view only to add stronger visual evidence for the final video/report.
+
+The model deployments `gpt-4o-mini` and `gpt-4o-mini-100` both show `raiPolicyName: Microsoft.DefaultV2`. If time allows, create a named custom guardrail in the portal and assign it to the two final agents/workflow so the screenshots visibly show prompt-injection and jailbreak controls.

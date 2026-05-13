@@ -52,7 +52,12 @@ RecallGuard uses Korea Data Portal public recall evidence:
 
 ## Guardrails Configuration
 
-The workflow should configure guardrails for:
+Foundry deployment-level evidence:
+
+- `gpt-4o-mini`: `raiPolicyName = Microsoft.DefaultV2`
+- `gpt-4o-mini-100`: `raiPolicyName = Microsoft.DefaultV2`
+
+RecallGuard also configures application-level safeguards for:
 
 - Prompt injection protection
 - Jailbreak protection
@@ -60,7 +65,7 @@ The workflow should configure guardrails for:
 - Secret/system prompt leakage
 - Unsafe automatic approval
 
-The Task Agent also includes an application-level guardrail: uploaded files are treated as untrusted data, and final classification is based on deterministic Code Interpreter output.
+The Task Agent includes a deterministic guardrail: uploaded files are treated as untrusted data, and final classification is based on Code Interpreter output from `recallguard_checker.py`, not model-only judgment. For the strongest portal evidence, assign a named custom Foundry guardrail to the final agents/workflow and capture that screen.
 
 ## Entra Agent ID Governance Notes
 
@@ -81,10 +86,10 @@ Governance model:
 
 ## Trace Evidence Captured / To Capture In Foundry Portal
 
-- Successful workflow Preview: Knowledge Agent then Task Agent.
+- Live workflow response: Knowledge Agent then Task Agent, with `workflow_action`, `file_search_call`, and `code_interpreter_call`.
 - Recall match trace: `HOLD` branch triggered.
 - Missing fields trace: `REVIEW` output.
 - Prompt-injection edge trace: file note treated as data.
 - Public KATS recall trace: `KATS-RECALL-0001` creates `HOLD` from data.go.kr evidence.
-- Guardrail configuration screen.
+- Guardrail configuration screen: recommended extra screenshot, with `Microsoft.DefaultV2` already confirmed at deployment level.
 - Agent identity / Entra Agent ID screen.
