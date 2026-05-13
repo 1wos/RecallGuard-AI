@@ -452,7 +452,7 @@ def render_app_page() -> str:
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
     button, select, textarea, input { font: inherit; }
-    button, select, input[type="file"] { min-height: 44px; }
+    button, select { min-height: 44px; }
     button {
       border: 0;
       border-radius: 4px;
@@ -593,7 +593,7 @@ def render_app_page() -> str:
     .workspace { display: grid; gap: 16px; }
     .toolbar { display: grid; grid-template-columns: minmax(220px, 1fr) auto auto; gap: 10px; align-items: end; }
     label { display: block; font-weight: 700; margin-bottom: 8px; }
-    select, textarea, input[type="file"] {
+    select, textarea {
       width: 100%;
       border: 1px solid var(--line);
       border-radius: 4px;
@@ -612,9 +612,60 @@ def render_app_page() -> str:
     .file-zone {
       margin-top: 12px;
       border: 1px dashed #c9c9d6;
-      border-radius: 4px;
+      border-radius: 8px;
       background: #fbfbfd;
       padding: 14px;
+    }
+    .upload-control {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      margin-top: 8px;
+    }
+    .file-input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .upload-button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      border: 1px solid #b7edf1;
+      background: var(--mint);
+      color: #000;
+      padding: 0 16px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity .16s ease, transform .16s ease, border-color .16s ease;
+    }
+    .upload-button:hover { opacity: .88; }
+    .upload-button:active { transform: translateY(1px); }
+    .file-input:focus-visible + .upload-button {
+      outline: 3px solid var(--mint);
+      outline-offset: 2px;
+    }
+    .file-name {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--muted);
+      padding: 0 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .action-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
     .summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
@@ -692,6 +743,7 @@ def render_app_page() -> str:
       .steps { grid-template-columns: 1fr 1fr; }
       .toolbar { grid-template-columns: 1fr; }
       .summary-grid, .evaluation-grid { grid-template-columns: 1fr 1fr; }
+      .upload-control { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; }
@@ -765,7 +817,11 @@ def render_app_page() -> str:
           </div>
           <div class="file-zone">
             <label for="fileInput">Upload local CSV</label>
-            <input id="fileInput" type="file" accept=".csv,text/csv" />
+            <div class="upload-control">
+              <input class="file-input" id="fileInput" type="file" accept=".csv,text/csv" />
+              <label class="upload-button" for="fileInput">Choose CSV</label>
+              <div class="file-name" id="fileName">No file selected</div>
+            </div>
           </div>
           <label for="csvText" style="margin-top:14px;">CSV preview / editable input</label>
           <textarea id="csvText" spellcheck="false"></textarea>
@@ -830,6 +886,7 @@ def render_app_page() -> str:
     const packetDecision = document.getElementById('packetDecision');
     const packetHint = document.getElementById('packetHint');
     const packetOut = document.getElementById('packetOut');
+    const fileName = document.getElementById('fileName');
     const runButtons = [document.getElementById('runBtn'), document.getElementById('runBtnBottom')];
 
     async function request(path, options = {}) {
@@ -842,6 +899,7 @@ def render_app_page() -> str:
       document.getElementById('sample').value = name;
       const data = await request('/api/sample?name=' + encodeURIComponent(name));
       csvText.value = data.content;
+      fileName.textContent = 'No file selected';
       clearResults('Loaded ' + name + '. Run the review to classify products.');
       document.querySelectorAll('.scenario-card').forEach(button => {
         button.classList.toggle('active', button.dataset.sample === name);
@@ -985,6 +1043,7 @@ def render_app_page() -> str:
       const file = event.target.files?.[0];
       if (!file) return;
       csvText.value = await file.text();
+      fileName.textContent = file.name;
       clearResults('Loaded ' + file.name + '. Run the review to classify products.');
       document.querySelectorAll('.scenario-card').forEach(button => button.classList.remove('active'));
     });
