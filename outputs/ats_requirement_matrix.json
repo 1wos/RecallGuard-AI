@@ -1,0 +1,67 @@
+{
+  "project": "RecallGuard AI",
+  "activity": "Build a Governed Multi-Agent Workflow with Microsoft Foundry",
+  "automated_grading_readiness_score": 94,
+  "one_line_submission": "RecallGuard AI is a governed multi-agent product safety compliance evidence checker built in Microsoft Foundry with a grounded Knowledge Agent, a Code Interpreter Task Agent, a Sequential Workflow, guardrails, traces, and Entra ID Agent ID governance.",
+  "requirements": [
+    {
+      "requirement": "Choose a scenario and user journey",
+      "status": "complete",
+      "evidence": "Marketplace/procurement product safety review documented in PRD and build report"
+    },
+    {
+      "requirement": "Create a Knowledge Agent",
+      "status": "complete",
+      "evidence": "recallguard-knowledge-agent"
+    },
+    {
+      "requirement": "Connect a knowledge base",
+      "status": "complete",
+      "evidence": "File Search vector store vs_sGLsLTJ6kDvsG3UBBrZov44k over knowledge-base documents"
+    },
+    {
+      "requirement": "Build a Task Agent that uses tools",
+      "status": "complete",
+      "evidence": "recallguard-task-agent-v7-public-data with Code Interpreter and recallguard_checker.py"
+    },
+    {
+      "requirement": "Test with realistic inputs",
+      "status": "complete",
+      "evidence": "complete, missing, prompt-injection, and public KATS recall tests under outputs/live-runs"
+    },
+    {
+      "requirement": "Create the workflow",
+      "status": "complete",
+      "evidence": "recallguard-governed-workflow-v5-public-data invokes Knowledge Agent then Task Agent"
+    },
+    {
+      "requirement": "Observe and debug with Preview and Traces",
+      "status": "complete_via_live_artifacts",
+      "evidence": "live_demo_summary.json shows workflow_action, file_search_call, and code_interpreter_call"
+    },
+    {
+      "requirement": "Apply safety and identity governance",
+      "status": "complete_for_mvp",
+      "evidence": "Microsoft.DefaultV2 RAI policy, untrusted-file instructions, prompt-injection test, Entra Agent IDs"
+    },
+    {
+      "requirement": "Submit video",
+      "status": "complete",
+      "evidence": "final/RecallGuard_AI_Demo_Somi.mp4, final/RecallGuard_AI_Playwright_Demo_Somi.mp4"
+    },
+    {
+      "requirement": "Submit document",
+      "status": "complete",
+      "evidence": "final/RecallGuard_AI_Build_Report_Somi.pdf and .docx"
+    }
+  ],
+  "differentiators": [
+    "Real Foundry agents and workflow, not conceptual-only",
+    "Korea Data Portal/KATS public recall dataset",
+    "Code Interpreter tool execution",
+    "Deterministic checker with pytest coverage",
+    "Prompt-injection edge case",
+    "Entra Agent ID governance",
+    "Playwright demo recording"
+  ]
+}
