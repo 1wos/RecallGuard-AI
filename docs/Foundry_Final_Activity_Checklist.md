@@ -1,6 +1,6 @@
 # Foundry Final Activity Checklist
 
-This checklist maps the final activity requirements to RecallGuard AI and keeps the build evidence easy to review.
+This checklist summarizes RecallGuard AI build evidence and keeps the final submission materials easy to review.
 
 ## Exact Required Deliverables
 
@@ -28,9 +28,9 @@ This checklist maps the final activity requirements to RecallGuard AI and keeps 
   - Guardrails configuration
   - Entra Agent ID governance notes
 
-## Exact Build Requirements
+## Build Evidence
 
-| Requirement | RecallGuard AI Evidence |
+| Build item | RecallGuard AI Evidence |
 |---|---|
 | Design a multi-agent system in Microsoft Foundry | Foundry project `recallguard-ai` |
 | Knowledge Agent | `RecallGuard Knowledge Agent` |
@@ -45,9 +45,9 @@ This checklist maps the final activity requirements to RecallGuard AI and keeps 
 | Traces | Live Responses API artifacts show `workflow_action`, `file_search_call`, and `code_interpreter_call`; portal Trace screenshots remain recommended visual evidence |
 | Identity governance | Entra Agent ID / agent identity notes |
 
-## Requirement Coverage Terms
+## Suggested Narration Keywords
 
-Use these exact terms in the report and video narration:
+Useful terms for the report and video narration:
 
 - Microsoft Foundry
 - Foundry Agent Service
@@ -80,19 +80,6 @@ Use these exact terms in the report and video narration:
 - Success case
 - Failure case
 - Edge case
-
-## Recommended Report Structure
-
-The final report should include one table titled:
-
-`Final Activity Requirement Mapping`
-
-Each row should include:
-
-- Requirement
-- What I built
-- Evidence screenshot or note
-- Status: Complete / Partial / Blocked
 
 ## Minimum Submission-Safe Evidence
 

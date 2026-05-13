@@ -4,7 +4,7 @@ Date: 2026-05-14 KST
 
 ## Verdict
 
-RecallGuard AI is genuinely built in Microsoft Foundry and is submission-safe for the final activity. The core requirements are implemented with live Foundry resources:
+RecallGuard AI is genuinely built in Microsoft Foundry and is ready for the final activity submission. The core activity asks are implemented with live Foundry resources:
 
 - Knowledge Agent: `recallguard-knowledge-agent`
 - Task Agent: `recallguard-task-agent-v7-public-data`
@@ -12,13 +12,11 @@ RecallGuard AI is genuinely built in Microsoft Foundry and is submission-safe fo
 - Project endpoint: `https://recallguard-somi-20260513.services.ai.azure.com/api/projects/recallguard-ai`
 - Model deployments: `gpt-4o-mini`, `gpt-4o-mini-100`
 
-Expert score: **91 / 100**.
-
 The system is strong because it has real File Search, Code Interpreter, workflow orchestration, live Responses API evidence, Entra Agent IDs, and a real Korea Data Portal/KATS public dataset. The remaining risk is mostly evidence polish: named custom guardrail screenshots and portal Trace screenshots would make it harder for a human reviewer to question the governance layer.
 
-## Requirement Mapping
+## Build Alignment Review
 
-| Requirement | Evidence | Expert assessment |
+| Activity area | Evidence | Assessment |
 |---|---|---|
 | Scenario and user journey | RecallGuard marketplace/procurement product safety review, documented in PRD/report | Complete |
 | Knowledge Agent | `recallguard-knowledge-agent` is active and uses File Search | Complete |

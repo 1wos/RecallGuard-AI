@@ -731,7 +731,7 @@ Answer:
 
 ---
 
-## 20. Foundry Requirement Mapping
+## 20. Foundry Build Alignment
 
 | Final Activity Requirement | RecallGuard AI Implementation |
 |---|---|
