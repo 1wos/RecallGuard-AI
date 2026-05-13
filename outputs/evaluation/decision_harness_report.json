@@ -1,0 +1,87 @@
+{
+  "run_status": "success",
+  "total_rows": 25,
+  "correct_rows": 25,
+  "accuracy": 1.0,
+  "label_metrics": {
+    "APPROVE": {
+      "expected_count": 7,
+      "predicted_count": 7,
+      "correct_count": 7,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "HOLD": {
+      "expected_count": 8,
+      "predicted_count": 8,
+      "correct_count": 8,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "REVIEW": {
+      "expected_count": 10,
+      "predicted_count": 10,
+      "correct_count": 10,
+      "precision": 1.0,
+      "recall": 1.0
+    }
+  },
+  "case_type_metrics": {
+    "certification_number_match": {
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0
+    },
+    "high_confidence_certification": {
+      "total": 2,
+      "correct": 2,
+      "accuracy": 1.0
+    },
+    "missing_identifier": {
+      "total": 4,
+      "correct": 4,
+      "accuracy": 1.0
+    },
+    "model_manufacturer_certification": {
+      "total": 2,
+      "correct": 2,
+      "accuracy": 1.0
+    },
+    "no_evidence": {
+      "total": 2,
+      "correct": 2,
+      "accuracy": 1.0
+    },
+    "normalization": {
+      "total": 2,
+      "correct": 2,
+      "accuracy": 1.0
+    },
+    "prompt_injection_as_data": {
+      "total": 2,
+      "correct": 2,
+      "accuracy": 1.0
+    },
+    "public_kats_recall": {
+      "total": 4,
+      "correct": 4,
+      "accuracy": 1.0
+    },
+    "recall_certification_number_match": {
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0
+    },
+    "strong_recall_match": {
+      "total": 2,
+      "correct": 2,
+      "accuracy": 1.0
+    },
+    "weak_product_name_match": {
+      "total": 3,
+      "correct": 3,
+      "accuracy": 1.0
+    }
+  },
+  "mismatches": []
+}

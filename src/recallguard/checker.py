@@ -9,6 +9,34 @@ import pandas as pd
 
 REQUIRED_FIELDS = ["product_name", "model_name", "manufacturer"]
 
+DECISION_RULES = {
+    "HOLD_RECALL_STRONG_MATCH": {
+        "decision": "HOLD",
+        "description": "Recall evidence has an exact certification number match or exact model+manufacturer match.",
+        "human_review_required": True,
+    },
+    "REVIEW_MISSING_IDENTIFIERS": {
+        "decision": "REVIEW",
+        "description": "Required product identifiers are missing, so the product cannot be safely approved.",
+        "human_review_required": True,
+    },
+    "APPROVE_CERTIFICATION_HIGH_CONFIDENCE": {
+        "decision": "APPROVE",
+        "description": "Certification evidence has a high-confidence match and no strong recall match was found.",
+        "human_review_required": False,
+    },
+    "REVIEW_WEAK_CERTIFICATION_MATCH": {
+        "decision": "REVIEW",
+        "description": "Only product-name certification evidence was found; product-name-only matching is not enough to approve.",
+        "human_review_required": True,
+    },
+    "REVIEW_NO_EVIDENCE": {
+        "decision": "REVIEW",
+        "description": "No strong certification or recall evidence was found.",
+        "human_review_required": True,
+    },
+}
+
 
 def find_file(filename: str | Path) -> Path:
     path = Path(filename)
@@ -28,6 +56,42 @@ def norm(value: Any) -> str:
     if pd.isna(value):
         return ""
     return str(value).strip().casefold()
+
+
+def build_reviewer_packet(
+    *,
+    decision: str,
+    rule_id: str,
+    reasons: list[str],
+    evidence_matches: list[dict[str, Any]],
+    missing_fields: list[str],
+) -> dict[str, Any]:
+    rule = DECISION_RULES[rule_id]
+    cited = [
+        {
+            "evidence_id": match.get("evidence_id", ""),
+            "evidence_type": match.get("evidence_type", ""),
+            "match_type": match.get("match_type", ""),
+            "match_confidence": match.get("match_confidence", ""),
+            "source": match.get("source", ""),
+        }
+        for match in evidence_matches
+    ]
+    return {
+        "decision": decision,
+        "decision_rule": rule_id,
+        "human_review_required": rule["human_review_required"],
+        "evidence_cited": cited,
+        "missing_data": missing_fields,
+        "risk_rationale": reasons,
+        "recommended_next_action": (
+            "Escalate to compliance owner before listing."
+            if decision == "HOLD"
+            else "Request missing vendor evidence or manual compliance review."
+            if decision == "REVIEW"
+            else "Proceed with standard approval record."
+        ),
+    }
 
 
 def classify(vendor_csv: str | Path, evidence_csv: str | Path = "recall_certification_snapshot.csv") -> dict[str, Any]:
@@ -90,26 +154,39 @@ def classify(vendor_csv: str | Path, evidence_csv: str | Path = "recall_certific
 
         if recall_matches:
             decision = "HOLD"
+            rule_id = "HOLD_RECALL_STRONG_MATCH"
             reasons = ["Strong recall match found."]
             evidence_matches = recall_matches
         elif missing_fields:
             decision = "REVIEW"
+            rule_id = "REVIEW_MISSING_IDENTIFIERS"
             reasons = ["Missing required product identifiers."]
             evidence_matches = certification_matches
         elif any(match["match_confidence"] == "high" for match in certification_matches):
             decision = "APPROVE"
+            rule_id = "APPROVE_CERTIFICATION_HIGH_CONFIDENCE"
             reasons = ["Certification evidence found and no recall match detected."]
             evidence_matches = [
                 match for match in certification_matches if match["match_confidence"] == "high"
             ]
         elif certification_matches:
             decision = "REVIEW"
+            rule_id = "REVIEW_WEAK_CERTIFICATION_MATCH"
             reasons = ["Only weak product-name certification evidence found."]
             evidence_matches = certification_matches
         else:
             decision = "REVIEW"
+            rule_id = "REVIEW_NO_EVIDENCE"
             reasons = ["No strong certification or recall evidence found."]
             evidence_matches = []
+
+        reviewer_packet = build_reviewer_packet(
+            decision=decision,
+            rule_id=rule_id,
+            reasons=reasons,
+            evidence_matches=evidence_matches,
+            missing_fields=missing_fields,
+        )
 
         products.append(
             {
@@ -119,6 +196,7 @@ def classify(vendor_csv: str | Path, evidence_csv: str | Path = "recall_certific
                 "model_name": row.get("model_name", ""),
                 "manufacturer": row.get("manufacturer", ""),
                 "decision": decision,
+                "decision_rule": rule_id,
                 "risk_reasons": reasons,
                 "evidence_matches": evidence_matches,
                 "missing_fields": missing_fields,
@@ -129,6 +207,7 @@ def classify(vendor_csv: str | Path, evidence_csv: str | Path = "recall_certific
                     if decision == "REVIEW"
                     else "Proceed with standard approval record."
                 ),
+                "reviewer_packet": reviewer_packet,
             }
         )
 
