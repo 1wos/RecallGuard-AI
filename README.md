@@ -11,6 +11,7 @@ Governed multi-agent product safety compliance checker for the Microsoft Foundry
 - **Requirement Evidence**: explicit requirement-to-artifact coverage for quick review.
 - **Runnable Checker**: Python package under `src/recallguard/` with pytest coverage for approve, review, hold, and prompt-injection edge cases.
 - **Audit Layer**: product-level `decision_rule` and `reviewer_packet` outputs, plus a 25-row labeled evaluation harness.
+- **Local Demo Server**: browser-based CSV checker for trying samples, pasted data, reviewer packets, and evaluation metrics.
 - **Public Dataset Pipeline**: downloads and normalizes Korea Data Portal/KATS domestic recall CSV evidence into the Foundry demo snapshot.
 - **Submission Assets**: PDF/DOCX report, MP4 demo, editable PPT deck, narration scripts, and packaged zip under `final/`.
 
@@ -56,6 +57,14 @@ python scripts/evaluate_decision_harness.py
 ```
 
 This evaluates 25 labeled vendor rows across `APPROVE`, `REVIEW`, and `HOLD`, then writes per-label precision/recall and mismatch details to `outputs/evaluation/decision_harness_report.json`. See `docs/Decision_Audit_and_Evaluation.md` for the decision table, recall-match thresholds, and human reviewer packet format.
+
+## Run Local Browser Demo
+
+```bash
+python scripts/run_local_server.py
+```
+
+Then open `http://127.0.0.1:8765`. The local UI lets you run sample vendor CSVs, paste your own CSV rows, inspect `decision_rule` and `reviewer_packet` outputs, and load the 25-row evaluation metrics. See `docs/Local_Demo_Server.md`.
 
 ## Regenerate Public Recall Evidence
 
