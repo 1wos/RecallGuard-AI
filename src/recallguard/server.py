@@ -634,10 +634,13 @@ def render_app_page() -> str:
     .workbench-header::before {
       content: "";
       position: absolute;
-      inset: 0 0 auto 0;
-      height: 5px;
-      background: linear-gradient(90deg, var(--orange), var(--magenta), var(--periwinkle));
-      z-index: 2;
+      inset: 1px;
+      border-radius: 7px;
+      background:
+        radial-gradient(circle at 24% 18%, rgba(189, 244, 239, .18), transparent 34%),
+        radial-gradient(circle at 88% 8%, rgba(170, 167, 232, .18), transparent 28%);
+      pointer-events: none;
+      z-index: 0;
     }
     .workbench-header::after {
       content: "";
@@ -1120,11 +1123,25 @@ def render_app_page() -> str:
       color: #fff;
       border-color: var(--dark-line);
       padding: 0;
+      position: relative;
+      overflow: hidden;
     }
-    .copilot-shell { padding: 16px; }
+    .copilot-card::before {
+      content: "";
+      position: absolute;
+      right: -92px;
+      top: 34px;
+      width: 260px;
+      height: 92px;
+      border-radius: 20px;
+      background: linear-gradient(105deg, var(--orange), var(--magenta), var(--periwinkle));
+      transform: rotate(-13deg);
+      opacity: .22;
+      pointer-events: none;
+    }
+    .copilot-shell { padding: 16px; position: relative; z-index: 1; }
     .copilot-band {
-      height: 5px;
-      background: linear-gradient(90deg, var(--orange), var(--magenta), var(--periwinkle));
+      display: none;
     }
     .copilot-card p { color: #c9c9d6; }
     .copilot-status { background: #26263a; color: #fff; }
