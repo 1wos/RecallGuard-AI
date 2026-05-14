@@ -25,13 +25,15 @@
     <a href="#portfolio-review-path">Review path</a>
   </p>
 
-  <p>
-    <img src="https://img.shields.io/badge/Microsoft%20Agent--a--Thon-Level%203%20Master-5E5CE6?style=for-the-badge" alt="Microsoft Agent-a-Thon Level 3 Master" />
-    <img src="https://img.shields.io/badge/Microsoft%20Foundry-Multi--Agent%20Workflow-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white" alt="Microsoft Foundry multi-agent workflow" />
-    <img src="https://img.shields.io/badge/Python-Deterministic%20Checker-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python deterministic checker" />
-    <img src="https://img.shields.io/badge/Pytest-8%20Passing-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white" alt="Pytest 8 passing" />
-    <img src="https://img.shields.io/badge/Playwright-UI%20Verified-2EAD33?style=for-the-badge&logo=playwright&logoColor=white" alt="Playwright UI verified" />
-  </p>
+  <table>
+    <tr>
+      <td><strong>Agent-a-Thon</strong><br /><sub>Level 3 Master</sub></td>
+      <td><strong>Microsoft Foundry</strong><br /><sub>Multi-agent workflow</sub></td>
+      <td><strong>Python</strong><br /><sub>Deterministic checker</sub></td>
+      <td><strong>Pytest</strong><br /><sub>8 passing tests</sub></td>
+      <td><strong>Playwright</strong><br /><sub>UI verified</sub></td>
+    </tr>
+  </table>
 </div>
 
 <p align="center">
