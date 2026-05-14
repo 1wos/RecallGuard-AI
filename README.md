@@ -23,6 +23,8 @@
     <a href="#architecture">Architecture</a>
     ·
     <a href="#portfolio-review-path">Review path</a>
+    ·
+    <a href="CONTRIBUTING.md">Contributing</a>
   </p>
 
   <table>
@@ -170,6 +172,21 @@ See `docs/Decision_Audit_and_Evaluation.md` for the decision table, recall-match
 | `outputs/` | Foundry setup and test response evidence |
 | `final/` | Submitted report, deck, videos, scripts, and packaged assets |
 | `tests/` | Unit tests for decision behavior |
+| `CONTRIBUTING.md` | Git workflow, branch naming, commit convention, and PR checklist |
+
+## Git Convention
+
+This repo follows Conventional Commits and a lightweight PR workflow.
+
+```text
+feat(ui): add trace monitor status cards
+fix(checker): prevent certification-only evidence from creating hold
+docs(readme): polish Agent-a-Thon project framing
+test(checker): add prompt-injection vendor row coverage
+chore(ci): run pytest on pull requests
+```
+
+See `CONTRIBUTING.md` for branch naming, local validation commands, and the pull request checklist.
 
 ## Microsoft Foundry Evidence
 
