@@ -2,60 +2,88 @@
 
 Governed multi-agent product safety compliance checker built with Microsoft Foundry.
 
-RecallGuard AI helps marketplace, procurement, and compliance reviewers screen vendor-submitted product CSVs before listing or purchase approval. The system combines grounded policy guidance, deterministic evidence checks, recall/certification matching, human-in-the-loop escalation, and traceable governance artifacts.
+<p align="left">
+  <img src="https://skillicons.dev/icons?i=python,azure,github,md" alt="Python, Azure, GitHub, Markdown" />
+</p>
 
-This repository is designed as both a Microsoft Foundry final activity submission and a portfolio-grade agent product case study.
+<p align="left">
+  <img src="https://img.shields.io/badge/Microsoft%20Foundry-Agent%20Workflow-5E5CE6?style=for-the-badge" alt="Microsoft Foundry Agent Workflow" />
+  <img src="https://img.shields.io/badge/Azure%20AI-Search%20%2B%20Foundry-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white" alt="Azure AI" />
+  <img src="https://img.shields.io/badge/Python-Checker%20%2B%20API-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/Pytest-8%20Passing-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white" alt="Pytest" />
+  <img src="https://img.shields.io/badge/Playwright-UI%20Verification-2EAD33?style=for-the-badge&logo=playwright&logoColor=white" alt="Playwright" />
+  <img src="https://img.shields.io/badge/CopilotKit--Ready-Reviewer%20UX-111827?style=for-the-badge" alt="CopilotKit Ready UX" />
+</p>
 
-## Portfolio Signal
+## What This Project Is
 
-This project demonstrates the ability to build beyond a simple chatbot:
+RecallGuard AI is a product safety review console for marketplace, procurement, and compliance teams. A reviewer can load or upload a vendor CSV, run recall and certification checks, and receive a clear decision for each product:
 
-- design a real compliance workflow with clear user roles, risk states, and reviewer actions
-- separate grounded knowledge retrieval from deterministic task execution
-- use Microsoft Foundry agents, tools, workflow orchestration, traces, guardrails, and Entra governance
-- convert public recall data into a repeatable evidence source
-- expose model decisions through auditable rules, reviewer packets, and evaluation metrics
-- prototype a product UX that lets a reviewer upload evidence, run checks, inspect decisions, and ask a copilot-style assistant for rationale
+- `APPROVE`: evidence is strong enough to proceed
+- `REVIEW`: missing or weak evidence needs a human check
+- `HOLD`: recall risk or strong safety signal, do not list
 
-## Product Journey
+The project is intentionally not just a chatbot. It is a governed agent workflow with a real task surface, deterministic evidence checks, reviewer packets, guardrails, traces, and identity governance.
 
-1. A vendor submits product information as CSV evidence.
-2. The reviewer loads a sample, uploads a CSV, or edits rows directly in the local workspace.
-3. The governed workflow checks each product against certification and recall evidence.
-4. Each row is classified as `APPROVE`, `REVIEW`, or `HOLD`.
-5. Risky or incomplete rows produce a human-review packet with cited evidence, missing fields, rationale, and next action.
-6. The Reviewer Copilot panel explains the current decision, drafts a reviewer memo, and surfaces guardrail logic.
+## Why It Matters
 
-## What Is Implemented
+Unsafe or recalled products can enter marketplaces through incomplete vendor submissions. RecallGuard AI shows how agents can support that workflow without hiding the decision logic behind vague language.
+
+The system combines:
+
+- grounded policy answers from a Microsoft Foundry Knowledge Agent
+- concrete CSV review through a Microsoft Foundry Task Agent with Code Interpreter
+- deterministic Python decision rules for auditability
+- human-in-the-loop escalation for `REVIEW` and `HOLD`
+- a local reviewer console that makes the workflow easy to test
+- a Reviewer Copilot UX layer for explaining decisions and drafting review memos
+
+## Skills Demonstrated
+
+| Area | Evidence in this repo |
+|---|---|
+| Multi-agent architecture | Knowledge Agent, Task Agent, and Sequential Workflow design |
+| Tool-using agents | Code Interpreter checker for CSV classification |
+| Grounded knowledge | `knowledge-base/` policy files and File Search setup |
+| Governance | guardrails, trace runbooks, Entra Agent ID notes, HITL packets |
+| Evaluation | 25-row labeled decision harness with per-label metrics |
+| Product UX | local reviewer console with guided next actions and decision filters |
+| Data pipeline | public KATS recall data download and normalization |
+| Testing | pytest unit tests plus Playwright UI verification |
+
+## User Flow
+
+1. Choose a sample case or upload a vendor CSV.
+2. Click `Run review`.
+3. Filter results by `APPROVE`, `REVIEW`, or `HOLD`.
+4. Open a reviewer packet to see evidence, missing fields, rationale, and next action.
+5. Ask the Reviewer Copilot for decision rationale, evidence checks, guardrail explanation, or a reviewer memo.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    A["Vendor CSV"] --> B["RecallGuard Reviewer Console"]
+    B --> C["Foundry Knowledge Agent"]
+    C --> D["Grounded Policy Guidance"]
+    B --> E["Foundry Task Agent"]
+    E --> F["Code Interpreter: recallguard_checker.py"]
+    F --> G["Decision: APPROVE / REVIEW / HOLD"]
+    G --> H["Reviewer Packet"]
+    H --> I["Reviewer Copilot UX"]
+    G --> J["Traces, Guardrails, Entra Governance"]
+```
+
+## Implemented Components
 
 - **Knowledge Agent**: `recallguard-knowledge-agent` grounded with File Search over `knowledge-base/`.
 - **Task Agent**: `recallguard-task-agent-v7-public-data` using Code Interpreter plus deterministic CSV evidence checks.
 - **Sequential Workflow**: Knowledge Agent first, then Task Agent for evidence-check review requests, with a HITL note for `HOLD`.
-- **Governance Evidence**: Microsoft DefaultV2 RAI policy evidence, guardrail notes, trace runbook, Entra Agent IDs, CLI setup evidence, and final build report.
-- **Requirement Evidence**: explicit requirement-to-artifact coverage for quick review.
-- **Runnable Checker**: Python package under `src/recallguard/` with pytest coverage for approve, review, hold, and prompt-injection edge cases.
+- **Local Reviewer Console**: browser-based CSV checker for samples, uploads, decision filters, reviewer packets, and copilot-style explanations.
 - **Audit Layer**: product-level `decision_rule` and `reviewer_packet` outputs, plus a 25-row labeled evaluation harness.
-- **Local Demo Server**: browser-based CSV checker for trying samples, pasted data, reviewer packets, and evaluation metrics.
-- **CopilotKit-Ready UX**: local Reviewer Copilot panel that explains decisions, evidence, guardrails, and reviewer memos as a V2 bridge toward an in-app CopilotKit experience.
+- **Governance Evidence**: Microsoft DefaultV2 RAI policy evidence, guardrail notes, trace runbook, Entra Agent IDs, CLI setup evidence, and final build report.
 - **Public Dataset Pipeline**: downloads and normalizes Korea Data Portal/KATS domestic recall CSV evidence into the Foundry demo snapshot.
 - **Submission Assets**: PDF/DOCX report, MP4 demo, editable PPT deck, narration scripts, and packaged zip under `final/`.
-
-## Architecture at a Glance
-
-```text
-Reviewer CSV
-  -> RecallGuard local/API workspace
-  -> Microsoft Foundry Knowledge Agent
-      -> grounded policy and recall-response guidance
-  -> Microsoft Foundry Task Agent
-      -> Code Interpreter runs deterministic CSV checker
-  -> Sequential Workflow
-      -> traceable orchestration and HITL escalation
-  -> Reviewer Packet
-      -> decision, cited evidence, missing data, risk rationale, next action
-  -> Reviewer Copilot UX
-      -> decision explanation, memo drafting, guardrail guidance
-```
 
 ## Current Azure Setup
 
