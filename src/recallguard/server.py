@@ -587,6 +587,40 @@ def render_app_page() -> str:
     .active-run-card .eyebrow { color: #bdbbff; }
     .active-run-card strong { font-size: 22px; letter-spacing: -.03em; }
     .active-run-card span { color: #c9c9d6; font-size: 13px; line-height: 1.35; }
+    .run-action {
+      width: 100%;
+      min-height: 40px;
+      background: var(--mint);
+      color: #000;
+      border: 1px solid #b7edf1;
+    }
+    .next-action-banner {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      border: 1px solid #b7edf1;
+      border-radius: 8px;
+      background: #f1fcfd;
+      padding: 12px;
+      margin-bottom: 14px;
+    }
+    .next-action-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      border-radius: 8px;
+      background: #000;
+      color: #fff;
+      padding: 0 10px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .next-action-banner strong { display: block; }
+    .next-action-banner span { display: block; margin-top: 3px; color: var(--muted); font-size: 13px; line-height: 1.35; }
     .workflow-strip {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -899,6 +933,7 @@ def render_app_page() -> str:
       .inspector { order: 3; }
       .workbench-header { grid-template-columns: 1fr; }
       .workflow-strip { grid-template-columns: 1fr 1fr; }
+      .next-action-banner { grid-template-columns: 1fr; }
       .toolbar { grid-template-columns: 1fr; }
       .summary-grid, .evaluation-grid { grid-template-columns: 1fr 1fr; }
       .upload-control { grid-template-columns: 1fr; }
@@ -959,6 +994,7 @@ def render_app_page() -> str:
             <div class="eyebrow">Current run</div>
             <strong id="runStateLabel">Ready</strong>
             <span id="runStateCopy">No review has been executed in this session.</span>
+            <button id="nextActionBtn" class="run-action" data-action="run">Run review</button>
           </div>
         </section>
 
@@ -970,6 +1006,13 @@ def render_app_page() -> str:
               <p>Select a sample, upload a CSV, or paste rows directly before running the review.</p>
             </div>
             <span class="pill review">CSV required</span>
+          </div>
+          <div class="next-action-banner" id="nextActionBanner">
+            <div class="next-action-badge">Next</div>
+            <div>
+              <strong id="nextActionTitle">Run the loaded sample</strong>
+              <span id="nextActionText">The default CSV is already loaded. Click Run review to classify products.</span>
+            </div>
           </div>
           <div class="toolbar">
             <div>
@@ -1092,7 +1135,10 @@ def render_app_page() -> str:
     const copilotContextDecision = document.getElementById('copilotContextDecision');
     const runStateLabel = document.getElementById('runStateLabel');
     const runStateCopy = document.getElementById('runStateCopy');
-    const runButtons = [document.getElementById('runBtn'), document.getElementById('runBtnBottom')];
+    const nextActionTitle = document.getElementById('nextActionTitle');
+    const nextActionText = document.getElementById('nextActionText');
+    const nextActionBtn = document.getElementById('nextActionBtn');
+    const runButtons = [document.getElementById('runBtn'), document.getElementById('runBtnBottom'), nextActionBtn];
 
     async function request(path, options = {}) {
       const response = await fetch(path, options);
@@ -1123,6 +1169,7 @@ def render_app_page() -> str:
       packetOut.textContent = 'Reviewer evidence will appear here.';
       runStateLabel.textContent = 'Ready';
       runStateCopy.textContent = message;
+      setNextAction('Run the loaded sample', 'The CSV is ready. Click Run review to classify products.', 'Run review', 'run');
       updateCopilotContext();
       resetCopilot(message);
     }
@@ -1170,6 +1217,7 @@ def render_app_page() -> str:
       packetOut.textContent = JSON.stringify(data, null, 2);
       runStateLabel.textContent = 'Evaluation loaded';
       runStateCopy.textContent = `${data.total_rows ?? '-'} labeled rows checked with ${data.accuracy ?? '-'} accuracy.`;
+      setNextAction('Return to product review', 'Load a sample or upload a CSV, then run a product review.', 'Run review', 'run');
       updateCopilotContext('Evaluation harness', 'PASS');
     }
 
@@ -1184,6 +1232,7 @@ def render_app_page() -> str:
       `;
       runStateLabel.textContent = 'Review complete';
       runStateCopy.textContent = `${s.total_products ?? 0} products checked. ${s.hold_count ?? 0} hold and ${s.review_count ?? 0} review item(s) need attention.`;
+      setNextAction('Inspect the first product', 'Open the reviewer packet to see evidence, missing data, and the recommended action.', 'Inspect first product', 'inspect');
       decisions.innerHTML = `
         <div class="results-list">
           ${(data.products || []).map((product, index) => `
@@ -1232,6 +1281,14 @@ def render_app_page() -> str:
     function updateCopilotContext(product = 'No product selected', decision = 'Waiting') {
       copilotContextProduct.textContent = product;
       copilotContextDecision.textContent = decision;
+    }
+
+    function setNextAction(title, text, buttonLabel, action) {
+      nextActionTitle.textContent = title;
+      nextActionText.textContent = text;
+      nextActionBtn.textContent = buttonLabel;
+      nextActionBtn.dataset.action = action;
+      nextActionBtn.disabled = false;
     }
 
     function resetCopilot(reason = '') {
@@ -1301,10 +1358,16 @@ def render_app_page() -> str:
       if (isLoading) {
         runStateLabel.textContent = 'Running';
         runStateCopy.textContent = 'Applying recall and certification evidence checks.';
+        nextActionTitle.textContent = 'Review running';
+        nextActionText.textContent = 'The checker is reading the CSV and matching evidence.';
       }
       runButtons.forEach(button => {
         button.disabled = isLoading;
-        button.textContent = isLoading ? 'Running...' : 'Run review';
+        if (button === nextActionBtn) {
+          button.textContent = isLoading ? 'Running...' : (button.dataset.action === 'inspect' ? 'Inspect first product' : 'Run review');
+        } else {
+          button.textContent = isLoading ? 'Running...' : 'Run review';
+        }
       });
     }
 
@@ -1329,6 +1392,14 @@ def render_app_page() -> str:
     document.getElementById('loadSampleBtn').addEventListener('click', () => loadSample());
     document.getElementById('runBtn').addEventListener('click', classifyCsv);
     document.getElementById('runBtnBottom').addEventListener('click', classifyCsv);
+    nextActionBtn.addEventListener('click', () => {
+      if (nextActionBtn.dataset.action === 'inspect') {
+        inspectPacket(selectedProductIndex ?? 0);
+        document.getElementById('decisions').scrollIntoView({behavior: 'smooth', block: 'start'});
+      } else {
+        classifyCsv();
+      }
+    });
     document.getElementById('evalBtn').addEventListener('click', loadEvaluation);
     document.getElementById('clearBtn').addEventListener('click', () => clearResults());
     askCopilotBtn.addEventListener('click', () => askCopilot());
