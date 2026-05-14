@@ -22,8 +22,6 @@
     ·
     <a href="#architecture">Architecture</a>
     ·
-    <a href="#suggested-walkthrough">Walkthrough</a>
-    ·
     <a href="CONTRIBUTING.md">Contributing</a>
   </p>
 
@@ -86,11 +84,11 @@ The project is intentionally not just a chatbot. It is a governed workflow where
 | Identity governance | Entra Agent ID notes, RBAC ownership model, and least-privilege guidance are documented |
 | Deliverables | Build report, demo videos, deck, scripts, and final package are stored under `final/` |
 
-## How It Feels to Use
+## Reviewer Console
 
-The local reviewer console is designed as a real SaaS workspace rather than a brochure page.
+The local console exposes the workflow as an operational review surface.
 
-| Workspace area | What the reviewer sees |
+| Area | Capability |
 |---|---|
 | Review inbox | Realistic cases: safe products, recall risk, missing info, prompt-injection note |
 | Evidence intake | Sample picker, local CSV upload, editable CSV preview, guided next action |
@@ -206,17 +204,6 @@ python scripts/prepare_public_recall_dataset.py
 ```
 
 This downloads and normalizes a Korea public recall dataset snapshot, then appends compact recall evidence into `sample-data/recall_certification_snapshot.csv` for Foundry Code Interpreter demos.
-
-## Suggested Walkthrough
-
-The fastest way to understand the project is to start with the product surface, then move into the decision logic and Foundry evidence.
-
-| Time | Focus | Where to look |
-|---|---|---|
-| 3 minutes | Product experience | Run the local console and test `Safe products` or `Recall risk` |
-| 7 minutes | Decision quality | Inspect a reviewer packet and read `docs/Decision_Audit_and_Evaluation.md` |
-| 10 minutes | Foundry implementation | Read `docs/Foundry_Live_Validation_Summary.md` and the workflow YAML |
-| 15 minutes | Engineering confidence | Review `tests/test_checker.py` and run `pytest -q` |
 
 ## Tech Stack
 
