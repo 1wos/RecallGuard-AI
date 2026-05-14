@@ -1,24 +1,65 @@
-# RecallGuard AI
+<div align="center">
+  <img src="https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2025/11/cropped-Microsoft-Foundry.2mb-scaled-1.webp" width="84" alt="Microsoft Foundry visual mark" />
 
-**A governed multi-agent product safety review workspace built for the Microsoft Agent-a-Thon Level 3: Master track.**
+  <h1>RecallGuard AI</h1>
 
-RecallGuard AI helps marketplace, procurement, and compliance teams review vendor product submissions before listing. It combines grounded Microsoft Foundry agents, deterministic evidence checks, human-in-the-loop review packets, and a polished local SaaS-style reviewer console.
+  <p>
+    <strong>Governed multi-agent product safety review workspace built with Microsoft Foundry.</strong>
+  </p>
 
-<p align="left">
-  <a href="https://www.microsoft.com/en-us/events/local-events/microsoft-agent-a-thon">
+  <p>
+    Created for the
+    <a href="https://www.microsoft.com/en-us/events/local-events/microsoft-agent-a-thon">
+      Microsoft Agent-a-Thon Level 3: Master
+    </a>
+    track: orchestration, multi-agent capabilities, and secure enterprise workflows.
+  </p>
+
+  <p>
+    <a href="#quick-start">Run locally</a>
+    ·
+    <a href="#agent-a-thon-coverage">Agent-a-Thon coverage</a>
+    ·
+    <a href="#architecture">Architecture</a>
+    ·
+    <a href="#portfolio-review-path">Review path</a>
+  </p>
+
+  <p>
     <img src="https://img.shields.io/badge/Microsoft%20Agent--a--Thon-Level%203%20Master-5E5CE6?style=for-the-badge" alt="Microsoft Agent-a-Thon Level 3 Master" />
-  </a>
-  <img src="https://img.shields.io/badge/Microsoft%20Foundry-Multi--Agent%20Workflow-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white" alt="Microsoft Foundry multi-agent workflow" />
-  <img src="https://img.shields.io/badge/Python-Deterministic%20Checker-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python deterministic checker" />
-  <img src="https://img.shields.io/badge/Pytest-8%20Passing-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white" alt="Pytest 8 passing" />
-  <img src="https://img.shields.io/badge/Playwright-UI%20Verified-2EAD33?style=for-the-badge&logo=playwright&logoColor=white" alt="Playwright UI verified" />
+    <img src="https://img.shields.io/badge/Microsoft%20Foundry-Multi--Agent%20Workflow-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white" alt="Microsoft Foundry multi-agent workflow" />
+    <img src="https://img.shields.io/badge/Python-Deterministic%20Checker-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python deterministic checker" />
+    <img src="https://img.shields.io/badge/Pytest-8%20Passing-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white" alt="Pytest 8 passing" />
+    <img src="https://img.shields.io/badge/Playwright-UI%20Verified-2EAD33?style=for-the-badge&logo=playwright&logoColor=white" alt="Playwright UI verified" />
+  </p>
+</div>
+
+<p align="center">
+  <img src="docs/assets/recallguard-console.png" alt="RecallGuard AI reviewer console" width="100%" />
 </p>
 
-![RecallGuard AI reviewer console](docs/assets/recallguard-console.png)
+## Product Snapshot
 
-## What It Does
+RecallGuard AI helps marketplace, procurement, and compliance teams review vendor product submissions before listing. A reviewer can load a vendor CSV, run recall and certification checks, and receive an auditable decision for every product.
 
-RecallGuard AI reviews vendor CSV submissions and returns one auditable decision per product:
+<table>
+  <tr>
+    <td width="33%">
+      <strong>Grounded by policy</strong><br />
+      Knowledge Agent responses are grounded in product safety SOPs, vendor requirements, and recall policy sources.
+    </td>
+    <td width="33%">
+      <strong>Acts with tools</strong><br />
+      Task Agent uses Code Interpreter-style execution and a deterministic Python checker for CSV evidence review.
+    </td>
+    <td width="33%">
+      <strong>Governed for review</strong><br />
+      Guardrails, traces, Entra governance notes, and human-review packets make decisions auditable.
+    </td>
+  </tr>
+</table>
+
+## Decision Model
 
 | Decision | Meaning | Reviewer action |
 |---|---|---|
@@ -26,44 +67,33 @@ RecallGuard AI reviews vendor CSV submissions and returns one auditable decision
 | `REVIEW` | Missing identifiers, weak evidence, or insufficient confidence | Human reviewer checks the packet |
 | `HOLD` | Strong recall match or safety risk signal | Do not list until resolved |
 
-The system is deliberately not just a chatbot. It is a governed workflow where the agent experience is bounded by policy grounding, deterministic tools, traceable decision rules, and human review.
+The project is intentionally not just a chatbot. It is a governed workflow where the agent experience is bounded by retrieval, deterministic tools, traceable rules, and human review.
 
-## Why This Project Matters
+## Agent-a-Thon Coverage
 
-Unsafe or recalled products can enter marketplaces through incomplete vendor submissions, weak evidence, or misleading free-text notes. RecallGuard AI demonstrates how agentic systems can assist compliance teams without hiding the logic that matters most.
-
-The product focuses on four principles:
-
-- **Ground first**: policy and SOP answers come from a Foundry Knowledge Agent using File Search.
-- **Act with tools**: product classification is performed by a Task Agent using Code Interpreter and a deterministic Python checker.
-- **Stay auditable**: each result exposes `decision_rule`, evidence matches, missing fields, rationale, and recommended next action.
-- **Keep humans in control**: `REVIEW` and `HOLD` outcomes generate human-review packets instead of pretending the system can approve everything.
-
-## Microsoft Foundry Build
-
-This project aligns with the Microsoft Agent-a-Thon Level 3 Master theme: Microsoft Foundry, multi-agent orchestration, and secure enterprise workflows.
-
-| Layer | Implementation |
+| Requirement | RecallGuard implementation |
 |---|---|
-| Knowledge Agent | `recallguard-knowledge-agent` grounded over `knowledge-base/` policy files |
-| Task Agent | `recallguard-task-agent-v7-public-data` with Code Interpreter |
-| Workflow | Sequential routing: Knowledge Agent first, Task Agent when evidence action is required |
-| Tools | File Search, Code Interpreter, deterministic CSV checker |
-| Guardrails | Prompt-injection handling, safety thresholds, HITL escalation |
-| Governance | Entra Agent ID notes, RBAC/least-privilege ownership model, trace runbooks |
-| Evidence | Foundry setup outputs, test responses, build report, and final demo assets |
+| Knowledge Agent | `recallguard-knowledge-agent` grounded with File Search over `knowledge-base/` |
+| Task Agent | `recallguard-task-agent-v7-public-data` using Code Interpreter and deterministic CSV checks |
+| Multi-agent workflow | Sequential route: policy grounding first, task execution when review action is required |
+| Tools that do real work | `recallguard_checker.py` classifies vendor CSV rows against recall and certification evidence |
+| Guardrails | Prompt-injection notes are treated as untrusted vendor data; `REVIEW` and `HOLD` route to HITL |
+| Traces and debugging | Foundry run outputs, trace runbooks, and local review-state visibility are captured under `outputs/` and `docs/` |
+| Identity governance | Entra Agent ID notes, RBAC ownership model, and least-privilege guidance are documented |
+| Deliverables | Build report, demo videos, deck, scripts, and final package are stored under `final/` |
 
-## Product Experience
+## How It Feels to Use
 
-The local reviewer console is designed as a real SaaS workflow, not a brochure page.
+The local reviewer console is designed as a real SaaS workspace rather than a brochure page.
 
-- **Review inbox**: four realistic case types, including recall risk and prompt-injection notes.
-- **Evidence intake**: sample selector, CSV upload, editable CSV preview, and guided next action.
-- **Run timeline**: intake, policy grounding, evidence scan, and packet routing.
-- **Trace monitor**: Foundry workflow health, tool binding, guardrail, and RBAC indicators.
-- **Decision output**: filters by `APPROVE`, `REVIEW`, and `HOLD`.
-- **Reviewer packet**: evidence IDs, risk rationale, missing data, and next action.
-- **Reviewer Copilot UX**: deterministic local assistant prototype for rationale, memo, and guardrail explanations.
+| Workspace area | What the reviewer sees |
+|---|---|
+| Review inbox | Realistic cases: safe products, recall risk, missing info, prompt-injection note |
+| Evidence intake | Sample picker, local CSV upload, editable CSV preview, guided next action |
+| Run timeline | Intake, policy grounding, evidence scan, packet routing |
+| Trace monitor | Foundry workflow health, tool binding, guardrail, and RBAC indicators |
+| Review results | Decision filters and product-level reviewer packet |
+| Reviewer Copilot UX | Deterministic assistant prototype for rationale, memo, evidence, and guardrail explanations |
 
 ## Architecture
 
@@ -83,19 +113,6 @@ flowchart LR
     G --> L["Traces + Guardrails + Entra Governance"]
 ```
 
-## Repository Map
-
-| Path | Purpose |
-|---|---|
-| `src/recallguard/` | Local API/server and deterministic checker package |
-| `sample-data/` | Vendor CSV scenarios and recall/certification snapshot |
-| `knowledge-base/` | Grounding sources for the Foundry Knowledge Agent |
-| `workflows/` | Sequential workflow configuration artifacts |
-| `docs/` | PRD, governance notes, audit/evaluation docs, setup evidence |
-| `outputs/` | Foundry setup/test response evidence |
-| `final/` | Submitted report, deck, videos, scripts, and packaged assets |
-| `tests/` | Unit tests for decision behavior |
-
 ## Quick Start
 
 ```bash
@@ -114,19 +131,54 @@ http://127.0.0.1:8765
 
 Then choose a case from the review inbox and click `Run review`.
 
+## Demo Cases
+
+| Case | File | Expected behavior |
+|---|---|---|
+| Safe products | `sample-data/vendor_products_complete.csv` | Products are approved with certification evidence |
+| Recall risk | `sample-data/vendor_products_public_recall_match.csv` | Matching product is held |
+| Missing info | `sample-data/vendor_products_missing_fields.csv` | Missing identifiers route to review |
+| Unsafe vendor note | `sample-data/vendor_products_prompt_injection.csv` | Vendor instructions are ignored as untrusted data |
+
 ## Evaluation Harness
 
 ```bash
 python scripts/evaluate_decision_harness.py
 ```
 
-The harness evaluates 25 labeled vendor rows across approval, review, recall, missing data, and prompt-injection scenarios. Results are written to:
+The harness evaluates 25 labeled vendor rows across approval, review, recall, missing data, and prompt-injection scenarios.
+
+Output:
 
 ```text
 outputs/evaluation/decision_harness_report.json
 ```
 
-See `docs/Decision_Audit_and_Evaluation.md` for the decision table, recall-match thresholds, error categories, and human reviewer packet format.
+See `docs/Decision_Audit_and_Evaluation.md` for the decision table, recall-match thresholds, error categories, and reviewer packet format.
+
+## Repository Map
+
+| Path | Purpose |
+|---|---|
+| `src/recallguard/` | Local server and deterministic checker package |
+| `sample-data/` | Vendor CSV scenarios and recall/certification evidence |
+| `knowledge-base/` | Grounding sources for the Foundry Knowledge Agent |
+| `workflows/` | Sequential workflow configuration artifacts |
+| `docs/` | PRD, governance notes, setup evidence, audit docs |
+| `outputs/` | Foundry setup and test response evidence |
+| `final/` | Submitted report, deck, videos, scripts, and packaged assets |
+| `tests/` | Unit tests for decision behavior |
+
+## Microsoft Foundry Evidence
+
+| Evidence | Location |
+|---|---|
+| Foundry live validation summary | `docs/Foundry_Live_Validation_Summary.md` |
+| Final activity checklist | `docs/Foundry_Final_Activity_Checklist.md` |
+| Azure CLI setup evidence | `docs/Azure_CLI_Setup_Evidence.md` |
+| Agent setup outputs | `outputs/foundry_live_implementation_summary*.json` |
+| Knowledge and task agent responses | `outputs/*agent*_response.json` |
+| Sequential workflow YAML | `workflows/recallguard_sequential_workflow_v5_public_data.yaml` |
 
 ## Public Recall Evidence Pipeline
 
@@ -136,23 +188,12 @@ python scripts/prepare_public_recall_dataset.py
 
 This downloads and normalizes a Korea public recall dataset snapshot, then appends compact recall evidence into `sample-data/recall_certification_snapshot.csv` for Foundry Code Interpreter demos.
 
-## Submission Assets
-
-The final Microsoft Agent-a-Thon / Founderz-style submission package includes:
-
-- Demo video under `final/`
-- Build report PDF/DOCX under `final/`
-- Foundry deck and scripts under `final/`
-- Foundry validation notes under `docs/` and `outputs/`
-
-The assignment submission format was video-first, with an optional support document. This repository keeps the implementation and evidence trail for portfolio review.
-
 ## Portfolio Review Path
 
-For hiring managers, reviewers, or collaborators:
+For reviewers, hiring managers, or collaborators:
 
 1. Run the local reviewer console.
-2. Test `Safe products`, `Recall risk`, `Missing info`, and `Unsafe vendor note`.
+2. Test the four built-in demo cases.
 3. Inspect a reviewer packet after running a case.
 4. Read `docs/Decision_Audit_and_Evaluation.md`.
 5. Read `docs/Foundry_Live_Validation_Summary.md`.
@@ -160,7 +201,7 @@ For hiring managers, reviewers, or collaborators:
 
 ## Tech Stack
 
-<p align="left">
+<p>
   <img src="https://skillicons.dev/icons?i=python,azure,github,md" alt="Python, Azure, GitHub, Markdown" />
 </p>
 
@@ -174,4 +215,4 @@ For hiring managers, reviewers, or collaborators:
 
 ## Status
 
-RecallGuard AI is a completed Agent-a-Thon final activity build and a continuing portfolio project. Next improvements would include hosted deployment, authenticated reviewer sessions, persisted case history, and a production CopilotKit integration.
+RecallGuard AI is a completed Microsoft Agent-a-Thon final activity build and an active portfolio project. Next improvements would include hosted deployment, authenticated reviewer sessions, persisted case history, and a production CopilotKit integration.
