@@ -15,6 +15,10 @@ from .checker import DECISION_RULES, classify
 ROOT = Path(__file__).resolve().parents[2]
 SAMPLE_DIR = ROOT / "sample-data"
 EVIDENCE_CSV = SAMPLE_DIR / "recall_certification_snapshot.csv"
+FOUNDRY_IMAGE_URL = (
+    "https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2025/11/"
+    "cropped-Microsoft-Foundry.2mb-scaled-1.webp"
+)
 
 
 def list_samples() -> list[dict[str, str]]:
@@ -1036,6 +1040,37 @@ def render_app_page() -> str:
     .product-footer { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 12px; }
     .mini-button { min-height: 36px; padding: 8px 10px; font-size: 10px; background: #fff; color: #000; border: 1px solid var(--line); border-radius: 8px; }
     .flow-list { display: grid; gap: 8px; }
+    .foundry-proof-card {
+      display: grid;
+      grid-template-columns: 78px minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(189,187,255,.22), rgba(189,244,239,.2)),
+        #fff;
+      padding: 12px;
+      margin: 4px 0 14px;
+    }
+    .foundry-mark {
+      width: 78px;
+      height: 78px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: #070718;
+      overflow: hidden;
+    }
+    .foundry-mark img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      display: block;
+    }
+    .foundry-proof-card strong { display: block; font-size: 15px; }
+    .foundry-proof-card p { margin: 5px 0 0; font-size: 13px; line-height: 1.35; }
+    .foundry-proof-card .eyebrow { color: #5e5e78; }
     .flow-node {
       display: grid;
       grid-template-columns: 28px minmax(0, 1fr);
@@ -1364,6 +1399,16 @@ def render_app_page() -> str:
         <section class="panel">
           <div class="eyebrow">System checks</div>
           <h2>Behind the scenes</h2>
+          <div class="foundry-proof-card">
+            <div class="foundry-mark">
+              <img src="__FOUNDRY_IMAGE_URL__" alt="Microsoft Foundry visual mark" loading="lazy" />
+            </div>
+            <div>
+              <div class="eyebrow">Microsoft Foundry</div>
+              <strong>Governed agent workflow</strong>
+              <p>Knowledge grounding, Code Interpreter action path, traces, guardrails, and Entra ownership.</p>
+            </div>
+          </div>
           <div class="flow-list">
             <div class="flow-node"><div class="node-index">KB</div><div><div class="node-title">Knowledge grounding</div><div class="node-copy">Policy and recall-response sources are mapped to the Knowledge Agent.</div></div></div>
             <div class="flow-node"><div class="node-index">CI</div><div><div class="node-title">Evidence checker</div><div class="node-copy"><code>recallguard_checker.py</code> performs the CSV action path.</div></div></div>
@@ -1760,8 +1805,10 @@ def render_app_page() -> str:
   </script>
 </body>
 </html>"""
-    return page.replace("__SAMPLE_OPTIONS__", sample_options).replace(
-        "__DECISION_RULES__", json.dumps(DECISION_RULES, ensure_ascii=False)
+    return (
+        page.replace("__SAMPLE_OPTIONS__", sample_options)
+        .replace("__DECISION_RULES__", json.dumps(DECISION_RULES, ensure_ascii=False))
+        .replace("__FOUNDRY_IMAGE_URL__", FOUNDRY_IMAGE_URL)
     )
 
 
