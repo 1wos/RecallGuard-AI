@@ -800,6 +800,77 @@ def render_app_page() -> str:
     }
     .next-action-banner strong { display: block; }
     .next-action-banner span { display: block; margin-top: 3px; color: var(--muted); font-size: 13px; line-height: 1.35; }
+    .command-card {
+      border: 1px solid #d4d6e3;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(189,244,239,.34), rgba(255,255,255,.92)),
+        #fff;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+    .command-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .command-head strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 17px;
+      letter-spacing: -.02em;
+    }
+    .command-status {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+    .command-status span {
+      border: 1px solid #bce8cf;
+      border-radius: 999px;
+      background: var(--approve-bg);
+      color: var(--approve);
+      padding: 4px 7px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 9px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .command-card p { margin-bottom: 12px; font-size: 14px; }
+    .command-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+    }
+    .command-input {
+      min-height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 11px 12px;
+      min-width: 0;
+    }
+    .command-submit { min-height: 46px; }
+    .command-prompts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .command-chip {
+      min-height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.78);
+      color: #000;
+      padding: 7px 10px;
+      font-size: 10px;
+    }
     .guide-strip {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1081,6 +1152,16 @@ def render_app_page() -> str:
     .product-action { margin-top: 8px; line-height: 1.35; }
     .product-footer { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 12px; }
     .mini-button { min-height: 36px; padding: 8px 10px; font-size: 10px; background: #fff; color: #000; border: 1px solid var(--line); border-radius: 8px; }
+    .product-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .product-actions .mini-button {
+      flex: 1 1 118px;
+      text-align: center;
+    }
     .flow-list { display: grid; gap: 8px; }
     .trace-health {
       display: grid;
@@ -1171,6 +1252,35 @@ def render_app_page() -> str:
       font-size: 10px;
       white-space: nowrap;
     }
+    .activity-feed {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .activity-item {
+      display: grid;
+      grid-template-columns: 58px minmax(0, 1fr);
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 10px;
+    }
+    .activity-time {
+      color: var(--muted);
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .activity-title { font-weight: 760; font-size: 13px; }
+    .activity-copy { color: var(--muted); font-size: 12px; line-height: 1.35; margin-top: 3px; }
+    .packet-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 12px 0;
+    }
     code, pre { font-family: "SFMono-Regular", Consolas, monospace; }
     code { overflow-wrap: anywhere; }
     pre {
@@ -1252,6 +1362,7 @@ def render_app_page() -> str:
     .copilot-log {
       display: grid;
       gap: 8px;
+      min-height: 150px;
       max-height: 240px;
       overflow: auto;
       margin-top: 12px;
@@ -1312,6 +1423,12 @@ def render_app_page() -> str:
       font-size: 12px;
       line-height: 1.4;
     }
+    .chat-note {
+      margin-top: 8px;
+      color: #9b9bb3;
+      font-size: 11px;
+      line-height: 1.4;
+    }
     @media (max-width: 1120px) {
       .shell { grid-template-columns: 260px minmax(0, 1fr); }
       .inspector { grid-column: 1 / -1; position: static; }
@@ -1328,6 +1445,9 @@ def render_app_page() -> str:
       .hero-metrics { grid-template-columns: 1fr; }
       .workflow-strip { grid-template-columns: 1fr 1fr; }
       .next-action-banner { grid-template-columns: 1fr; }
+      .command-head { display: grid; }
+      .command-status { justify-content: flex-start; }
+      .command-row { grid-template-columns: 1fr; }
       .guide-strip, .decision-help { grid-template-columns: 1fr; }
       .queue-summary, .trace-health { grid-template-columns: 1fr; }
       .flow-node { grid-template-columns: 28px minmax(0, 1fr); }
@@ -1336,6 +1456,7 @@ def render_app_page() -> str:
       .summary-grid, .evaluation-grid { grid-template-columns: 1fr 1fr; }
       .upload-control { grid-template-columns: 1fr; }
       .quick-prompts { grid-template-columns: 1fr; }
+      .packet-actions { grid-template-columns: 1fr; }
       .copilot-context-grid { grid-template-columns: 1fr; }
       .copilot-input-row { grid-template-columns: 1fr; }
     }
@@ -1461,6 +1582,29 @@ def render_app_page() -> str:
               <span id="nextActionText">The default CSV is already loaded. Click Run review to classify products.</span>
             </div>
           </div>
+          <div class="command-card" aria-label="Agent command center">
+            <div class="command-head">
+              <div>
+                <div class="eyebrow">Agent command center</div>
+                <strong>Tell the governed workflow what to do next.</strong>
+              </div>
+              <div class="command-status" aria-label="Agent command status">
+                <span>Grounded</span>
+                <span>Action ready</span>
+              </div>
+            </div>
+            <p>Use natural language or a suggested command. RecallGuard routes the request to review execution, evidence explanation, memo drafting, or packet export.</p>
+            <div class="command-row">
+              <input id="agentCommandInput" class="command-input" type="text" value="Check this vendor file for recall and certification risk" />
+              <button id="agentCommandBtn" class="command-submit">Run command</button>
+            </div>
+            <div class="command-prompts" aria-label="Suggested agent commands">
+              <button class="command-chip" data-command="Check this vendor file for recall and certification risk">Check file</button>
+              <button class="command-chip" data-command="Explain the selected product decision">Explain decision</button>
+              <button class="command-chip" data-command="Draft a reviewer memo for the selected product">Draft memo</button>
+              <button class="command-chip" data-command="Export the reviewer packet">Export packet</button>
+            </div>
+          </div>
           <div class="toolbar">
             <div>
               <label for="sample">Sample CSV</label>
@@ -1532,6 +1676,9 @@ def render_app_page() -> str:
             <div class="trace-health-card"><span>Tools</span><strong>2 bound</strong></div>
             <div class="trace-health-card"><span>Guard</span><strong>On</strong></div>
           </div>
+          <div class="eyebrow" style="margin: 2px 0 8px;">Agent activity</div>
+          <div id="activityFeed" class="activity-feed" aria-live="polite"></div>
+          <div class="eyebrow" style="margin: 14px 0 8px;">Foundry path</div>
           <div class="flow-list">
             <div class="flow-node"><div class="node-index">KB</div><div><div class="node-title">Knowledge grounding</div><div class="node-copy">Policy and recall-response sources are mapped to the Knowledge Agent.</div></div><div class="node-status">READY</div></div>
             <div class="flow-node"><div class="node-index">CI</div><div><div class="node-title">Evidence checker</div><div class="node-copy"><code>recallguard_checker.py</code> performs the CSV action path.</div></div><div class="node-status">BOUND</div></div>
@@ -1545,12 +1692,12 @@ def render_app_page() -> str:
           <div class="copilot-shell">
             <div class="packet-header">
               <div>
-                <div class="eyebrow" style="color:#bdbbff;">Review assistant</div>
+                <div class="eyebrow" style="color:#bdbbff;">Agent chat</div>
                 <div class="packet-title">Reviewer Copilot</div>
               </div>
               <span class="pill copilot-status">Context aware</span>
             </div>
-            <p>Ask about the selected product, missing evidence, guardrails, or the next reviewer action.</p>
+            <p>Ask about the selected product, missing evidence, guardrails, or the next reviewer action. The chat explains decisions and prepares actions without bypassing human review gates.</p>
             <div class="copilot-context-grid" aria-label="Copilot review context">
               <div class="copilot-context"><span>Selected product</span><strong id="copilotContextProduct">No product selected</strong></div>
               <div class="copilot-context"><span>Decision state</span><strong id="copilotContextDecision">Waiting</strong></div>
@@ -1564,8 +1711,9 @@ def render_app_page() -> str:
             </div>
             <div class="copilot-input-row">
               <input id="copilotInput" class="copilot-input" type="text" placeholder="Ask about this review..." />
-              <button id="askCopilotBtn" class="copilot-submit">Ask</button>
+              <button id="askCopilotBtn" class="copilot-submit">Ask agent</button>
             </div>
+            <div class="chat-note">Chat is intentionally bounded by selected packet context, decision rules, and guardrail explanations.</div>
           </div>
         </section>
 
@@ -1578,6 +1726,12 @@ def render_app_page() -> str:
             <span id="packetDecision" class="pill review">Waiting</span>
           </div>
           <p id="packetHint">Run a review, then choose Inspect packet on a product card.</p>
+          <div class="packet-actions" aria-label="Reviewer packet actions">
+            <button class="mini-button" id="approveActionBtn">Approve listing</button>
+            <button class="mini-button" id="requestInfoBtn">Request info</button>
+            <button class="mini-button" id="memoActionBtn">Create memo</button>
+            <button class="mini-button" id="exportPacketBtn">Export packet</button>
+          </div>
           <pre id="packetOut">Reviewer evidence will appear here.</pre>
         </section>
 
@@ -1613,7 +1767,10 @@ def render_app_page() -> str:
     const nextActionTitle = document.getElementById('nextActionTitle');
     const nextActionText = document.getElementById('nextActionText');
     const nextActionBtn = document.getElementById('nextActionBtn');
+    const agentCommandInput = document.getElementById('agentCommandInput');
+    const activityFeed = document.getElementById('activityFeed');
     const runButtons = [document.getElementById('runBtn'), document.getElementById('runBtnBottom'), nextActionBtn];
+    let activityClock = 0;
 
     async function request(path, options = {}) {
       const response = await fetch(path, options);
@@ -1647,6 +1804,7 @@ def render_app_page() -> str:
       runStateLabel.textContent = 'Ready';
       runStateCopy.textContent = message;
       setNextAction('Run the loaded sample', 'The CSV is ready. Click Run review to classify products.', 'Run review', 'run');
+      resetActivityFeed(message);
       updateCopilotContext();
       resetCopilot(message);
     }
@@ -1654,6 +1812,7 @@ def render_app_page() -> str:
     async function classifyCsv() {
       try {
         setLoading(true);
+        seedRunActivity();
         const data = await request('/api/classify', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
@@ -1695,6 +1854,7 @@ def render_app_page() -> str:
       runStateLabel.textContent = 'Evaluation loaded';
       runStateCopy.textContent = `${data.total_rows ?? '-'} labeled rows checked with ${data.accuracy ?? '-'} accuracy.`;
       setNextAction('Return to product review', 'Load a sample or upload a CSV, then run a product review.', 'Run review', 'run');
+      addActivity('Evaluation harness loaded', `${data.total_rows ?? '-'} labeled rows checked with ${data.accuracy ?? '-'} accuracy.`);
       updateCopilotContext('Evaluation harness', 'PASS');
     }
 
@@ -1710,6 +1870,7 @@ def render_app_page() -> str:
       runStateLabel.textContent = 'Review complete';
       runStateCopy.textContent = `${s.total_products ?? 0} products checked. ${s.hold_count ?? 0} hold and ${s.review_count ?? 0} review item(s) need attention.`;
       setNextAction('Inspect the first product', 'Open the reviewer packet to see evidence, missing data, and the recommended action.', 'Inspect first product', 'inspect');
+      addActivity('Reviewer packet ready', `${s.total_products ?? 0} product(s) classified: ${s.approve_count ?? 0} approve, ${s.review_count ?? 0} review, ${s.hold_count ?? 0} hold.`);
       decisions.innerHTML = `
         <div class="results-list">
           ${(data.products || []).map((product, index) => `
@@ -1723,9 +1884,15 @@ def render_app_page() -> str:
               </div>
               <div class="product-rule"><code>${escapeHtml(product.decision_rule || '')}</code></div>
               <div class="product-action">${escapeHtml(product.reviewer_packet?.recommended_next_action || product.recommended_action || '')}</div>
+              <div class="product-actions">
+                <button class="mini-button" onclick="inspectPacket(${index})">Inspect</button>
+                <button class="mini-button" onclick="runProductAction('memo', ${index})">Memo</button>
+                <button class="mini-button" onclick="runProductAction('request-info', ${index})">Request info</button>
+                <button class="mini-button" onclick="runProductAction('export', ${index})">Export</button>
+              </div>
               <div class="product-footer">
                 <span class="muted">${escapeHtml((product.evidence_matches || []).length)} evidence match(es)</span>
-                <button class="mini-button" onclick="inspectPacket(${index})">Inspect packet</button>
+                <button class="mini-button" onclick="inspectPacket(${index})">Open packet</button>
               </div>
             </article>
           `).join('')}
@@ -1751,6 +1918,7 @@ def render_app_page() -> str:
       packetHint.textContent = product.reviewer_packet?.recommended_next_action || product.recommended_action || '';
       packetOut.textContent = JSON.stringify(product.reviewer_packet || product, null, 2);
       updateCopilotContext(product.product_name || 'Selected product', product.decision || 'REVIEW');
+      addActivity('Product selected', `${product.product_name || 'Selected product'} opened in reviewer packet.`);
       document.querySelectorAll('.product-card').forEach((card, cardIndex) => {
         card.classList.toggle('selected', cardIndex === index);
       });
@@ -1811,6 +1979,47 @@ def render_app_page() -> str:
       copilotLog.scrollTop = copilotLog.scrollHeight;
     }
 
+    function focusCopilot() {
+      const card = document.querySelector('.copilot-card');
+      if (card) card.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+    }
+
+    function activityTimestamp() {
+      activityClock += 1;
+      return `T+${String(activityClock * 2).padStart(2, '0')}s`;
+    }
+
+    function addActivity(title, text) {
+      if (!activityFeed) return;
+      const item = document.createElement('div');
+      item.className = 'activity-item';
+      item.innerHTML = `
+        <div class="activity-time">${activityTimestamp()}</div>
+        <div>
+          <div class="activity-title">${escapeHtml(title)}</div>
+          <div class="activity-copy">${escapeHtml(text)}</div>
+        </div>
+      `;
+      activityFeed.prepend(item);
+    }
+
+    function resetActivityFeed(message = 'Workspace ready.') {
+      activityClock = 0;
+      activityFeed.innerHTML = '';
+      addActivity('Workspace ready', message);
+      addActivity('Knowledge Agent standing by', 'Policy grounding source is mapped before task execution.');
+      addActivity('Task Agent standing by', 'Code Interpreter path is ready for CSV evidence checks.');
+    }
+
+    function seedRunActivity() {
+      activityFeed.innerHTML = '';
+      activityClock = 0;
+      addActivity('Command accepted', 'Reviewer request routed through the sequential workflow.');
+      addActivity('Knowledge Agent grounding', 'Policy, SOP, and vendor requirements are checked first.');
+      addActivity('Task Agent scanning evidence', 'Certification and recall evidence are matched against the vendor CSV.');
+      addActivity('Guardrail check', 'Vendor notes are treated as untrusted data, not instructions.');
+    }
+
     function currentProduct() {
       if (!lastResult || !lastResult.products || lastResult.products.length === 0) return null;
       const index = selectedProductIndex ?? 0;
@@ -1851,7 +2060,86 @@ def render_app_page() -> str:
       if (!value) return;
       addCopilotMessage('user', 'Reviewer', value);
       addCopilotMessage('agent', 'RecallGuard Copilot', answerCopilot(value));
+      addActivity('Copilot response generated', value);
+      focusCopilot();
       copilotInput.value = '';
+    }
+
+    function runAgentCommand(command = agentCommandInput.value) {
+      const value = String(command || '').trim();
+      if (!value) return;
+      agentCommandInput.value = value;
+      addActivity('Natural language command', value);
+
+      const normalized = value.toLowerCase();
+      if (normalized.includes('check') || normalized.includes('run') || normalized.includes('risk')) {
+        classifyCsv();
+        return;
+      }
+      if (normalized.includes('export')) {
+        runProductAction('export');
+        return;
+      }
+      if (normalized.includes('memo') || normalized.includes('draft')) {
+        runProductAction('memo');
+        return;
+      }
+      askCopilot(value);
+    }
+
+    function runProductAction(action, index = selectedProductIndex) {
+      if (typeof index === 'number') inspectPacket(index);
+      const product = currentProduct();
+      if (!product) {
+        addActivity('Action paused', 'Run a review and select a product before taking reviewer actions.');
+        askCopilot('What should I do before taking reviewer action?');
+        return;
+      }
+
+      const name = product.product_name || 'Selected product';
+      if (action === 'memo') {
+        addActivity('Reviewer memo drafted', `${name} memo prepared in Reviewer Copilot.`);
+        askCopilot('Generate a concise reviewer memo for the selected product.');
+        return;
+      }
+
+      if (action === 'request-info') {
+        const missing = (product.missing_fields || []).filter(Boolean);
+        const detail = missing.length ? `Missing fields: ${missing.join(', ')}.` : 'No missing fields detected; reviewer can still request supporting evidence.';
+        addActivity('Vendor information request prepared', `${name}. ${detail}`);
+        askCopilot('What evidence or missing fields should I review?');
+        return;
+      }
+
+      if (action === 'approve') {
+        addActivity('Approval action staged', `${name} is staged for human approval confirmation.`);
+        askCopilot('Why was the selected product classified this way?');
+        return;
+      }
+
+      if (action === 'export') {
+        exportPacket(product);
+        return;
+      }
+    }
+
+    function exportPacket(product = currentProduct()) {
+      if (!product) {
+        addActivity('Export paused', 'No selected product packet is available yet.');
+        return;
+      }
+      const payload = JSON.stringify(product.reviewer_packet || product, null, 2);
+      const blob = new Blob([payload], {type: 'application/json'});
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      const safeName = String(product.product_name || 'recallguard-packet').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      link.href = url;
+      link.download = `${safeName || 'recallguard'}-reviewer-packet.json`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      addActivity('Reviewer packet exported', `${product.product_name || 'Selected product'} packet downloaded as JSON.`);
     }
 
     function setLoading(isLoading) {
@@ -1914,6 +2202,17 @@ def render_app_page() -> str:
     document.querySelectorAll('.copilot-prompt').forEach(button => {
       button.addEventListener('click', () => askCopilot(button.dataset.prompt));
     });
+    document.getElementById('agentCommandBtn').addEventListener('click', () => runAgentCommand());
+    agentCommandInput.addEventListener('keydown', event => {
+      if (event.key === 'Enter') runAgentCommand();
+    });
+    document.querySelectorAll('.command-chip').forEach(button => {
+      button.addEventListener('click', () => runAgentCommand(button.dataset.command));
+    });
+    document.getElementById('approveActionBtn').addEventListener('click', () => runProductAction('approve'));
+    document.getElementById('requestInfoBtn').addEventListener('click', () => runProductAction('request-info'));
+    document.getElementById('memoActionBtn').addEventListener('click', () => runProductAction('memo'));
+    document.getElementById('exportPacketBtn').addEventListener('click', () => runProductAction('export'));
     document.getElementById('fileInput').addEventListener('change', async event => {
       const file = event.target.files?.[0];
       if (!file) return;

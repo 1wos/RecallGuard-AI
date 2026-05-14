@@ -92,10 +92,13 @@ The local console exposes the workflow as an operational review surface.
 |---|---|
 | Review inbox | Realistic cases: safe products, recall risk, missing info, prompt-injection note |
 | Evidence intake | Sample picker, local CSV upload, editable CSV preview, guided next action |
+| Agent command center | Natural-language commands route to review execution, explanation, memo drafting, or packet export |
 | Run timeline | Intake, policy grounding, evidence scan, packet routing |
 | Trace monitor | Foundry workflow health, tool binding, guardrail, and RBAC indicators |
+| Agent activity feed | Live-style status updates show Knowledge Agent grounding, Task Agent checks, guardrails, and packet creation |
 | Review results | Decision filters and product-level reviewer packet |
-| Reviewer Copilot UX | Deterministic assistant prototype for rationale, memo, evidence, and guardrail explanations |
+| Agent chat | Context-aware Reviewer Copilot explains decisions, evidence gaps, guardrails, and next actions |
+| Packet actions | Stage approval, request missing information, draft a memo, or export the reviewer packet |
 
 ## Architecture
 
