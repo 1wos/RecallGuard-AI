@@ -429,34 +429,77 @@ def render_app_page() -> str:
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css" />
   <style>
     :root {
-      --dark: #010120;
-      --ink: #08080d;
-      --muted: #666672;
-      --line: #e5e5ea;
+      --dark: #09091c;
+      --ink: #101018;
+      --muted: #666a76;
+      --line: #dedfe8;
       --panel: #ffffff;
       --soft: #f7f7fa;
-      --mint: #c8f6f9;
-      --orange: #fc4c02;
-      --magenta: #ef2cc1;
-      --periwinkle: #bdbbff;
+      --mint: #bdf4ef;
+      --orange: #ef6a3d;
+      --magenta: #d84f9c;
+      --periwinkle: #aaa7e8;
       --approve-bg: #e2f7ea;
       --approve: #0b6f3c;
       --review-bg: #fff1c6;
       --review: #805400;
       --hold-bg: #ffe0d8;
       --hold: #9a2b1f;
-      --dark-soft: #10102a;
-      --dark-line: #2d2d4a;
+      --dark-soft: #151531;
+      --dark-line: #30304e;
     }
+    html { scroll-behavior: smooth; }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       background:
-        radial-gradient(circle at 8% 0%, rgba(200, 246, 249, .35), transparent 28%),
-        radial-gradient(circle at 100% 8%, rgba(189, 187, 255, .22), transparent 26%),
+        linear-gradient(180deg, rgba(189, 187, 255, .18), transparent 360px),
+        linear-gradient(90deg, rgba(189, 244, 239, .34), transparent 420px),
         #f4f5f8;
       color: var(--ink);
       font-family: Pretendard, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 12% 4%, rgba(189, 244, 239, .46), transparent 26%),
+        radial-gradient(circle at 92% 12%, rgba(216, 79, 156, .18), transparent 24%),
+        radial-gradient(circle at 82% 52%, rgba(170, 167, 232, .2), transparent 30%);
+      z-index: -2;
+    }
+    .app {
+      position: relative;
+      min-height: 100vh;
+      isolation: isolate;
+    }
+    .app::before {
+      content: "";
+      position: fixed;
+      right: -180px;
+      top: 96px;
+      width: 680px;
+      height: 180px;
+      border-radius: 24px;
+      background: linear-gradient(105deg, var(--orange), var(--magenta), var(--periwinkle));
+      transform: rotate(-14deg);
+      opacity: .78;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .app::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(9, 9, 28, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(9, 9, 28, .035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,.75), transparent 72%);
+      z-index: -1;
     }
     button, select, textarea, input { font: inherit; }
     button, select { min-height: 44px; }
@@ -471,10 +514,10 @@ def render_app_page() -> str:
       font-size: 12px;
       letter-spacing: .06em;
       text-transform: uppercase;
-      transition: opacity .16s ease, transform .16s ease;
+      transition: opacity .18s ease, transform .18s ease, background .18s ease, border-color .18s ease;
     }
-    button:hover { opacity: .86; }
-    button:active { transform: translateY(1px); }
+    button:hover { opacity: .9; transform: translateY(-1px); }
+    button:active { transform: translateY(1px) scale(.99); }
     button:disabled { opacity: .55; cursor: wait; }
     button:focus-visible, select:focus-visible, textarea:focus-visible, input:focus-visible {
       outline: 3px solid var(--mint);
@@ -486,14 +529,15 @@ def render_app_page() -> str:
       position: sticky;
       top: 0;
       z-index: 10;
-      background: var(--dark);
+      background: rgba(9, 9, 28, .94);
+      backdrop-filter: blur(18px);
       color: #fff;
-      border-bottom: 1px solid #26263a;
+      border-bottom: 1px solid rgba(255,255,255,.1);
     }
     .topbar-inner {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 14px 24px;
+      padding: 16px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -510,22 +554,29 @@ def render_app_page() -> str:
     .brand strong { display: block; font-size: 16px; }
     .brand span { display: block; color: #c9c9d6; font-size: 13px; margin-top: 2px; }
     .status { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .status .pill {
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.08);
+      color: #fff;
+    }
     .shell {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 20px 24px 40px;
+      padding: 24px 32px 44px;
       display: grid;
-      grid-template-columns: 280px minmax(0, 1fr) 360px;
-      gap: 16px;
+      grid-template-columns: 292px minmax(0, 1fr) 384px;
+      gap: 18px;
       align-items: start;
     }
     .panel {
-      background: var(--panel);
+      background: rgba(255,255,255,.92);
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 18px;
       min-width: 0;
       overflow: hidden;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 50px rgba(26, 27, 48, .055);
     }
     .soft { background: var(--soft); }
     .sidebar, .inspector { position: sticky; top: 82px; }
@@ -565,29 +616,169 @@ def render_app_page() -> str:
     .hold { background: var(--hold-bg); color: var(--hold); }
     .workbench-header {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 260px;
-      gap: 16px;
+      grid-template-columns: 1fr;
+      gap: 18px;
       align-items: stretch;
-    }
-    .workbench-title h1 {
-      font-size: clamp(25px, 3vw, 36px);
-      line-height: 1.02;
-      margin-bottom: 8px;
-    }
-    .workbench-title p { max-width: 70ch; margin-bottom: 0; }
-    .active-run-card {
-      border-radius: 8px;
-      border: 1px solid #26263a;
+      position: relative;
       background: var(--dark);
       color: #fff;
-      padding: 14px;
+      border-color: var(--dark-line);
+      padding: 24px;
+      min-height: 320px;
+      box-shadow: 0 30px 90px rgba(9, 9, 28, .2);
+    }
+    .workbench-header::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--orange), var(--magenta), var(--periwinkle));
+      z-index: 2;
+    }
+    .workbench-header::after {
+      content: "";
+      position: absolute;
+      right: -150px;
+      top: 74px;
+      width: 520px;
+      height: 170px;
+      border-radius: 20px;
+      background: linear-gradient(105deg, var(--orange), var(--magenta), var(--periwinkle));
+      transform: rotate(-13deg);
+      opacity: .88;
+      z-index: 0;
+    }
+    .workbench-title { position: relative; z-index: 1; align-self: start; }
+    .workbench-title .eyebrow { color: #bdbbff; }
+    .workbench-title h1 {
+      font-size: clamp(30px, 3.6vw, 46px);
+      line-height: 1.02;
+      letter-spacing: -.045em;
+      margin: 6px 0 10px;
+    }
+    .workbench-title p { max-width: 68ch; margin-bottom: 0; color: #d8d8e5; }
+    .hero-metrics {
       display: grid;
-      gap: 10px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 18px;
+      max-width: 620px;
+    }
+    .hero-metric {
+      border: 1px solid var(--dark-line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.05);
+      padding: 10px;
       min-width: 0;
     }
-    .active-run-card .eyebrow { color: #bdbbff; }
+    .hero-metric span {
+      display: block;
+      color: #a9a9c3;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .hero-metric strong { display: block; margin-top: 5px; color: #fff; }
+    .active-run-card {
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.96);
+      color: var(--ink);
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 176px minmax(0, 1fr);
+      gap: 10px;
+      min-width: 0;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 24px 60px rgba(0,0,0,.18);
+    }
+    .active-run-card .eyebrow { color: var(--muted); }
     .active-run-card strong { font-size: 22px; letter-spacing: -.03em; }
-    .active-run-card span { color: #c9c9d6; font-size: 13px; line-height: 1.35; }
+    .active-run-card span { color: var(--muted); font-size: 13px; line-height: 1.35; }
+    .run-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      grid-column: 1 / -1;
+    }
+    .run-card-top .pill {
+      border: 1px solid var(--line);
+      background: #f5f5fb;
+      color: #36364b;
+    }
+    .run-visual {
+      position: relative;
+      height: 164px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(189,244,239,.62), rgba(255,255,255,.8)),
+        #fff;
+      grid-row: 2 / span 4;
+    }
+    .run-visual::before {
+      content: "";
+      position: absolute;
+      left: -38px;
+      right: -38px;
+      bottom: 18px;
+      height: 50px;
+      background: linear-gradient(90deg, var(--orange), var(--magenta), var(--periwinkle));
+      border-radius: 18px;
+      transform: rotate(-9deg);
+      opacity: .78;
+    }
+    .run-orb {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: var(--dark);
+      color: #fff;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 12px;
+      letter-spacing: .08em;
+      box-shadow: 0 0 0 8px rgba(255,255,255,.68);
+    }
+    .run-orb::after {
+      content: "";
+      position: absolute;
+      inset: -14px;
+      border-radius: inherit;
+      border: 1px solid rgba(9,9,28,.16);
+      animation: pulse-ring 2.4s ease-out infinite;
+    }
+    .signal-stack {
+      display: grid;
+      gap: 6px;
+      margin-top: 2px;
+    }
+    .signal-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfbfd;
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+    .signal-row span {
+      color: var(--muted);
+      font-family: "SFMono-Regular", Consolas, monospace;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .signal-row strong { font-size: 12px; letter-spacing: 0; }
     .run-action {
       width: 100%;
       min-height: 40px;
@@ -688,8 +879,10 @@ def render_app_page() -> str:
       letter-spacing: 0;
       text-transform: none;
       padding: 12px;
+      box-shadow: 0 8px 20px rgba(26,27,48,.035);
     }
-    .scenario-card.active { border-color: #000; background: #f2fbfc; }
+    .scenario-card:hover { transform: translateY(-1px); border-color: #c7c8d6; }
+    .scenario-card.active { border-color: #000; background: #eefbfc; box-shadow: inset 4px 0 0 var(--mint), 0 12px 26px rgba(26,27,48,.06); }
     .scenario-card strong { display: block; font-size: 14px; }
     .scenario-card span { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.35; }
     .howto { margin: 18px 0 0; padding-left: 18px; line-height: 1.55; color: #333; font-size: 14px; }
@@ -719,7 +912,7 @@ def render_app_page() -> str:
       padding: 11px 12px;
     }
     textarea {
-      min-height: 190px;
+      min-height: 160px;
       resize: vertical;
       white-space: pre;
       overflow: auto;
@@ -731,7 +924,7 @@ def render_app_page() -> str:
       margin-top: 12px;
       border: 1px dashed #c9c9d6;
       border-radius: 8px;
-      background: #fbfbfd;
+      background: linear-gradient(180deg, #fbfbfd, #f6fbfc);
       padding: 14px;
     }
     .upload-control {
@@ -805,6 +998,9 @@ def render_app_page() -> str:
       line-height: 1.35;
     }
     .decision-help-card strong { display: block; margin-bottom: 4px; }
+    .decision-help-card:nth-child(1) { background: #f2fbf5; border-color: #cbeedd; }
+    .decision-help-card:nth-child(2) { background: #fff9e6; border-color: #f2dfaa; }
+    .decision-help-card:nth-child(3) { background: #fff2ef; border-color: #f1c8be; }
     .filter-row {
       display: flex;
       flex-wrap: wrap;
@@ -826,8 +1022,12 @@ def render_app_page() -> str:
     }
     .results-list { display: grid; gap: 10px; margin-top: 12px; }
     .empty-state { border: 1px dashed #c9c9d6; border-radius: 8px; padding: 22px; color: var(--muted); background: #fbfbfd; }
-    .product-card { border: 1px solid var(--line); border-radius: 8px; padding: 14px; background: #fff; }
-    .product-card.selected { border-color: #000; background: #fcfcff; }
+    .product-card { border: 1px solid var(--line); border-left-width: 4px; border-radius: 8px; padding: 14px; background: #fff; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+    .product-card:hover { transform: translateY(-1px); box-shadow: 0 14px 32px rgba(26, 27, 48, .07); }
+    .product-card[data-decision="APPROVE"] { border-left-color: var(--approve); }
+    .product-card[data-decision="REVIEW"] { border-left-color: var(--review); }
+    .product-card[data-decision="HOLD"] { border-left-color: var(--hold); }
+    .product-card.selected { border-color: #000; border-left-color: #000; background: #fcfcff; box-shadow: 0 16px 38px rgba(26,27,48,.08); }
     .product-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
     .product-title { font-weight: 760; font-size: 17px; overflow-wrap: anywhere; }
     .product-meta { margin-top: 4px; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
@@ -996,6 +1196,10 @@ def render_app_page() -> str:
       .workspace { order: 1; }
       .inspector { order: 3; }
       .workbench-header { grid-template-columns: 1fr; }
+      .workbench-header::after { right: -260px; top: 86px; opacity: .38; }
+      .active-run-card { grid-template-columns: 1fr; }
+      .run-visual { grid-row: auto; height: 116px; }
+      .hero-metrics { grid-template-columns: 1fr; }
       .workflow-strip { grid-template-columns: 1fr 1fr; }
       .next-action-banner { grid-template-columns: 1fr; }
       .guide-strip, .decision-help { grid-template-columns: 1fr; }
@@ -1007,7 +1211,11 @@ def render_app_page() -> str:
       .copilot-input-row { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; }
+      * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(.82); opacity: .42; }
+      100% { transform: scale(1.18); opacity: 0; }
     }
   </style>
 </head>
@@ -1054,11 +1262,27 @@ def render_app_page() -> str:
             <div class="eyebrow">Product safety console</div>
             <h1>Check products before listing</h1>
             <p>Pick a sample or upload a CSV. RecallGuard checks each product and tells you whether to approve, review, or hold it.</p>
+            <div class="hero-metrics" aria-label="Review system highlights">
+              <div class="hero-metric"><span>Workflow</span><strong>Foundry agents</strong></div>
+              <div class="hero-metric"><span>Evaluation</span><strong>25 labeled rows</strong></div>
+              <div class="hero-metric"><span>Control</span><strong>Human review</strong></div>
+            </div>
           </div>
           <div class="active-run-card">
-            <div class="eyebrow">Current run</div>
+            <div class="run-card-top">
+              <div class="eyebrow">Current run</div>
+              <span class="pill">Operator view</span>
+            </div>
+            <div class="run-visual" aria-hidden="true">
+              <div class="run-orb">AI</div>
+            </div>
             <strong id="runStateLabel">Ready</strong>
             <span id="runStateCopy">No review has been executed in this session.</span>
+            <div class="signal-stack" aria-label="Control signals">
+              <div class="signal-row"><span>Policy</span><strong>Grounded</strong></div>
+              <div class="signal-row"><span>Evidence</span><strong>Deterministic</strong></div>
+              <div class="signal-row"><span>Governance</span><strong>HITL</strong></div>
+            </div>
             <button id="nextActionBtn" class="run-action" data-action="run">Run review</button>
           </div>
         </section>
