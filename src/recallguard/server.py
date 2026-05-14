@@ -621,14 +621,14 @@ def render_app_page() -> str:
     .workbench-header {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 18px;
+      gap: 16px;
       align-items: stretch;
       position: relative;
       background: var(--dark);
       color: #fff;
       border-color: var(--dark-line);
-      padding: 24px;
-      min-height: 320px;
+      padding: 22px;
+      min-height: 0;
       box-shadow: 0 30px 90px rgba(9, 9, 28, .2);
     }
     .workbench-header::before {
@@ -646,19 +646,19 @@ def render_app_page() -> str:
       content: "";
       position: absolute;
       right: -150px;
-      top: 74px;
+      top: 40px;
       width: 520px;
-      height: 170px;
+      height: 138px;
       border-radius: 20px;
       background: linear-gradient(105deg, var(--orange), var(--magenta), var(--periwinkle));
       transform: rotate(-13deg);
-      opacity: .88;
+      opacity: .72;
       z-index: 0;
     }
     .workbench-title { position: relative; z-index: 1; align-self: start; }
     .workbench-title .eyebrow { color: #bdbbff; }
     .workbench-title h1 {
-      font-size: clamp(30px, 3.6vw, 46px);
+      font-size: clamp(28px, 3.2vw, 40px);
       line-height: 1.02;
       letter-spacing: -.045em;
       margin: 6px 0 10px;
@@ -690,20 +690,19 @@ def render_app_page() -> str:
     .active-run-card {
       border-radius: 8px;
       border: 1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.96);
-      color: var(--ink);
+      background: rgba(255,255,255,.08);
+      color: #fff;
       padding: 16px;
       display: grid;
-      grid-template-columns: 176px minmax(0, 1fr);
       gap: 10px;
       min-width: 0;
       position: relative;
       z-index: 1;
-      box-shadow: 0 24px 60px rgba(0,0,0,.18);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
     }
-    .active-run-card .eyebrow { color: var(--muted); }
+    .active-run-card .eyebrow { color: #bdbbff; }
     .active-run-card strong { font-size: 22px; letter-spacing: -.03em; }
-    .active-run-card span { color: var(--muted); font-size: 13px; line-height: 1.35; }
+    .active-run-card span { color: #c9c9d6; font-size: 13px; line-height: 1.35; }
     .run-card-top {
       display: flex;
       align-items: flex-start;
@@ -712,59 +711,40 @@ def render_app_page() -> str:
       grid-column: 1 / -1;
     }
     .run-card-top .pill {
-      border: 1px solid var(--line);
-      background: #f5f5fb;
-      color: #36364b;
-    }
-    .run-visual {
-      position: relative;
-      height: 164px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-      background:
-        linear-gradient(135deg, rgba(189,244,239,.62), rgba(255,255,255,.8)),
-        #fff;
-      grid-row: 2 / span 4;
-    }
-    .run-visual::before {
-      content: "";
-      position: absolute;
-      left: -38px;
-      right: -38px;
-      bottom: 18px;
-      height: 50px;
-      background: linear-gradient(90deg, var(--orange), var(--magenta), var(--periwinkle));
-      border-radius: 18px;
-      transform: rotate(-9deg);
-      opacity: .78;
-    }
-    .run-orb {
-      position: absolute;
-      right: 18px;
-      top: 18px;
-      width: 64px;
-      height: 64px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      background: var(--dark);
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
       color: #fff;
-      font-family: "SFMono-Regular", Consolas, monospace;
-      font-size: 12px;
-      letter-spacing: .08em;
-      box-shadow: 0 0 0 8px rgba(255,255,255,.68);
     }
-    .run-orb::after {
-      content: "";
-      position: absolute;
-      inset: -14px;
-      border-radius: inherit;
-      border: 1px solid rgba(9,9,28,.16);
-      animation: pulse-ring 2.4s ease-out infinite;
+    .run-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .timeline-step {
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 8px;
+      background: rgba(255,255,255,.055);
+      padding: 10px;
+      min-width: 0;
+    }
+    .timeline-step span {
+      display: block;
+      color: #aaaac4;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .timeline-step strong {
+      display: block;
+      margin-top: 6px;
+      color: #fff;
+      font-size: 13px;
+      letter-spacing: 0;
     }
     .signal-stack {
       display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 6px;
       margin-top: 2px;
     }
@@ -773,19 +753,19 @@ def render_app_page() -> str:
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255,255,255,.14);
       border-radius: 8px;
-      background: #fbfbfd;
+      background: rgba(255,255,255,.055);
       padding: 8px 10px;
       font-size: 12px;
     }
     .signal-row span {
-      color: var(--muted);
+      color: #aaaac4;
       font-family: "SFMono-Regular", Consolas, monospace;
       letter-spacing: .06em;
       text-transform: uppercase;
     }
-    .signal-row strong { font-size: 12px; letter-spacing: 0; }
+    .signal-row strong { color: #fff; font-size: 12px; letter-spacing: 0; }
     .run-action {
       width: 100%;
       min-height: 40px;
@@ -892,6 +872,41 @@ def render_app_page() -> str:
     .scenario-card.active { border-color: #000; background: #eefbfc; box-shadow: inset 4px 0 0 var(--mint), 0 12px 26px rgba(26,27,48,.06); }
     .scenario-card strong { display: block; font-size: 14px; }
     .scenario-card span { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.35; }
+    .case-card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .case-code {
+      color: var(--muted);
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .case-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .case-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fbfbfd;
+      color: #333447;
+      padding: 0 7px;
+      font-size: 11px;
+      font-weight: 650;
+    }
+    .case-chip.hold { background: var(--hold-bg); color: var(--hold); border-color: #f2c0b5; }
+    .case-chip.review { background: var(--review-bg); color: var(--review); border-color: #ecd590; }
+    .case-chip.approve { background: var(--approve-bg); color: var(--approve); border-color: #bce8cf; }
     .howto { margin: 18px 0 0; padding-left: 18px; line-height: 1.55; color: #333; font-size: 14px; }
     .side-meta {
       margin-top: 14px;
@@ -908,6 +923,30 @@ def render_app_page() -> str:
       font-size: 13px;
     }
     .side-meta-row strong { color: var(--ink); }
+    .queue-summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .queue-stat {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfbfd;
+      padding: 9px;
+      min-width: 0;
+    }
+    .queue-stat span {
+      color: var(--muted);
+      display: block;
+      font-size: 11px;
+    }
+    .queue-stat strong {
+      display: block;
+      margin-top: 2px;
+      font-size: 18px;
+      letter-spacing: -.03em;
+    }
     .workspace { display: grid; gap: 16px; }
     .toolbar { display: grid; grid-template-columns: minmax(220px, 1fr) auto auto; gap: 10px; align-items: end; }
     label { display: block; font-weight: 700; margin-bottom: 8px; }
@@ -1043,6 +1082,31 @@ def render_app_page() -> str:
     .product-footer { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 12px; }
     .mini-button { min-height: 36px; padding: 8px 10px; font-size: 10px; background: #fff; color: #000; border: 1px solid var(--line); border-radius: 8px; }
     .flow-list { display: grid; gap: 8px; }
+    .trace-health {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .trace-health-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 9px;
+    }
+    .trace-health-card span {
+      display: block;
+      color: var(--muted);
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .trace-health-card strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 15px;
+    }
     .foundry-proof-card {
       display: grid;
       grid-template-columns: 78px minmax(0, 1fr);
@@ -1076,12 +1140,13 @@ def render_app_page() -> str:
     .foundry-proof-card .eyebrow { color: #5e5e78; }
     .flow-node {
       display: grid;
-      grid-template-columns: 28px minmax(0, 1fr);
+      grid-template-columns: 28px minmax(0, 1fr) auto;
       gap: 10px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fff;
       padding: 10px;
+      align-items: start;
     }
     .node-index {
       width: 28px;
@@ -1096,6 +1161,16 @@ def render_app_page() -> str:
     }
     .node-title { font-weight: 760; }
     .node-copy { color: var(--muted); font-size: 13px; line-height: 1.35; margin-top: 3px; }
+    .node-status {
+      border: 1px solid #bce8cf;
+      border-radius: 999px;
+      background: var(--approve-bg);
+      color: var(--approve);
+      padding: 3px 7px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      white-space: nowrap;
+    }
     code, pre { font-family: "SFMono-Regular", Consolas, monospace; }
     code { overflow-wrap: anywhere; }
     pre {
@@ -1249,12 +1324,14 @@ def render_app_page() -> str:
       .inspector { order: 3; }
       .workbench-header { grid-template-columns: 1fr; }
       .workbench-header::after { right: -260px; top: 86px; opacity: .38; }
-      .active-run-card { grid-template-columns: 1fr; }
-      .run-visual { grid-row: auto; height: 116px; }
+      .run-timeline, .signal-stack { grid-template-columns: 1fr; }
       .hero-metrics { grid-template-columns: 1fr; }
       .workflow-strip { grid-template-columns: 1fr 1fr; }
       .next-action-banner { grid-template-columns: 1fr; }
       .guide-strip, .decision-help { grid-template-columns: 1fr; }
+      .queue-summary, .trace-health { grid-template-columns: 1fr; }
+      .flow-node { grid-template-columns: 28px minmax(0, 1fr); }
+      .node-status { grid-column: 2; width: fit-content; }
       .toolbar { grid-template-columns: 1fr; }
       .summary-grid, .evaluation-grid { grid-template-columns: 1fr 1fr; }
       .upload-control { grid-template-columns: 1fr; }
@@ -1293,13 +1370,34 @@ def render_app_page() -> str:
     <div class="shell">
       <aside class="panel sidebar">
         <div class="eyebrow">Case queue</div>
-        <h2>Try a case</h2>
-        <p>Start with a sample case. You can upload your own CSV after that.</p>
+        <h2>Review inbox</h2>
+        <p>Choose a realistic vendor submission, then run the governed review path.</p>
+        <div class="queue-summary" aria-label="Case queue summary">
+          <div class="queue-stat"><span>Cases</span><strong>4</strong></div>
+          <div class="queue-stat"><span>High risk</span><strong>1</strong></div>
+          <div class="queue-stat"><span>Guarded</span><strong>100%</strong></div>
+        </div>
         <div class="scenario-list">
-          <button class="scenario-card active" data-sample="vendor_products_complete.csv"><strong>Safe products</strong><span>Two products should be approved.</span></button>
-          <button class="scenario-card" data-sample="vendor_products_public_recall_match.csv"><strong>Recall risk</strong><span>One product should be held.</span></button>
-          <button class="scenario-card" data-sample="vendor_products_missing_fields.csv"><strong>Missing info</strong><span>Incomplete rows need review.</span></button>
-          <button class="scenario-card" data-sample="vendor_products_prompt_injection.csv"><strong>Unsafe vendor note</strong><span>Vendor instructions are ignored as data.</span></button>
+          <button class="scenario-card active" data-sample="vendor_products_complete.csv">
+            <div class="case-card-top"><strong>Safe products</strong><span class="case-code">CASE-014</span></div>
+            <span>Two products should be approved.</span>
+            <div class="case-meta"><span class="case-chip approve">Expected APPROVE</span><span class="case-chip">2 rows</span></div>
+          </button>
+          <button class="scenario-card" data-sample="vendor_products_public_recall_match.csv">
+            <div class="case-card-top"><strong>Recall risk</strong><span class="case-code">CASE-027</span></div>
+            <span>One product should be held.</span>
+            <div class="case-meta"><span class="case-chip hold">Expected HOLD</span><span class="case-chip">Public recall</span></div>
+          </button>
+          <button class="scenario-card" data-sample="vendor_products_missing_fields.csv">
+            <div class="case-card-top"><strong>Missing info</strong><span class="case-code">CASE-031</span></div>
+            <span>Incomplete rows need review.</span>
+            <div class="case-meta"><span class="case-chip review">Expected REVIEW</span><span class="case-chip">Missing IDs</span></div>
+          </button>
+          <button class="scenario-card" data-sample="vendor_products_prompt_injection.csv">
+            <div class="case-card-top"><strong>Unsafe vendor note</strong><span class="case-code">CASE-044</span></div>
+            <span>Vendor instructions are ignored as data.</span>
+            <div class="case-meta"><span class="case-chip review">Guardrail test</span><span class="case-chip">Injection</span></div>
+          </button>
         </div>
         <div class="side-meta">
           <div class="side-meta-row"><span>Workflow</span><strong>Sequential</strong></div>
@@ -1311,25 +1409,28 @@ def render_app_page() -> str:
       <main class="workspace">
         <section class="panel workbench-header">
           <div class="workbench-title">
-            <div class="eyebrow">Product safety console</div>
-            <h1>Check products before listing</h1>
-            <p>Pick a sample or upload a CSV. RecallGuard checks each product and tells you whether to approve, review, or hold it.</p>
+            <div class="eyebrow">Live review workspace</div>
+            <h1>Product safety operations</h1>
+            <p>A governed reviewer console for marketplace intake: ground policy, scan evidence, route risk, and produce a human-review packet.</p>
             <div class="hero-metrics" aria-label="Review system highlights">
-              <div class="hero-metric"><span>Workflow</span><strong>Foundry agents</strong></div>
-              <div class="hero-metric"><span>Evaluation</span><strong>25 labeled rows</strong></div>
-              <div class="hero-metric"><span>Control</span><strong>Human review</strong></div>
+              <div class="hero-metric"><span>Queue</span><strong>4 sample cases</strong></div>
+              <div class="hero-metric"><span>Harness</span><strong>25 labeled rows</strong></div>
+              <div class="hero-metric"><span>Gate</span><strong>Human review</strong></div>
             </div>
           </div>
           <div class="active-run-card">
             <div class="run-card-top">
-              <div class="eyebrow">Current run</div>
-              <span class="pill">Operator view</span>
-            </div>
-            <div class="run-visual" aria-hidden="true">
-              <div class="run-orb">AI</div>
+              <div class="eyebrow">Run timeline</div>
+              <span class="pill">Sequential</span>
             </div>
             <strong id="runStateLabel">Ready</strong>
             <span id="runStateCopy">No review has been executed in this session.</span>
+            <div class="run-timeline" aria-label="Sequential review timeline">
+              <div class="timeline-step"><span>01 Intake</span><strong>CSV loaded</strong></div>
+              <div class="timeline-step"><span>02 Ground</span><strong>Policy first</strong></div>
+              <div class="timeline-step"><span>03 Check</span><strong>Evidence scan</strong></div>
+              <div class="timeline-step"><span>04 Route</span><strong>Packet ready</strong></div>
+            </div>
             <div class="signal-stack" aria-label="Control signals">
               <div class="signal-row"><span>Policy</span><strong>Grounded</strong></div>
               <div class="signal-row"><span>Evidence</span><strong>Deterministic</strong></div>
@@ -1414,8 +1515,8 @@ def render_app_page() -> str:
 
       <aside class="inspector">
         <section class="panel">
-          <div class="eyebrow">System checks</div>
-          <h2>Behind the scenes</h2>
+          <div class="eyebrow">Trace monitor</div>
+          <h2>Workflow health</h2>
           <div class="foundry-proof-card">
             <div class="foundry-mark">
               <img src="__FOUNDRY_IMAGE_URL__" alt="Microsoft Foundry visual mark" loading="lazy" />
@@ -1426,11 +1527,16 @@ def render_app_page() -> str:
               <p>Knowledge grounding, Code Interpreter action path, traces, guardrails, and Entra ownership.</p>
             </div>
           </div>
+          <div class="trace-health" aria-label="Trace health metrics">
+            <div class="trace-health-card"><span>Agents</span><strong>2 active</strong></div>
+            <div class="trace-health-card"><span>Tools</span><strong>2 bound</strong></div>
+            <div class="trace-health-card"><span>Guard</span><strong>On</strong></div>
+          </div>
           <div class="flow-list">
-            <div class="flow-node"><div class="node-index">KB</div><div><div class="node-title">Knowledge grounding</div><div class="node-copy">Policy and recall-response sources are mapped to the Knowledge Agent.</div></div></div>
-            <div class="flow-node"><div class="node-index">CI</div><div><div class="node-title">Evidence checker</div><div class="node-copy"><code>recallguard_checker.py</code> performs the CSV action path.</div></div></div>
-            <div class="flow-node"><div class="node-index">GR</div><div><div class="node-title">Guardrails</div><div class="node-copy">Prompt-injection notes are treated as vendor data, not instructions.</div></div></div>
-            <div class="flow-node"><div class="node-index">ID</div><div><div class="node-title">Governance</div><div class="node-copy">Entra ownership, traces, and HITL packets support audit review.</div></div></div>
+            <div class="flow-node"><div class="node-index">KB</div><div><div class="node-title">Knowledge grounding</div><div class="node-copy">Policy and recall-response sources are mapped to the Knowledge Agent.</div></div><div class="node-status">READY</div></div>
+            <div class="flow-node"><div class="node-index">CI</div><div><div class="node-title">Evidence checker</div><div class="node-copy"><code>recallguard_checker.py</code> performs the CSV action path.</div></div><div class="node-status">BOUND</div></div>
+            <div class="flow-node"><div class="node-index">GR</div><div><div class="node-title">Guardrails</div><div class="node-copy">Prompt-injection notes are treated as vendor data, not instructions.</div></div><div class="node-status">ACTIVE</div></div>
+            <div class="flow-node"><div class="node-index">ID</div><div><div class="node-title">Governance</div><div class="node-copy">Entra ownership, traces, and HITL packets support audit review.</div></div><div class="node-status">RBAC</div></div>
           </div>
         </section>
 
