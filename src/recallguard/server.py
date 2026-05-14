@@ -338,6 +338,7 @@ def render_page() -> str:
     const jsonOut = document.getElementById('jsonOut');
     const decisions = document.getElementById('decisions');
     const summary = document.getElementById('summary');
+    const filterRow = document.getElementById('filterRow');
 
     async function request(path, options = {{}}) {{
       const response = await fetch(path, options);
@@ -621,6 +622,35 @@ def render_app_page() -> str:
     }
     .next-action-banner strong { display: block; }
     .next-action-banner span { display: block; margin-top: 3px; color: var(--muted); font-size: 13px; line-height: 1.35; }
+    .guide-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .guide-step {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: 26px minmax(0, 1fr);
+      gap: 8px;
+      align-items: start;
+    }
+    .guide-index {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: #000;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+    }
+    .guide-step strong { display: block; font-size: 13px; }
+    .guide-step span { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; line-height: 1.3; }
     .workflow-strip {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -760,6 +790,40 @@ def render_app_page() -> str:
     .metric { border: 1px solid var(--line); border-radius: 8px; padding: 13px; background: #fff; min-width: 0; }
     .metric span { color: var(--muted); font-size: 13px; }
     .metric strong { display: block; font-size: 28px; letter-spacing: -.03em; margin-top: 3px; }
+    .decision-help {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .decision-help-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 10px;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .decision-help-card strong { display: block; margin-bottom: 4px; }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .filter-chip {
+      min-height: 36px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: #000;
+      padding: 8px 12px;
+      font-size: 11px;
+    }
+    .filter-chip.active {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
     .results-list { display: grid; gap: 10px; margin-top: 12px; }
     .empty-state { border: 1px dashed #c9c9d6; border-radius: 8px; padding: 22px; color: var(--muted); background: #fbfbfd; }
     .product-card { border: 1px solid var(--line); border-radius: 8px; padding: 14px; background: #fff; }
@@ -934,6 +998,7 @@ def render_app_page() -> str:
       .workbench-header { grid-template-columns: 1fr; }
       .workflow-strip { grid-template-columns: 1fr 1fr; }
       .next-action-banner { grid-template-columns: 1fr; }
+      .guide-strip, .decision-help { grid-template-columns: 1fr; }
       .toolbar { grid-template-columns: 1fr; }
       .summary-grid, .evaluation-grid { grid-template-columns: 1fr 1fr; }
       .upload-control { grid-template-columns: 1fr; }
@@ -968,13 +1033,13 @@ def render_app_page() -> str:
     <div class="shell">
       <aside class="panel sidebar">
         <div class="eyebrow">Case queue</div>
-        <h2>Evidence cases</h2>
-        <p>Pick a vendor submission scenario or upload a local CSV for review.</p>
+        <h2>Try a case</h2>
+        <p>Start with a sample case. You can upload your own CSV after that.</p>
         <div class="scenario-list">
-          <button class="scenario-card active" data-sample="vendor_products_complete.csv"><strong>Certified products</strong><span>Happy path with two APPROVE decisions.</span></button>
-          <button class="scenario-card" data-sample="vendor_products_public_recall_match.csv"><strong>Public KATS recall</strong><span>One HOLD from public recall evidence.</span></button>
-          <button class="scenario-card" data-sample="vendor_products_missing_fields.csv"><strong>Missing identifiers</strong><span>Incomplete vendor rows become REVIEW.</span></button>
-          <button class="scenario-card" data-sample="vendor_products_prompt_injection.csv"><strong>Prompt-injection note</strong><span>Embedded instructions are treated only as data.</span></button>
+          <button class="scenario-card active" data-sample="vendor_products_complete.csv"><strong>Safe products</strong><span>Two products should be approved.</span></button>
+          <button class="scenario-card" data-sample="vendor_products_public_recall_match.csv"><strong>Recall risk</strong><span>One product should be held.</span></button>
+          <button class="scenario-card" data-sample="vendor_products_missing_fields.csv"><strong>Missing info</strong><span>Incomplete rows need review.</span></button>
+          <button class="scenario-card" data-sample="vendor_products_prompt_injection.csv"><strong>Unsafe vendor note</strong><span>Vendor instructions are ignored as data.</span></button>
         </div>
         <div class="side-meta">
           <div class="side-meta-row"><span>Workflow</span><strong>Sequential</strong></div>
@@ -987,8 +1052,8 @@ def render_app_page() -> str:
         <section class="panel workbench-header">
           <div class="workbench-title">
             <div class="eyebrow">Product safety console</div>
-            <h1>Vendor evidence review</h1>
-            <p>Load vendor products, run recall and certification checks, then triage each row through an auditable reviewer packet.</p>
+            <h1>Check products before listing</h1>
+            <p>Pick a sample or upload a CSV. RecallGuard checks each product and tells you whether to approve, review, or hold it.</p>
           </div>
           <div class="active-run-card">
             <div class="eyebrow">Current run</div>
@@ -1003,9 +1068,14 @@ def render_app_page() -> str:
             <div>
               <div class="eyebrow">Evidence intake</div>
               <h2>Vendor submission</h2>
-              <p>Select a sample, upload a CSV, or paste rows directly before running the review.</p>
+              <p>The sample is already loaded. Press Run review to see the workflow, or upload your own CSV.</p>
             </div>
             <span class="pill review">CSV required</span>
+          </div>
+          <div class="guide-strip" aria-label="How to use RecallGuard">
+            <div class="guide-step"><div class="guide-index">1</div><div><strong>Choose data</strong><span>Use a sample or upload CSV.</span></div></div>
+            <div class="guide-step"><div class="guide-index">2</div><div><strong>Run review</strong><span>Classify every product row.</span></div></div>
+            <div class="guide-step"><div class="guide-index">3</div><div><strong>Inspect result</strong><span>Open the packet for details.</span></div></div>
           </div>
           <div class="next-action-banner" id="nextActionBanner">
             <div class="next-action-badge">Next</div>
@@ -1043,22 +1113,33 @@ def render_app_page() -> str:
           <div class="panel-title-row">
             <div>
               <div class="eyebrow">Decision output</div>
-              <h2>Product queue</h2>
-              <p>Inspect the row-level decision, evidence matches, and recommended action.</p>
+              <h2>Review results</h2>
+              <p>Filter by status, then inspect the packet for any product that needs a closer look.</p>
             </div>
             <span class="pill approve">Auditable</span>
           </div>
           <div id="summary" class="summary-grid"></div>
+          <div class="decision-help" aria-label="Decision meaning">
+            <div class="decision-help-card"><strong>APPROVE</strong>Evidence is strong enough to proceed.</div>
+            <div class="decision-help-card"><strong>REVIEW</strong>Missing or weak evidence needs a human check.</div>
+            <div class="decision-help-card"><strong>HOLD</strong>Recall risk or strong safety signal. Do not list.</div>
+          </div>
+          <div id="filterRow" class="filter-row" aria-label="Filter product results">
+            <button class="filter-chip active" data-filter="ALL">All</button>
+            <button class="filter-chip" data-filter="APPROVE">Approve</button>
+            <button class="filter-chip" data-filter="REVIEW">Review</button>
+            <button class="filter-chip" data-filter="HOLD">Hold</button>
+          </div>
           <div id="decisions" class="results-list">
-            <div class="empty-state">Run the checker to populate product decisions and reviewer packets.</div>
+            <div class="empty-state"><strong>No review yet.</strong><br />Click Run review to create product decisions and reviewer packets.</div>
           </div>
         </section>
       </main>
 
       <aside class="inspector">
         <section class="panel">
-          <div class="eyebrow">Run monitor</div>
-          <h2>Workflow state</h2>
+          <div class="eyebrow">System checks</div>
+          <h2>Behind the scenes</h2>
           <div class="flow-list">
             <div class="flow-node"><div class="node-index">KB</div><div><div class="node-title">Knowledge grounding</div><div class="node-copy">Policy and recall-response sources are mapped to the Knowledge Agent.</div></div></div>
             <div class="flow-node"><div class="node-index">CI</div><div><div class="node-title">Evidence checker</div><div class="node-copy"><code>recallguard_checker.py</code> performs the CSV action path.</div></div></div>
@@ -1120,9 +1201,11 @@ def render_app_page() -> str:
     const DECISION_RULES = __DECISION_RULES__;
     let lastResult = null;
     let selectedProductIndex = null;
+    let decisionFilter = 'ALL';
     const csvText = document.getElementById('csvText');
     const decisions = document.getElementById('decisions');
     const summary = document.getElementById('summary');
+    const filterRow = document.getElementById('filterRow');
     const packetTitle = document.getElementById('packetTitle');
     const packetDecision = document.getElementById('packetDecision');
     const packetHint = document.getElementById('packetHint');
@@ -1160,7 +1243,9 @@ def render_app_page() -> str:
     function clearResults(message = 'Run the checker to populate product decisions and reviewer packets.') {
       lastResult = null;
       selectedProductIndex = null;
-      decisions.innerHTML = `<div class="empty-state">${escapeHtml(message)}</div>`;
+      decisionFilter = 'ALL';
+      setActiveFilter('ALL');
+      decisions.innerHTML = `<div class="empty-state"><strong>Ready for review.</strong><br />${escapeHtml(message)}</div>`;
       summary.innerHTML = '';
       packetTitle.textContent = 'No product selected';
       packetDecision.className = 'pill review';
@@ -1236,7 +1321,7 @@ def render_app_page() -> str:
       decisions.innerHTML = `
         <div class="results-list">
           ${(data.products || []).map((product, index) => `
-            <article class="product-card ${index === selectedProductIndex ? 'selected' : ''}">
+            <article class="product-card ${index === selectedProductIndex ? 'selected' : ''}" data-decision="${escapeHtml(product.decision)}">
               <div class="product-top">
                 <div>
                   <div class="product-title">${escapeHtml(product.product_name)}</div>
@@ -1255,6 +1340,7 @@ def render_app_page() -> str:
         </div>
       `;
       inspectPacket(0);
+      applyDecisionFilter(decisionFilter);
       addCopilotMessage(
         'agent',
         'Review complete',
@@ -1281,6 +1367,28 @@ def render_app_page() -> str:
     function updateCopilotContext(product = 'No product selected', decision = 'Waiting') {
       copilotContextProduct.textContent = product;
       copilotContextDecision.textContent = decision;
+    }
+
+    function setActiveFilter(filter) {
+      document.querySelectorAll('.filter-chip').forEach(button => {
+        button.classList.toggle('active', button.dataset.filter === filter);
+      });
+    }
+
+    function applyDecisionFilter(filter) {
+      decisionFilter = filter;
+      setActiveFilter(filter);
+      const cards = Array.from(document.querySelectorAll('.product-card'));
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const shouldShow = filter === 'ALL' || card.dataset.decision === filter;
+        card.style.display = shouldShow ? '' : 'none';
+        if (shouldShow) visibleCount += 1;
+      });
+      document.querySelectorAll('.filter-empty').forEach(node => node.remove());
+      if (lastResult && visibleCount === 0) {
+        decisions.insertAdjacentHTML('beforeend', '<div class="empty-state filter-empty">No products match this filter.</div>');
+      }
     }
 
     function setNextAction(title, text, buttonLabel, action) {
@@ -1402,6 +1510,11 @@ def render_app_page() -> str:
     });
     document.getElementById('evalBtn').addEventListener('click', loadEvaluation);
     document.getElementById('clearBtn').addEventListener('click', () => clearResults());
+    filterRow.addEventListener('click', event => {
+      const button = event.target.closest('.filter-chip');
+      if (!button) return;
+      applyDecisionFilter(button.dataset.filter);
+    });
     askCopilotBtn.addEventListener('click', () => askCopilot());
     copilotInput.addEventListener('keydown', event => {
       if (event.key === 'Enter') askCopilot();
