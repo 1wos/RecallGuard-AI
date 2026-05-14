@@ -22,7 +22,7 @@
     ·
     <a href="#architecture">Architecture</a>
     ·
-    <a href="#portfolio-review-path">Review path</a>
+    <a href="#suggested-walkthrough">Walkthrough</a>
     ·
     <a href="CONTRIBUTING.md">Contributing</a>
   </p>
@@ -207,16 +207,16 @@ python scripts/prepare_public_recall_dataset.py
 
 This downloads and normalizes a Korea public recall dataset snapshot, then appends compact recall evidence into `sample-data/recall_certification_snapshot.csv` for Foundry Code Interpreter demos.
 
-## Portfolio Review Path
+## Suggested Walkthrough
 
-For reviewers, hiring managers, or collaborators:
+The fastest way to understand the project is to start with the product surface, then move into the decision logic and Foundry evidence.
 
-1. Run the local reviewer console.
-2. Test the four built-in demo cases.
-3. Inspect a reviewer packet after running a case.
-4. Read `docs/Decision_Audit_and_Evaluation.md`.
-5. Read `docs/Foundry_Live_Validation_Summary.md`.
-6. Check `tests/test_checker.py` for deterministic decision coverage.
+| Time | Focus | Where to look |
+|---|---|---|
+| 3 minutes | Product experience | Run the local console and test `Safe products` or `Recall risk` |
+| 7 minutes | Decision quality | Inspect a reviewer packet and read `docs/Decision_Audit_and_Evaluation.md` |
+| 10 minutes | Foundry implementation | Read `docs/Foundry_Live_Validation_Summary.md` and the workflow YAML |
+| 15 minutes | Engineering confidence | Review `tests/test_checker.py` and run `pytest -q` |
 
 ## Tech Stack
 
